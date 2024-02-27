@@ -5,19 +5,19 @@ No cenário atual, a indústria de locação de veículos passa por uma revoluç
 ## Problema
 Apesar dos benefícios oferecidos por locadoras online, um desafio persistente é a inconsistência na qualidade e manutenção dos veículos disponíveis para locação. Os clientes muitas vezes enfrentam situações em que a condição real do veículo difere significativamente das expectativas baseadas nas informações fornecidas online. Isso pode resultar em experiências insatisfatórias, atrasos e até mesmo impactar a segurança dos usuários.
 
-# Descrição Inadequada do Veículo:
+### Descrição Inadequada do Veículo:
 
 A falta de padronização nas descrições dos veículos online pode levar a interpretações equivocadas por parte dos clientes. Por exemplo, a classificação de "carro espaçoso" pode variar significativamente entre diferentes locadoras, gerando expectativas imprecisas.
 
-# Fotos Enganosas:
+### Fotos Enganosas:
 
 Algumas locadoras online podem apresentar fotos dos veículos que não refletem com precisão o estado atual. Isso pode resultar em clientes reservando veículos com base em imagens desatualizadas, levando a frustrações na entrega.
 
-# Problemas Mecânicos Não Comunicados:
+### Problemas Mecânicos Não Comunicados:
 
 Em alguns casos, questões mecânicas ou de manutenção não são comunicadas de maneira transparente. Isso pode resultar em situações em que os clientes descobrem problemas apenas no momento da retirada, causando desconforto e inconveniência.
 
-# Divergências nas Políticas de Combustível:
+### Divergências nas Políticas de Combustível:
 
 A falta de consistência nas políticas de combustível, como a exigência de tanque cheio ou vazio na devolução, pode levar a mal-entendidos e disputas no momento da devolução do veículo.
 
