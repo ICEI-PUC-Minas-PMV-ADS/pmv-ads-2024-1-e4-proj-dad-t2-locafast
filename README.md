@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/1281703/Eixo%204%20-%20LocaFast/_apis/build/status%2FICEI-PUC-Minas-PMV-ADS.pmv-ads-2024-1-e4-proj-dad-t2-locafast?branchName=main)](https://dev.azure.com/1281703/Eixo%204%20-%20LocaFast/_build/latest?definitionId=2&branchName=main)
+
 # TÍTULO DO PROJETO
 
 `CURSO`
