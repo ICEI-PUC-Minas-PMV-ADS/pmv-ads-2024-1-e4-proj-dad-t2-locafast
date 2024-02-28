@@ -8,19 +8,46 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+## `Guilherme de Sá`
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+| ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/assets/114623537/003deb6e-cf8b-4151-8cd2-f6133658baf8) | Guilherme de Sá, 43 anos                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Ocupação                                                                                                                 | Cantor                                                                                          |
+| Aplicativos mais utilizados                                                                                              | Instagram, Facebook, Spotify.                                                                 |
+| Motivações                                                                                                               | Busca um meio de locomoção para ir e carregar os equipamentos até os seus shows.              |
+| Seus Hobbies                                                                                                             | Cantar, viajar pelo mundo.                                                                            |
+| Frustrações?                                                                                                             | Problemas de mobilidade em viagens por falta de um carro. |
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+## `Ricardo Freitas`
+
+| ![douglas-queiroz-2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/assets/114623537/14ce1575-f3cf-4fe3-a99e-6c94e03561ab) | Ricardo Freitas, 32 anos                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Ocupação                                                                                                                 | Motorista de aplicativo                                                                                         |
+| Aplicativos mais utilizados                                                                                              | WhatsApp, Uber, Waze.                                                                  |
+| Motivações                                                                                                               | Busca um modo de alugar carros para fazer viagens na Uber.              |
+| Seus Hobbies                                                                                                             | Dirigir, praticar esportes.                                                                            |
+| Frustrações?                                                                                                             | Por ter vendido o carro, não está conseguindo trabalhar. |
+
+## `Sabrina Silva`
+
+| ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/assets/114623537/43d6d0ae-264f-4a9e-bd36-9f5cf6049428) | Sabrina Silva, 27 anos                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Ocupação                                                                                                                 | Organizadora de eventos                                                                                          |
+| Aplicativos mais utilizados                                                                                              | Instagram, Facebook, Pinterest, Sympla.                                                                |
+| Motivações                                                                                                               | Está buscando um modo prático de alugar carros para usar em suas viagens.              |
+| Seus Hobbies                                                                                                             | Ler, praticar yoga.                                                                           |
+| Frustrações?                                                                                                             | Necessita de um carro por viajar muito a trabalho, mas não deseja adquirir um. |
+
+## `Gabriel Augusto`
+
+| ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/assets/114623537/cbf92980-80e9-435b-98c8-566a795060ad) | Gabriel Augusto, 22 anos                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Ocupação                                                                                                                 | Estágiario de medicina                                                                                          |
+| Aplicativos mais utilizados                                                                                              | WhatsApp, Pinterest, Spotify.                                                               |
+| Motivações                                                                                                               | Busca um aplicativo para alugar carros em que possa vizualizar o preço e os modelos dos carros.             |
+| Seus Hobbies                                                                                                             | Pescar, acampar.                                                                           |
+| Frustrações?                                                                                                             | Por gostar de acampar, necessita de um carro, mas não tem dinheiro para comprar um. |
+
 
 ## Histórias de Usuários
 
