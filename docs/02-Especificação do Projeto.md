@@ -26,16 +26,18 @@ Lembre-se que você deve ser enumerar e descrever precisamente e personalizada t
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-| **Histórias de Usuários**                                      |
-|----------------------------------------------------------------|
-| **Guilherme: Visualizar veículos por categoria (sedan, SUV, caminhonete)** |
-| **Ricardo: Ver avaliações de outros clientes sobre veículos e experiências de aluguel** |
+### Histórias de Usuários
 
+| **Nomes**    | **Descrição**                                          |
+|--------------|--------------------------------------------------------|
+| Guilherme    | Visualizar veículos disponíveis por categoria          |
+| Ricardo      |  Ver avaliações de outros clientes sobre veículos       |
 
-| **Histórias de Funcionários**                                   |
-|------------------------------------------------------------------|
-| **Sabrina: Gerenciar reservas existentes, alterar datas e adicionar serviços extras** |
+### Histórias de Funcionários
 
+| **Nomes**    | **Descrição**                                                |
+|--------------|--------------------------------------------------------------|
+| Sabrina      | Acessar relatórios detalhados sobre desempenho das reservas  |
 
 ## Modelagem do Processo de Negócio 
 
