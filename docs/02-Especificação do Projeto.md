@@ -50,10 +50,6 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 
 ## Histórias de Usuários
-
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
-
-### Histórias de Usuários
 ### História 1: Guilherme de Sá
 
 - **Nome**: Guilherme de Sá
