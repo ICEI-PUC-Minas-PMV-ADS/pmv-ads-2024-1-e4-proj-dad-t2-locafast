@@ -24,7 +24,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
 | Ocupação                                                                                                                 | Motorista de aplicativo                                                                                         |
 | Aplicativos mais utilizados                                                                                              | WhatsApp, Uber, Waze.                                                                  |
-| Motivações                                                                                                               | Busca um modo de alugar carros para fazer viagens na Uber.              |
+| Motivações                                                                                                               | Busca um modo de alugar carros em que possa definir o tempo que irá ficar com o veículo.              |
 | Seus Hobbies                                                                                                             | Dirigir, praticar esportes.                                                                            |
 | Frustrações?                                                                                                             | Por ter vendido o carro, não está conseguindo trabalhar. |
 
@@ -34,7 +34,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
 | Ocupação                                                                                                                 | Organizadora de eventos                                                                                          |
 | Aplicativos mais utilizados                                                                                              | Instagram, Facebook, Pinterest, Sympla.                                                                |
-| Motivações                                                                                                               | Está buscando um modo prático de alugar carros para usar em suas viagens.              |
+| Motivações                                                                                                               | Está buscando um modo prático e seguro de alugar carros para usar em suas viagens.              |
 | Seus Hobbies                                                                                                             | Ler, praticar yoga.                                                                           |
 | Frustrações?                                                                                                             | Necessita de um carro por viajar muito a trabalho, mas não deseja adquirir um. |
 
