@@ -52,8 +52,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 ## Histórias de Usuários
 <div style="background-color:#333333; padding: 10px; color: white;"> 
 
-### História 1: Guilherme de Sá
-
+### `História 1: Guilherme de Sá`
 </div>
 
 | Nome             | Idade  | Localização    | Descrição                                                                                                                                                                                                                                                                                                    | Objetivo                                                                                                                                                                                                                              | Solução                                                                                                                                                                                                                              |
@@ -62,7 +61,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 <div style="background-color:#333333; padding: 10px; color: white;"> 
 
-### História 2: Ricardo Freitas
+### `História 2: Ricardo Freitas`
 
 </div>
 
@@ -72,7 +71,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 <div style="background-color:#333333; padding: 10px; color: white;"> 
 
-### História 3: Sabrina Silva
+### `História 3: Sabrina Silva`
 
 </div>
 
@@ -82,7 +81,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 <div style="background-color:#333333; padding: 10px; color: white;"> 
 
-### História 4: Gabriel Augusto
+### `História 4: Gabriel Augusto`
 
 </div>
 
