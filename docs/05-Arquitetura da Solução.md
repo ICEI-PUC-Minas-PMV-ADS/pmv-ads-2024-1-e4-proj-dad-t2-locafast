@@ -4,7 +4,7 @@
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-[![Arquitetura da Solução LocaFast](arqlocasfast.png)](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/blob/main/docs/img/arqlocasfast.png)
+[![Arquitetura da Solução LocaFast](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/blob/main/docs/img/arqlocasfast.png)]
 
 ## Diagrama de Classes
 
