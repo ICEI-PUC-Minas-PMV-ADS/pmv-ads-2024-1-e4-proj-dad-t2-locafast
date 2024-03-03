@@ -129,8 +129,12 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir que o usuário crie uma conta na LocaFast | ALTA | 
+|RF-002| Permitir que o usuário cadastre seu carro para alugar | ALTA |
+|RF-003| Permitir que o usuário possa alugar um carro | ALTA | 
+|RF-004| Permitir que o usuário tenha um feed para aluguél de carros  | MÉDIA |
+|RF-005| Permitir que o usuário tenha um documento de ofialização do aluguel de um imóvel | MÉDIA | 
+|RF-006| Permitir que o usário saiba quais automóveis estão disponíveis para aluguel  | ALTA |
 
 ### Requisitos não Funcionais
 
@@ -138,21 +142,11 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
 |RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RF-003| A latência entre o BROWSER Desktop e o dispositivo mobile deve ser a mesma| MÉDIA | 
+|RF-004| O Build deve ser em docker para facilitar o deploy em novas releases evitando indisponibilidade | MÉDIA |
+|RF-005| O sistema deve ser acessível no Google Chrome, Mozila Firefox e EDGE Browser | ALTA | 
+|RF-006| O sistema deve ter um meio de pagamento simulado seguro   | MÉDIA |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
@@ -161,15 +155,13 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|02| O projeto deverá atender os módulos do Documento Arquitetura de Soluções e nada a menos ou mais do que isso      |
+|03| O deploy deve ser centralizado em uma cloud(Azure) por motivo de natividade        |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Diagrama de Casos de Uso
+
+Em desenvolvimento..<br>
 
 O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
 
