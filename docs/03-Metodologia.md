@@ -3,12 +3,16 @@
 
 <span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
 
-Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela  equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
+A metodologia contempla as definições de ferramental utilizado pela equipe tanto para a manutenção dos códigos e demais artefatos quanto para a organização do time na execução das tarefas do projeto.
 
 ## Relação de Ambientes de Trabalho
 
-Os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a relação dos ambientes com seu respectivo propósito deverá ser apresentada em uma tabela que especifica que detalha Ambiente, Plataforma e Link de Acesso. 
-Nota: Vide documento modelo do estudo de caso "Portal de Notícias" e defina também os ambientes e frameworks que serão utilizados no desenvolvimento de aplicações móveis.
+|Ambiente     | Plataforma  |Link de Acesso |
+|-------|-------------------------|----|
+|Repositório de código fonte| GitHub | https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/tree/main | 
+|Documentos do projeto| GitHub |  https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/tree/main/docs | 
+|Projeto de Interface e  Wireframes| Figma | preencher | 
+|Gerenciamento do Projeto| Azure Devops |  https://dev.azure.com/1281703/Eixo%203%20-%20App%20Mobile | 
 
 ## Controle de Versão
 
@@ -19,19 +23,8 @@ foi utilizado para hospedagem do repositório.
 O projeto segue a seguinte convenção para o nome de branches:
 
 - `main`: versão estável já testada do software
-- `unstable`: versão já testada do software, porém instável
 - `testing`: versão em testes do software
 - `dev`: versão de desenvolvimento do software
-
-Quanto à gerência de issues, o projeto adota a seguinte convenção para
-etiquetas:
-
-- `documentation`: melhorias ou acréscimos à documentação
-- `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
-
-Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gerência de tags, merges, commits e branchs é realizada. Discuta como a gerência de issues foi realizada.
 
 > **Links Úteis**:
 > - [Microfundamento: Gerência de Configuração](https://pucminas.instructure.com/courses/87878/)
@@ -45,43 +38,35 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 
 ### Divisão de Papéis
 
-Apresente a divisão de papéis entre os membros do grupo.
+A equipe emprega abordagens ágeis e adotou o Scrum como a estrutura principal para estabelecer o método de desenvolvimento. <br>
+A estrutura organizacional da equipe é a seguinte: <br>
+<br>
+Scrum Master:<b>Gustavo Lemos dos Santos</b><br>
+Product Owner: <b>Gustavo Lemos dos Santos</b><br>
+Equipe de Desenvolvimento: <b>David Gomes, Gustavo Lemos dos Santos, Kevin Issamu Muramoto, Amanda Brito, Ramon e Maxwell de Souza Pedroza</b><br>
 
-Exemplificação: A equipe utiliza metodologias ágeis, tendo escolhido o Scrum como base para definição do processo de desenvolvimento. A equipe está organizada da seguinte maneira:
-- Scrum Master: Felipe Domingos;
-- Product Owner: Rommel Carneiro;
-- Equipe de Desenvolvimento: Pedro Penna, Pedro Ivo, Rodrigo Richard;
-- Equipe de Design: Simone Nogueira.
-
-> **Links Úteis**:
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
-> - [Os papéis do Scrum e a verdade sobre cargos nessa técnica](https://www.atlassian.com/br/agile/scrum/roles)
 
 ### Processo
 
-Coloque  informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo deverá fazer uso do recurso de gerenciamento de projeto oferecido pelo GitHub, que permite acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
+Estamos avaliando a ferramenta do Azure Devops para centralizar um fluxo de entrega em board kamban("Backlog", "Em desenvolvimento" e "Concluído") com cada épico representado uma entrega de uma etapa.<br>
+
+
  
-> **Links Úteis**:
-> - [Planejamento e Gestáo Ágil de Projetos](https://pucminas.instructure.com/courses/87878/pages/unidade-2-tema-2-utilizacao-de-ferramentas-para-controle-de-versoes-de-software)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/github/managing-your-work-on-github/about-project-boards)
-> - [Como criar Backlogs no Github](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
 
 ### Ferramentas
 
-As ferramentas empregadas no projeto são:
+No âmbito do projeto, foram adotadas as seguintes soluções:<br> <br>
+Ambiente de edição de código: <b>Visual Studio</b><br>
+Plataformas de comunicação: <b>Microsoft Teams e WhatsApp.</b><br>
+Instrumentos para a construção de interfaces e designs: <b>Figma.</b><br>
+Recursos para a elaboração de representações gráficas: <b>Draw.io</b><br>
+Ferramenta para o controle de prazos e agendamentos: <b>Azure Devops</b><br>
 
-- Editor de código.
-- Ferramentas de comunicação
-- Ferramentas de desenho de tela (_wireframing_)
+A escolha do ambiente de edição de código se deve à sua integração com o sistema de controle de versão e à sua alta compatibilidade com a maioria das tecnologias empregadas ao longo do desenvolvimento do projeto.<br>
 
-O editor de código foi escolhido porque ele possui uma integração com o sistema de versão. As ferramentas de comunicação utilizadas possuem integração semelhante e por isso foram selecionadas. Por fim, para criar diagramas utilizamos essa ferramenta por melhor captar as necessidades da nossa solução.
+As plataformas de comunicação selecionadas são conhecidas pela sua simplicidade de uso, permitindo que a equipe mantenha uma comunicação eficiente e ágil.<br>
 
-Liste quais ferramentas foram empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível.
- 
-> **Possíveis Ferramentas que auxiliarão no gerenciamento**: 
-> - [Slack](https://slack.com/)
-> - [Github](https://github.com/)
+Quanto à criação de interfaces e designs, optamos pelo Figma devido às suas robustas funcionalidades, que viabilizam a criação de layouts visuais, responsivos, e à sua fácil integração no processo de desenvolvimento.<br>
+
+Por fim, para a elaboração de diagramas, contamos com a draw.io para uma representação precisa das necessidades da nossa solução.<br>
+
