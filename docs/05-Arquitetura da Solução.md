@@ -14,9 +14,8 @@ Em desenvolvimento..
 
 ## Modelo ER
 
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/assets/114267923/63f22cfd-8419-40fd-a834-cb2c6557dd12)
 
-Em desenvolvimento..
 
 ## Esquema  do Banco de Dados
 
