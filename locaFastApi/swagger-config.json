@@ -1,0 +1,94 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api LocaFast",
+    "description": "Documentação da API LocaFast",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/cliente": {
+      "get": {
+        "summary": "Listar todos os clientes",
+        "description": "Retorna uma lista de todos os clientes cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de clientes",
+            "content": {
+              "application/json": {
+                "example": {
+                  "numeroCnh": "123456",
+                  "validadeCnh": "2023-12-31",
+                  "estadoEmissor": "SP",
+                  "nome": "Exemplo Cliente",
+                  "cpf": "123.456.789-01",
+                  "rg": "1234567",
+                  "telefone": "(12) 3456-7890",
+                  "email": "cliente@example.com",
+                  "dataNascimento": "1990-01-01",
+                  "status": "Ativo",
+                  "genero": "Feminino"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar clientes."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo cliente",
+        "description": "Cadastra um novo cliente com as informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "numeroCnh": "123456",
+                "validadeCnh": "2023-12-31",
+                "estadoEmissor": "SP",
+                "nome": "Exemplo Cliente",
+                "cpf": "123.456.789-01",
+                "rg": "1234567",
+                "telefone": "(12) 3456-7890",
+                "email": "cliente@example.com",
+                "dataNascimento": "1990-01-01",
+                "status": "Ativo",
+                "genero": "Feminino"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Cliente cadastrado com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Cliente cadastrado com sucesso!"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao cadastrar cliente."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
