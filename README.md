@@ -32,6 +32,8 @@ Otimizar os processos internos da locadora, automatizando tarefas como o gerenci
 
 ## Instruções de utilização
 
+Está branch é protegida por uma regra de revisão de Pull Request com pelo menos 1 revisor.
+
 Em desenvolvimento..
 
 Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
