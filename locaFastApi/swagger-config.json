@@ -17,13 +17,13 @@
             "content": {
               "application/json": {
                 "example": {
-                  "numeroCnh": "123456",
+                  "numeroCnh": "123456789",
                   "validadeCnh": "2023-12-31",
                   "estadoEmissor": "SP",
                   "nome": "Exemplo Cliente",
                   "cpf": "123.456.789-01",
-                  "rg": "1234567",
-                  "telefone": "(12) 3456-7890",
+                  "rg": "12345678",
+                  "telefone": "(12)3456-7890",
                   "email": "cliente@example.com",
                   "dataNascimento": "1990-01-01",
                   "status": "Ativo",
@@ -51,13 +51,13 @@
           "content": {
             "application/json": {
               "example": {
-                "numeroCnh": "123456",
+                "numeroCnh": "123456789",
                 "validadeCnh": "2023-12-31",
                 "estadoEmissor": "SP",
                 "nome": "Exemplo Cliente",
                 "cpf": "123.456.789-01",
-                "rg": "1234567",
-                "telefone": "(12) 3456-7890",
+                "rg": "12345678",
+                "telefone": "(12)3456-7890",
                 "email": "cliente@example.com",
                 "dataNascimento": "1990-01-01",
                 "status": "Ativo",
@@ -68,11 +68,26 @@
         },
         "responses": {
           "201": {
-            "description": "Cliente cadastrado com sucesso",
+            "description": "Sucesso ao cadastrar cliente",
             "content": {
               "application/json": {
                 "example": {
                   "message": "Cliente cadastrado com sucesso!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "número da CNH inválido.",
+                  "message 3": "CPF inválido.",
+                  "message 4": "RG inválido.",
+                  "message 5": "O telefone inserido é inválido.",
+                  "message 6": "O email inserido é inválido."
                 }
               }
             }
@@ -83,6 +98,183 @@
               "application/json": {
                 "example": {
                   "error": "Erro ao cadastrar cliente."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/{id}": {
+      "get": {
+        "summary": "Obter cliente por ID",
+        "description": "Retorna um cliente com o ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do cliente",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "65ede1b972f9e877b79e0ef9"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Cliente não encontrado."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar cliente por ID."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar cliente por ID",
+        "description": "Atualiza um cliente com o ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do cliente",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "numeroCnh": "123456789",
+                "validadeCnh": "2023-12-31",
+                "estadoEmissor": "SP",
+                "nome": "Exemplo Cliente",
+                "cpf": "123.456.789-01",
+                "rg": "12345678",
+                "telefone": "(12)3456-7890",
+                "email": "cliente@example.com",
+                "dataNascimento": "1990-01-01",
+                "status": "Ativo",
+                "genero": "Feminino"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Cliente atualizado com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Cliente não existe."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "número da CNH inválido.",
+                  "message 3": "CPF inválido.",
+                  "message 4": "RG inválido.",
+                  "message 5": "O telefone inserido é inválido.",
+                  "message 6": "O email inserido é inválido."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao atualizar cliente."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remover cliente por ID",
+        "description": "Remove um cliente com o ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do cliente",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente removido com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Cliente removido com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Cliente não existe."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao remover cliente."
                 }
               }
             }

@@ -1,0 +1,4 @@
+.vscode
+locaFastApi/.env
+locaFastApi/node_modules
+locaFastApi/package-lock.json

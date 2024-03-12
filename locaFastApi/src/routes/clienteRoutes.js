@@ -1,45 +1,33 @@
 const router = require('express').Router()
 
-const Cliente = require('../models/Cliente')
+const ClienteService = require('../services/clienteService')
+
+const clienteService = new ClienteService();
 
 router.post('/', async (req, res) => {
 
-    const {
-        numeroCnh,
-        validadeCnh,
-        estadoEmissor,
-        nome,
-        cpf,
-        rg,
-        telefone,
-        email,
-        dataNascimento,
-        status,
-        genero,
-    } = req.body
-
-    const cliente = {
-        numeroCnh,
-        validadeCnh,
-        estadoEmissor,
-        nome,
-        cpf,
-        rg,
-        telefone,
-        email,
-        dataNascimento,
-        status,
-        genero,
-    }
-
     try {
 
-        await Cliente.create(cliente)
+        await clienteService.postCliente(req.body)
 
         res.status(201).json({ message: "Cliente cadastrado com sucesso!" })
 
     } catch (error) {
-        res.status(500).json({ error: error })
+        let statusCode = 500;
+        switch (error.message) {
+            case 'Todos os campos devem ser preenchidos.':
+            case 'número da CNH inválido.':
+            case 'CPF inválido.':
+            case 'RG inválido.':
+            case 'O telefone inserido é inválido.':
+            case 'O email inserido é inválido.':
+                statusCode = 400;
+                break;
+            default:
+                statusCode = 500;
+        }
+
+        res.status(statusCode).json({ error: error.message });
     }
 
 })
@@ -48,9 +36,9 @@ router.get('/', async (req, res) => {
 
     try {
 
-        const cliente = await Cliente.find()
+        const clientes = await clienteService.GetClienteAll();
 
-        res.status(200).json(cliente)
+        res.status(200).json(clientes)
 
     } catch (error) {
         res.status(500).json({ error: error })
@@ -64,7 +52,7 @@ router.get('/:id', async (req, res) => {
 
     try {
 
-        const cliente = await Cliente.findOne({ _id: id })
+        const cliente = await clienteService.GetClienteId(id)
 
         if (!cliente) {
             res.status(422).json({ message: "Cliente não encontrado." })
@@ -78,50 +66,27 @@ router.get('/:id', async (req, res) => {
 
 })
 
-router.patch('/:id', async (req, res) => {
-
-    const id = req.params.id
-
-    const {
-        numeroCnh,
-        validadeCnh,
-        estadoEmissor,
-        nome,
-        cpf,
-        rg,
-        telefone,
-        email,
-        dataNascimento,
-        status,
-        genero,
-    } = req.body
-
-    const cliente = {
-        numeroCnh,
-        validadeCnh,
-        estadoEmissor,
-        nome,
-        cpf,
-        rg,
-        telefone,
-        email,
-        dataNascimento,
-        status,
-        genero,
-    }
+router.put('/:id', async (req, res) => {
 
     try {
 
-        const updatedClient = await Cliente.updateOne({ _id: id }, cliente)
-
-        if (updatedClient.matchedCount === 0) {
-            res.status(422).json({ message: "Cliente não encontrado." })
-            return
-        }
+        await clienteService.PutCliente(req.body, req.params.id)
 
         res.status(200).json({ message: "Cliente atualizado com sucesso!" })
+
     } catch (error) {
-        res.status(500).json({ error: error })
+        if (error.message === "Cliente não existe.") {
+            res.status(404).json({ error: error.message });
+        } else if (error.message === "Todos os campos devem ser preenchidos." ||
+                   error.message === "número da CNH inválido." ||
+                   error.message === "CPF inválido." ||
+                   error.message === "RG inválido." ||
+                   error.message === "O telefone inserido é inválido." ||
+                   error.message === "O email inserido é inválido.") {
+            res.status(400).json({ error: error.message });
+        } else {
+            res.status(500).json({ error: error.message });
+        }
     }
 
 })
@@ -129,21 +94,19 @@ router.patch('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
 
     const id = req.params.id
-    const cliente = await Cliente.findOne({ _id: id })
-
-    if (!cliente) {
-        res.status(422).json({ message: "Cliente não encontrado." })
-        return
-    }
 
     try {
 
-        await Cliente.deleteOne({ _id: id })
+        await clienteService.deleteCliente(id)
 
         res.status(200).json({ message: "Cliente removido com sucesso!" })
 
     } catch (error) {
-        res.status(500).json({ error: error })
+        if (error.message === "Cliente não existe.") {
+            res.status(404).json({ error: error.message });
+        } else {
+            res.status(500).json({ error: error })
+        }
     }
 
 })
