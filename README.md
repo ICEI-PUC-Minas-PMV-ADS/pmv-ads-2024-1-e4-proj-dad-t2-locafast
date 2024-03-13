@@ -26,7 +26,7 @@ Otimizar os processos internos da locadora, automatizando tarefas como o gerenci
 * Maxwell de Souza Pedroza
 * Ramon Resende  Souza
 
-## Orientador
+## Orientador e professor
 
 * Professor: Leonardo Vilela Cardoso
 
