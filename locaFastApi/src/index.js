@@ -19,7 +19,9 @@ app.use(express.json())
 
 //rotas Api
 const clienteRoutes = require('./routes/clienteRoutes')
+const colaboradorRoutes = require('./routes/colaboradorRoutes')
 app.use('/cliente', clienteRoutes)
+app.use('/colaborador', colaboradorRoutes)
 
 //rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

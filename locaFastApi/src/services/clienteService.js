@@ -2,6 +2,7 @@ const Cliente = require('../models/Cliente')
 
 
 class ClienteService {
+    
     async GetClienteAll() {
         try {
             const clientes = await Cliente.find();

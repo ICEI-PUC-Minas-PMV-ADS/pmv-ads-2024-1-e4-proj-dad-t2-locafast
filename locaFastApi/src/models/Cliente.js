@@ -51,6 +51,6 @@ clienteSchema.statics.modelIsValid = function(cliente) {
     return true;
 }
 
-const Cliente = mongoose.model('Cliente', clienteSchema);
+const Cliente = mongoose.model('Clientes', clienteSchema);
 
 module.exports = Cliente
