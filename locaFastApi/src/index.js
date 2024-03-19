@@ -17,18 +17,19 @@ app.use(
 
 app.use(express.json())
 
-//rotas Api-
-const clienteRoutes = require('./routes/clienteRoutes')
+// Rotas API
+const clienteRoutes = require('./routes/clienteRoutes');
+const carroRoutes = require('./routes/carroRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes')
-const loginRoutes = require('./routes/loginRoutes')
-app.use('/cliente', clienteRoutes)
+app.use('/cliente', clienteRoutes);
+app.use('/carro', carroRoutes);
 app.use('/colaborador', colaboradorRoutes)
 app.use('login', loginRoutes)
 
-//rota principal
+// Rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-//conexão com o banco
+//conexão com o <banco></banco>
 mongoose.connect(
     process.env.STRING_CONEXAO
 ).then(() => {
