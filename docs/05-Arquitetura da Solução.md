@@ -14,7 +14,8 @@ Em desenvolvimento..
 
 ## Modelo ER
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/assets/114267923/63f22cfd-8419-40fd-a834-cb2c6557dd12)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e4-proj-dad-t2-locafast/assets/114267923/7b423eb0-d6f8-4d89-86cb-dc68bb815776)
+
 
 
 ## Esquema  do Banco de Dados
