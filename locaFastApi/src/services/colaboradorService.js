@@ -29,7 +29,7 @@ class ColaboradorService {
             }
 
             const validacaoModelo = Colaborador.modelIsValid(colaborador);
-            if (validacaoModelo !== null) {
+            if (validacaoModelo !== true) {
                 throw new Error(validacaoModelo.message);
             }
 

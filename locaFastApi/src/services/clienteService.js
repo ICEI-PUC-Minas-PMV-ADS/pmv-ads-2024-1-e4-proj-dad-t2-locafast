@@ -31,7 +31,7 @@ class ClienteService {
             }
 
             const validacaoModelo = Cliente.modelIsValid(cliente);
-            if (validacaoModelo !== null) {
+            if (validacaoModelo !== true) {
                 throw new Error(validacaoModelo.message);
             }
 

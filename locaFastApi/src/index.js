@@ -17,11 +17,13 @@ app.use(
 
 app.use(express.json())
 
-//rotas Api
+//rotas Api-
 const clienteRoutes = require('./routes/clienteRoutes')
 const colaboradorRoutes = require('./routes/colaboradorRoutes')
+const loginRoutes = require('./routes/loginRoutes')
 app.use('/cliente', clienteRoutes)
 app.use('/colaborador', colaboradorRoutes)
+app.use('login', loginRoutes)
 
 //rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
