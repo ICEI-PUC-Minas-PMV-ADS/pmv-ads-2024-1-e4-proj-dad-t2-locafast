@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
 
     try {
 
-        await clienteService.postCliente(req.body)
+        await clienteService.postCliente(req.body);
 
         res.status(201).json({ message: "Cliente cadastrado com sucesso!" })
 

@@ -7,6 +7,7 @@ const colaboradorSchema = new mongoose.Schema({
     rg: String,
     telefone: String,
     dataNascimento: Date,
+    senha: String,
     genero: {
         type: String,
         enum: ['Masculino', 'Feminino']
