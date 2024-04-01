@@ -25,7 +25,7 @@ const loginRoutes = require('./routes/loginRoutes')
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
 app.use('/colaborador', colaboradorRoutes)
-app.use('login', loginRoutes)
+app.use('/login', loginRoutes)
 
 // Rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
