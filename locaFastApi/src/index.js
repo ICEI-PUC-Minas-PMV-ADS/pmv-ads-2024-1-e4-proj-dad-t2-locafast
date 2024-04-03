@@ -20,12 +20,15 @@ app.use(express.json())
 // Rotas API
 const clienteRoutes = require('./routes/clienteRoutes');
 const carroRoutes = require('./routes/carroRoutes');
-const colaboradorRoutes = require('./routes/colaboradorRoutes')
-const loginRoutes = require('./routes/loginRoutes')
+const reservaRoutes = require('./routes/reservaRoutes');
+const colaboradorRoutes = require('./routes/colaboradorRoutes');
+const loginRoutes = require('./routes/loginRoutes');
+
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
-app.use('/colaborador', colaboradorRoutes)
-app.use('/login', loginRoutes)
+app.use('/reserva',reservaRoutes);
+app.use('/colaborador', colaboradorRoutes);
+app.use('login', loginRoutes);
 
 // Rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

@@ -2,44 +2,44 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const secrets = require("../constants/secrets")
 
-const Colaborador = require('../models/Colaborador')
+const ColaboradorRepository = require('../repository/ColaboradorRepository')
+const ColaboradorException = require('../exceptions/colaboradorException')
+const httpStatus = require('../constants/httpstatus')
+const httpstatus = require("../constants/httpstatus")
 
 class LoginService {
 
-    async findByLogin(colaborador) {
+    async findByCpf(req){
         try {
-            let baseColaborador = new Colaborador()
-
-            if (colaborador !== null && colaborador.cpf.trim() !== "") {
-
-                const conditions = {
-                    $and: [
-                        { cpf: colaborador.cpf },
-                        { senha: colaborador.senha },
-                    ]
+            const { cpf } = req.params;
+            this.validadeRequestData(cpf);
+            let colaborador = await ColaboradorRepository.findByCpf(cpf);
+            this.validadeColaboradorNotFound(colaborador)
+            return {
+                status: httpStatus.SUCCESS,
+                colaborador: {
+                    id: colaborador.id,
+                    nome: colaborador.nome,
+                    cpf: colaborador.cpf
                 }
-
-                baseColaborador = await Colaborador.findOne(conditions)
-
-                token = this.getAcessToken(colaborador)
-
-                if (baseColaborador === null) {
-                    return null
-                } else {
-                    return {
-                        message: "Colaborador logado!",
-                        acessToken: token.acessToken,
-                        colaborador: {
-                            id: baseColaborador.id,
-                            cpf: baseColaborador.cpf
-                        }
-                    }
-                }
-            } else {
-                return null
             }
         } catch (error) {
-            throw error
+            return {
+                status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            }
+        }
+    }
+
+    validadeAcessTokenData(cpf){
+        if(!cpf){
+            throw new ColaboradorException(httpStatus.BAD_REQUEST, "User cpf was not informed");
+        }
+    }
+
+    validadeColaboradorNotFound(colaborador){
+        if(!colaborador){
+            throw new Error(httpStatus.BAD_REQUEST, "User was not found.")
         }
     }
 
@@ -47,25 +47,31 @@ class LoginService {
         try {
             const {cpf, password} = req
             this.validadeAcessTokenData(cpf, password)
-            let user = await Colaborador.findOne({cpf: cpf})
+            let user = await ColaboradorRepository.findByCpf(cpf)
             await this.validadePassword(password, user.senha)
             const authUser = {id: user.id, nome: user.nome, cpf: user.cpf}
             const acessToken = jwt.sign({authUser}, secrets.API_SECRET,{expiresIn: "1d"})
-            return acessToken
+            return {
+                status: httpStatus.SUCCESS,
+                acessToken,
+            }
         } catch (error) {
-            throw error
+            return {
+                status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            }
         }
     }
 
     validadeAcessTokenData(cpf, password){
         if(!cpf|| !password){
-            throw new Error("CPF e senha são obrigatórios!")
+            throw new ColaboradorException(httpstatus.UNAUTHORIZED, "CPF and password must be informed.")
         }
     }
 
     async validadePassword(password, hashPassword){
         if(!await bcrypt.compare(password, hashPassword)){
-            throw new Error("Senhas não coincidem")
+            throw new ColaboradorException(httpstatus.UNAUTHORIZED, "Password doesn't match.")
         }
     }
 
