@@ -23,16 +23,12 @@ const carroRoutes = require('./routes/carroRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
-<<<<<<< HEAD
-app.use('/colaborador', colaboradorRoutes)
-app.use('/login', loginRoutes)
-=======
 app.use('/reserva',reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
-app.use('login', loginRoutes);
->>>>>>> 2936b4204e5a775da1c27248215e307d4deec1ef
+app.use('/login', loginRoutes);
 
 // Rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
