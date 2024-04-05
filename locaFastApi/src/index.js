@@ -23,6 +23,7 @@ const carroRoutes = require('./routes/carroRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+const contratoRoutes = require('./routes/contratoRoutes')
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
 <<<<<<< HEAD
