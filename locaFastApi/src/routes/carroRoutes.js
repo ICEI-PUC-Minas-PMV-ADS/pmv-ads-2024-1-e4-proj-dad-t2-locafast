@@ -1,14 +1,26 @@
 const express = require('express');
+import {z} from 'zod'
 const router = express.Router();
 
 // Importar o serviço de carro
 const CarroService = require('../services/carroService');
 const carroService = new CarroService();
 
+const carroBodySchema = z.object({
+  placa: z.string(),
+  chassi: z.string(),
+  modelo: z.string(),
+  marca: z.string(),
+  anoFabricacao: z.string(),
+  cor: z.string(),
+  categoria: z.string(),
+})
+
 // Rota para criar um novo carro
 router.post('/', async (req, res) => {
     try {
-        const novoCarro = await carroService.postCarro(req.body);
+        const carroInput = carroBodySchema.parse(req.body)
+        const novoCarro = await carroService.postCarro(carroInput);
         res.status(201).json(novoCarro);
     } catch (error) {
         res.status(400).json({ error: error.message });
