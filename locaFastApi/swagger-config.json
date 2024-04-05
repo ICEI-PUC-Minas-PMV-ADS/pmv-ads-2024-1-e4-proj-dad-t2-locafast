@@ -281,6 +281,265 @@
           }
         }
       }
+    },
+    "/carro": {
+      "get": {
+        "summary": "Listar todos os carros",
+        "description": "Retorna uma lista de todos os carros disponíveis para locação.",
+        "responses": {
+          "200": {
+            "description": "Lista de carros",
+            "content": {
+              "application/json": {
+                "example": {
+                  "placa": "ABC1234",
+                  "marca": "Exemplo Marca",
+                  "modelo": "Exemplo Modelo",
+                  "ano": 2020,
+                  "cor": "Branco",
+                  "status": "Disponível"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar carros."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastrar um novo carro",
+        "description": "Cadastra um novo carro com as informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "placa": "ABC1234",
+                "marca": "Exemplo Marca",
+                "modelo": "Exemplo Modelo",
+                "ano": 2020,
+                "cor": "Branco",
+                "status": "Disponível"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso ao cadastrar carro",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Carro cadastrado com sucesso!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "Placa inválida.",
+                  "message 3": "Ano inválido."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao cadastrar carro."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carro/{placa}": {
+      "get": {
+        "summary": "Obter carro por placa",
+        "description": "Retorna um carro com a placa fornecida.",
+        "parameters": [
+          {
+            "name": "placa",
+            "in": "path",
+            "required": true,
+            "description": "Placa do carro",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Carro encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "placa": "ABC1234",
+                  "marca": "Exemplo Marca",
+                  "modelo": "Exemplo Modelo",
+                  "ano": 2020,
+                  "cor": "Branco",
+                  "status": "Disponível"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Carro não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Carro não encontrado."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar carro por placa."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar carro por placa",
+        "description": "Atualiza um carro com a placa fornecida.",
+        "parameters": [
+          {
+            "name": "placa",
+            "in": "path",
+            "required": true,
+            "description": "Placa do carro",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "placa": "ABC1234",
+                "marca": "Exemplo Marca",
+                "modelo": "Exemplo Modelo",
+                "ano": 2020,
+                "cor": "Branco",
+                "status": "Disponível"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Carro atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Carro atualizado com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Carro não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Carro não existe."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "Placa inválida.",
+                  "message 3": "Ano inválido."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao atualizar carro."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remover carro por placa",
+        "description": "Remove um carro com a placa fornecida.",
+        "parameters": [
+          {
+            "name": "placa",
+            "in": "path",
+            "required": true,
+            "description": "Placa do carro",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Carro removido com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Carro removido com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Carro não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Carro não existe."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao remover carro."
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

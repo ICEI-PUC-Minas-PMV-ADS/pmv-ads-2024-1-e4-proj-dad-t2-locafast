@@ -1,29 +1,29 @@
 const express = require('express');
-import {z} from 'zod'
+const z = require('zod')
 const router = express.Router();
 
 // Importar o serviço de carro
 const CarroService = require('../services/carroService');
 const carroService = new CarroService();
 
-const carroBodySchema = z.object({
-  placa: z.string(),
-  chassi: z.string(),
-  modelo: z.string(),
-  marca: z.string(),
-  anoFabricacao: z.string(),
-  cor: z.string(),
-  categoria: z.string(),
-})
+const carroCreateBodySchema = z.object({
+  placa: z.string().regex(/^([A-Z]{3}\d{1}[A-Z0-9]{1}\d{2})$/), // Expressão regular para validar a placa
+  chassi: z.string().regex(/^[A-HJ-NPR-Z0-9]{17}$/), // Expressão regular para validar o chassi
+  modelo: z.string().min(1).max(255), // Mínimo de 1 caractere e máximo de 255 caracteres
+  marca: z.string().min(1).max(255), // Mínimo de 1 caractere e máximo de 255 caracteres
+  anoFabricacao: z.number().min(4), // Expressão regular para validar o ano de fabricação (formato YYYY)
+  cor: z.string().min(1).max(50), // Mínimo de 1 caractere e máximo de 50 caracteres
+  categoria: z.string().min(1).max(50), // Mínimo de 1 caractere e máximo de 50 caracteres
+});
 
 // Rota para criar um novo carro
 router.post('/', async (req, res) => {
     try {
-        const carroInput = carroBodySchema.parse(req.body)
+        const carroInput = carroCreateBodySchema.parse(req.body)
         const novoCarro = await carroService.postCarro(carroInput);
         res.status(201).json(novoCarro);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.format() });
     }
 });
 
@@ -52,12 +52,23 @@ router.get('/:id', async (req, res) => {
 });
 
 // Rota para atualizar um carro pelo ID
-router.put('/:id', async (req, res) => {
+const carroUpdateBodySchema = z.object({
+  placa: z.string().regex(/^([A-Z]{3}\d{1}[A-Z0-9]{1}\d{2})$/).optional(), // Expressão regular para validar a placa
+  chassi: z.string().regex(/^[A-HJ-NPR-Z0-9]{17}$/).optional(), // Expressão regular para validar o chassi
+  modelo: z.string().min(1).max(255).optional(), // Mínimo de 1 caractere e máximo de 255 caracteres
+  marca: z.string().min(1).max(255).optional(), // Mínimo de 1 caractere e máximo de 255 caracteres
+  anoFabricacao: z.number().min(4).optional(), // Expressão regular para validar o ano de fabricação (formato YYYY)
+  cor: z.string().min(1).max(50).optional(), // Mínimo de 1 caractere e máximo de 50 caracteres
+  categoria: z.string().min(1).max(50).optional(), // Mínimo de 1 caractere e máximo de 50 caracteres
+});
+
+router.patch('/:id', async (req, res) => {
     try {
-        const carroAtualizado = await carroService.putCarro(req.body, req.params.id);
+        const carroInput = carroUpdateBodySchema.parse(req.body)
+        const carroAtualizado = await carroService.putCarro(carroInput, req.params.id);
         res.status(200).json(carroAtualizado);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.format() });
     }
 });
 

@@ -6,7 +6,7 @@ const swaggerDocument = require('../swagger-config')
 
 const app = express()
 
-//variaveis de ambiente
+// variaveis de ambiente
 require('dotenv').config()
 
 app.use(
