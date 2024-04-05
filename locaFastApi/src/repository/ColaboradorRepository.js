@@ -2,7 +2,7 @@ const Colaborador = require('../models/Colaborador')
 
 class ColaboradorRepository {
 
-    async findByCpf(id) {
+    async findById(id) {
         try {
             return await Colaborador.findOne({_id: id})
         } catch (error) {

@@ -4,6 +4,8 @@ const mongoose = require("mongoose")
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('../swagger-config')
 
+const checkToken = require('./config/auth/checkToken')
+
 const app = express()
 
 //variaveis de ambiente
@@ -24,11 +26,15 @@ const reservaRoutes = require('./routes/reservaRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 
+app.use('/login', loginRoutes);
+
+//rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
+app.use(checkToken)
+
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
-app.use('/reserva',reservaRoutes);
+app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
-app.use('/login', loginRoutes);
 
 // Rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -40,6 +46,6 @@ mongoose.connect(
     console.log("MongoDB conectado!")
     app.listen(3001)
 })
-.catch((err) => console.log(err))
+    .catch((err) => console.log(err))
 
 app.listen(3000)
