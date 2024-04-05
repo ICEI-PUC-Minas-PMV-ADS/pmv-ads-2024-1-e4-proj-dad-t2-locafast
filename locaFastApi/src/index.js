@@ -8,7 +8,7 @@ const checkToken = require('./config/auth/checkToken')
 
 const app = express()
 
-//variaveis de ambiente
+// variaveis de ambiente
 require('dotenv').config()
 
 app.use(
@@ -33,6 +33,7 @@ app.use(checkToken)
 
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
+app.use('/login', loginRoutes)
 app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
 
