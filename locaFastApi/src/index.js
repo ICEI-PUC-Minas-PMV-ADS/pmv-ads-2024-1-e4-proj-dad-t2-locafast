@@ -26,16 +26,21 @@ const reservaRoutes = require('./routes/reservaRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 
+const contratoRoutes = require('./routes/contratoRoutes')
+
+
 app.use('/login', loginRoutes);
 
 //rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
 app.use(checkToken)
+
 
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
 app.use('/login', loginRoutes)
 app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
+app.use('/contrato', contratoRoutes);
 
 // Rota principal
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
