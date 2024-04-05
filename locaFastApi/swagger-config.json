@@ -9,6 +9,7 @@
   "paths": {
     "/cliente": {
       "get": {
+        "tags": ["Clientes"],
         "summary": "Listar todos os clientes",
         "description": "Retorna uma lista de todos os clientes cadastrados.",
         "responses": {
@@ -45,6 +46,7 @@
         }
       },
       "post": {
+        "tags": ["Clientes"],
         "summary": "Cadastrar um novo cliente",
         "description": "Cadastra um novo cliente com as informações fornecidas.",
         "requestBody": {
@@ -107,6 +109,7 @@
     },
     "/cliente/{id}": {
       "get": {
+        "tags": ["Clientes"],
         "summary": "Obter cliente por ID",
         "description": "Retorna um cliente com o ID fornecido.",
         "parameters": [
@@ -154,6 +157,7 @@
         }
       },
       "put": {
+        "tags": ["Clientes"],
         "summary": "Atualizar cliente por ID",
         "description": "Atualiza um cliente com o ID fornecido.",
         "parameters": [
@@ -235,6 +239,7 @@
         }
       },
       "delete": {
+        "tags": ["Clientes"],
         "summary": "Remover cliente por ID",
         "description": "Remove um cliente com o ID fornecido.",
         "parameters": [

@@ -1,8 +1,9 @@
 const Colaborador = require('../models/Colaborador')
+const bycript = require('bcrypt')
 
 
 class ColaboradorService {
-    
+
     async GetColaboradorAll() {
         try {
             const colaboradores = await Colaborador.find();
@@ -32,6 +33,9 @@ class ColaboradorService {
             if (validacaoModelo !== true) {
                 throw new Error(validacaoModelo.message);
             }
+
+            let password = await bycript.hash(colaborador.senha, 10)
+            colaborador.senha = password
 
             const newColaborador = await Colaborador.create(colaborador);
             return newColaborador;
@@ -68,6 +72,9 @@ class ColaboradorService {
                 throw new Error(validacaoModelo.message);
             }
 
+            let password = await bycript.hash(colaborador.senha, 10)
+            colaborador.senha = password
+
             Object.assign(usuario, colaborador);
             const colaboradorAtualizado = await usuario.save();
             return colaboradorAtualizado;
@@ -85,7 +92,7 @@ class ColaboradorService {
                 throw new Error("Colaborador não existe.");
             }
 
-            await Colaborador.deleteOne({_id: id})
+            await Colaborador.deleteOne({ _id: id })
 
         } catch (error) {
             throw error

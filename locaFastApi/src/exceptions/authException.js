@@ -1,4 +1,4 @@
-class ColaboradorException extends Error {
+class AuthException extends Error {
     constructor(status, message) {
         super(message);
         this.status = status;
@@ -8,4 +8,4 @@ class ColaboradorException extends Error {
     }
 }
 
-module.exports = ColaboradorException
+module.exports = AuthException
