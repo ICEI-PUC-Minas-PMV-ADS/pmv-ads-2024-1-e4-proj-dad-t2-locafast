@@ -29,7 +29,7 @@ const reservaSchema = new mongoose.Schema({
 })
 
 
-reservaSchemaSchema.statics.modelIsValid = function(reserva) {
+reservaSchema.statics.modelIsValid = function(reserva) {
 
     if (Object.values(reserva).some(value => value === null || value === undefined || value === "")) {
         return new Error('Todos os campos devem ser preenchidos.');
