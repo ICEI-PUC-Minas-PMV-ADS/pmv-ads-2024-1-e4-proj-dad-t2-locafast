@@ -2,7 +2,247 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Api LocaFast",
-    "description": "Documentação da API LocaFast",
+    "description": "Documentação da API LocaFast",    "/reserva/": {
+      "get": {
+        "tags": ["Reservas"],
+        "summary": "Obter reservas",
+        "description": "Retorna as reservas de locação de automóveis.",
+        "parameters": [
+          {   
+            "clientId": "string",
+              "dateRetirada": "string",
+              "dateDevolucao": "string",
+              "agenciaRetirada": "string",
+              "agenciaDevolucao": "string",
+              "tarifaId": "string",
+              "categoriaVeiculo": "string", 
+              "valorDiaria": "string",
+              "colaboradorId": "string"
+          }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva encontrada",
+            "content": {
+              "application/json": {   
+                "clientId": "37261836",
+                  "dateRetirada": "2024-10-10",
+                  "dateDevolucao": "2024-10-12",
+                  "agenciaRetirada": "Agencia Matriz",
+                  "agenciaDevolucao": "Agencia Cardec",
+                  "tarifaId": "53216",
+                  "categoriaVeiculo": "A", 
+                  "valorDiaria": "400",
+                  "colaboradorId": "165417"
+              }
+              }
+            }
+          },
+          "422": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "rRserva não encontrada."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar reserva."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Reservas"],
+        "summary": "Cadastrar uma nova reserva",
+        "description": "Cadastra uma nova reserva com as informações fornecidas.",
+        "requestBody": {
+          "content": {   
+            "clientId": "37261836",
+              "dateRetirada": "2024-10-10",
+              "dateDevolucao": "2024-10-12",
+              "agenciaRetirada": "Agencia Matriz",
+              "agenciaDevolucao": "Agencia Cardec",
+              "tarifaId": "53216",
+              "categoriaVeiculo": "A", 
+              "valorDiaria": "400",
+              "colaboradorId": "165417"
+          }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso ao cadastrar reserva",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva cadastrado com sucesso!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "Reserva inválida.",
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao cadastrar reserva."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Reservas"],
+        "summary": "Atualizar reserva",
+        "description": "Atualiza um reserva com o id fornecido.",
+        "parameters": [
+        {   
+          "clientId": "string",
+            "dateRetirada": "string",
+            "dateDevolucao": "string",
+            "agenciaRetirada": "string",
+            "agenciaDevolucao": "string",
+            "tarifaId": "string",
+            "categoriaVeiculo": "string", 
+            "valorDiaria": "string",
+            "colaboradorId": "string"
+        }
+          }
+        ],
+        "requestBody": {
+        "content": {   
+          "clientId": "37261836",
+            "dateRetirada": "2024-10-10",
+            "dateDevolucao": "2024-10-12",
+            "agenciaRetirada": "Agencia Matriz",
+            "agenciaDevolucao": "Agencia Cardec",
+            "tarifaId": "53216",
+            "categoriaVeiculo": "A", 
+            "valorDiaria": "400",
+            "colaboradorId": "165417"
+        }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reserva atualizada com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva atualizada com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva não existe."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "Reserva inválida."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao atualizar reserva."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Reservas"],
+        "summary": "Remover reserva por ID",
+        "description": "Remove um reserva com o ID fornecido.",
+        "parameters": [
+              {   
+                "clientId": "string",
+                  "dateRetirada": "string",
+                  "dateDevolucao": "string",
+                  "agenciaRetirada": "string",
+                  "agenciaDevolucao": "string",
+                  "tarifaId": "string",
+                  "categoriaVeiculo": "string", 
+                  "valorDiaria": "string",
+                  "colaboradorId": "string"
+              }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva removido com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva removido com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva não existe."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao remover reserva."
+                }
+              }
+            }
+          }
+        }
+      }
+}
     "version": "1.0.0"
   },
   "basePath": "/",
@@ -287,6 +527,247 @@
         }
       }
     },
+    "/reserva/": {
+      "get": {
+        "tags": ["Reservas"],
+        "summary": "Obter reservas",
+        "description": "Retorna as reservas de locação de automóveis.",
+        "parameters": [
+          {   
+            "clientId": "string",
+              "dateRetirada": "string",
+              "dateDevolucao": "string",
+              "agenciaRetirada": "string",
+              "agenciaDevolucao": "string",
+              "tarifaId": "string",
+              "categoriaVeiculo": "string", 
+              "valorDiaria": "string",
+              "colaboradorId": "string"
+          }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva encontrada",
+            "content": {
+              "application/json": {   
+                "clientId": "37261836",
+                  "dateRetirada": "2024-10-10",
+                  "dateDevolucao": "2024-10-12",
+                  "agenciaRetirada": "Agencia Matriz",
+                  "agenciaDevolucao": "Agencia Cardec",
+                  "tarifaId": "53216",
+                  "categoriaVeiculo": "A", 
+                  "valorDiaria": "400",
+                  "colaboradorId": "165417"
+              }
+              }
+            }
+          },
+          "422": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "rRserva não encontrada."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar reserva."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Reservas"],
+        "summary": "Cadastrar uma nova reserva",
+        "description": "Cadastra uma nova reserva com as informações fornecidas.",
+        "requestBody": {
+          "content": {   
+            "clientId": "37261836",
+              "dateRetirada": "2024-10-10",
+              "dateDevolucao": "2024-10-12",
+              "agenciaRetirada": "Agencia Matriz",
+              "agenciaDevolucao": "Agencia Cardec",
+              "tarifaId": "53216",
+              "categoriaVeiculo": "A", 
+              "valorDiaria": "400",
+              "colaboradorId": "165417"
+          }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso ao cadastrar reserva",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva cadastrado com sucesso!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "Reserva inválida.",
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao cadastrar reserva."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Reservas"],
+        "summary": "Atualizar reserva",
+        "description": "Atualiza um reserva com o id fornecido.",
+        "parameters": [
+        {   
+          "clientId": "string",
+            "dateRetirada": "string",
+            "dateDevolucao": "string",
+            "agenciaRetirada": "string",
+            "agenciaDevolucao": "string",
+            "tarifaId": "string",
+            "categoriaVeiculo": "string", 
+            "valorDiaria": "string",
+            "colaboradorId": "string"
+        }
+          }
+        ],
+        "requestBody": {
+        "content": {   
+          "clientId": "37261836",
+            "dateRetirada": "2024-10-10",
+            "dateDevolucao": "2024-10-12",
+            "agenciaRetirada": "Agencia Matriz",
+            "agenciaDevolucao": "Agencia Cardec",
+            "tarifaId": "53216",
+            "categoriaVeiculo": "A", 
+            "valorDiaria": "400",
+            "colaboradorId": "165417"
+        }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reserva atualizada com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva atualizada com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva não existe."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "Reserva inválida."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao atualizar reserva."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Reservas"],
+        "summary": "Remover reserva por ID",
+        "description": "Remove um reserva com o ID fornecido.",
+        "parameters": [
+              {   
+                "clientId": "string",
+                  "dateRetirada": "string",
+                  "dateDevolucao": "string",
+                  "agenciaRetirada": "string",
+                  "agenciaDevolucao": "string",
+                  "tarifaId": "string",
+                  "categoriaVeiculo": "string", 
+                  "valorDiaria": "string",
+                  "colaboradorId": "string"
+              }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva removido com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva removido com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva não encontrada",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Reserva não existe."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao remover reserva."
+                }
+              }
+            }
+          }
+        }
+      }
+},
     "/carro": {
       "get": {
         "summary": "Listar todos os carros",

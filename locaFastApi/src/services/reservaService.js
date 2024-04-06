@@ -1,4 +1,6 @@
 const Reserva = require('../models/Reserva')
+const Cliente = require('../models/Cliente')
+const Colaborador = require('../models/Colaborador')
 
 
 class ReservaService {
@@ -30,7 +32,20 @@ class ReservaService {
                 throw new Error('Reserva já possui um cadastro.');
             }
 
+            const cliente_check = await Cliente.findById(id);
+
+            if (!cliente_check ) {
+                throw new Error("Cliente não existe.");
+            }
+
+            const colaborador_check = await Colaborador.findById(id);
+
+            if (!colaborador_check) {
+                throw new Error("Colaborador não existe.");
+            }
+
             const validacaoModelo = Reserva.modelIsValid(reserva);
+
             if (validacaoModelo !== true) {
                 throw new Error(validacaoModelo.message);
             }
