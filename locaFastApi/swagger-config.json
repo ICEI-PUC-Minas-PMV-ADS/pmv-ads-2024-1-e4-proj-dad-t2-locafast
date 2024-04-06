@@ -7,30 +7,65 @@
   },
   "basePath": "/",
   "paths": {
-    "login":{
+    "/login": {
       "post": {
         "tags": [
           "Login"
         ],
         "summary": "Faça login",
-        "description": "Retorna um token para acessar as demais rotas caso o usuário informado esteja cadastrado.",
+        "description": "Caso você não possua um usuário, logue com cpf 99999999999 e senha admin123",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "cpf": "99999999999",
+                "senha": "admin123"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Lista de clientes",
+            "description": "Token de acesso",
             "content": {
               "application/json": {
                 "example": {
-                  "numeroCnh": "123456789",
-                  "validadeCnh": "2023-12-31",
-                  "estadoEmissor": "SP",
-                  "nome": "Exemplo Cliente",
-                  "cpf": "123.456.789-01",
-                  "rg": "12345678",
-                  "telefone": "(12)3456-7890",
-                  "email": "cliente@example.com",
-                  "dataNascimento": "1990-01-01",
-                  "status": "Ativo",
-                  "genero": "Feminino"
+                  "status": 200,
+                  "colaborador": {
+                    "id": "colaboradorId",
+                    "nome": "colaboradorNome",
+                    "cpf": "colaboradorCpf"
+                  },
+                  "acessToken": {
+                    "status": 200,
+                    "acessToken": "token gerado"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    "CPF e senha devem ser informados.",
+                    "Senha incorreta."
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida",
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    "CPF não foi informado",
+                    "Usuário não encontrado"
+                  ]
                 }
               }
             }
@@ -40,7 +75,7 @@
             "content": {
               "application/json": {
                 "example": {
-                  "error": "Erro ao buscar clientes."
+                  "error": "Ocorreu um erro interno."
                 }
               }
             }
@@ -60,25 +95,6 @@
             "bearerAuth": []
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "example": {
-                "numeroCnh": "123456789",
-                "validadeCnh": "2023-12-31",
-                "estadoEmissor": "SP",
-                "nome": "Exemplo Cliente",
-                "cpf": "123.456.789-01",
-                "rg": "12345678",
-                "telefone": "(12)3456-7890",
-                "email": "cliente@example.com",
-                "dataNascimento": "1990-01-01",
-                "status": "Ativo",
-                "genero": "Feminino"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Lista de clientes",

@@ -1,101 +1,107 @@
-const Colaborador = require('../models/Colaborador')
-const bycript = require('bcrypt')
+const bcrypt = require('bcrypt')
 
+const ColaboradorException = require('../exceptions/colaboradorException')
+const ColaboradorRepository = require('../repository/ColaboradorRepository')
+const httpStatus = require('../config/constants/httpstatus')
+
+const colaboradorRepository = new ColaboradorRepository()
 
 class ColaboradorService {
 
-    async GetColaboradorAll() {
-        try {
-            const colaboradores = await Colaborador.find();
-            return colaboradores;
-        } catch (error) {
-            throw error;
+    validadeUserNotFound(colaborador) {
+        if (!colaborador) {
+            throw new ColaboradorException(httpStatus.NOT_FOUND, 'Colaborador não encontrado.')
         }
     }
 
-    async postColaborador(colaborador) {
+    async validadeUserExists(cpf, rg){
+        const colaboradorExists = await colaboradorRepository.findByCpfAndRg(cpf, rg)
+        if (colaboradorExists) {
+            throw new ColaboradorException(httpStatus.BAD_REQUEST, 'Número de cpf ou rg informados já existentes');
+        }
+    }
+
+    async hashPassword(password) {
+        return await bcrypt.hash(password, 10);
+    }
+
+    async GetColaboradorAll() {
+        try {
+            const colaboradores = await colaboradorRepository.findAll()
+            return {
+                status: httpStatus.SUCCESS,
+                colaboradores
+            };
+        } catch (error) {
+            throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)
+        }
+    }
+
+    async postColaborador(req) {
         try {
 
-            const conditions = {
-                $or: [
-                    { cpf: colaborador.cpf },
-                    { rg: colaborador.rg },
-                ]
-            }
+            this.validadeUserExists(req.body.cpf, req.body.rg)
+            const validacaoModelo = colaboradorRepository.modelIsValid(req.body);
 
-            const colaboradorExists = await Colaborador.findOne(conditions)
+            req.body.senha = hashPassword(req.body.senha)
 
-            if (colaboradorExists) {
-                throw new Error('colaborador já possui um cadastro.');
-            }
-
-            const validacaoModelo = Colaborador.modelIsValid(colaborador);
-            if (validacaoModelo !== true) {
-                throw new Error(validacaoModelo.message);
-            }
-
-            let password = await bycript.hash(colaborador.senha, 10)
-            colaborador.senha = password
-
-            const newColaborador = await Colaborador.create(colaborador);
-            return newColaborador;
+            await colaboradorRepository.create(req.body);
+            return {
+                status: httpStatus.CREATED,
+                message: "Colaborador cadastrado com sucesso!"
+            };
 
         } catch (error) {
-            throw error;
+            throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)
         }
     }
 
     async GetColaboradorId(id) {
         try {
-            const colaborador = await Colaborador.findOne({ _id: id })
-            if (colaborador) {
-                return colaborador
-            } else {
-                return false
+            const colaborador = await colaboradorRepository.findById(id)
+            this.validadeUserNotFound(colaborador)
+            return {
+                status: httpStatus.SUCCESS,
+                user: colaborador
             }
-
         } catch (error) {
-            throw error
+            throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)
         }
     }
 
-    async PutColaborador(colaborador, id) {
+    async PutColaborador(req, id) {
         try {
-            const usuario = await Colaborador.findById(id);
+            const colaborador = await colaboradorRepository.findById(id);
 
-            if (!usuario) {
-                throw new Error("Colaborador não existe.");
-            }
+            this.validadeUserNotFound(colaborador)
+            colaboradorRepository.modelIsValid(req.body);
+            this.validadeUserExists(req.body.cpf, req.body.rg)
 
-            const validacaoModelo = Colaborador.modelIsValid(colaborador);
-            if (validacaoModelo !== true) {
-                throw new Error(validacaoModelo.message);
-            }
-
-            let password = await bycript.hash(colaborador.senha, 10)
-            colaborador.senha = password
-
-            Object.assign(usuario, colaborador);
-            const colaboradorAtualizado = await usuario.save();
-            return colaboradorAtualizado;
-
+            req.body.senha = hashPassword(req.body.senha)
+            Object.assign(colaborador, req.body);
+            const colaboradorAtualizado = await colaborador.save();
+            return {
+                status: httpStatus.SUCCESS,
+                message: "Colaborador atualizado",
+                user: colaboradorAtualizado
+            };
         } catch (error) {
-            throw error;
+            throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)
         }
     }
 
     async deleteColaborador(id) {
         try {
-            const usuario = await Colaborador.findById(id)
-
-            if (!usuario) {
-                throw new Error("Colaborador não existe.");
+            const colaborador = await colaboradorRepository.findById(id)
+            this.validadeUserNotFound()
+            await colaboradorRepository.deleteById(id)
+            return {
+                status: httpStatus.SUCCESS,
+                message: "Colaborador deletado.",
+                user: colaborador
             }
-
-            await Colaborador.deleteOne({ _id: id })
-
         } catch (error) {
-            throw error
+            throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)
         }
     }
 }

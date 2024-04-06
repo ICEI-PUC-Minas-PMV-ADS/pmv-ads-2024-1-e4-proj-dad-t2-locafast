@@ -5,17 +5,20 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('../swagger-config')
 
 const checkToken = require('./config/auth/checkToken')
-
-const app = express()
+const createInitialData = require('./config/db/initialData')
 
 // variaveis de ambiente
 require('dotenv').config()
+
+const app = express()
 
 app.use(
     express.urlencoded({
         extended: true
     })
 )
+
+createInitialData()
 
 app.use(express.json())
 
