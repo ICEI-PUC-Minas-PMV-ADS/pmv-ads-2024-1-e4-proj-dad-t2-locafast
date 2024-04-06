@@ -2,21 +2,55 @@ const Colaborador = require('../models/Colaborador')
 
 class ColaboradorRepository {
 
-    async findByCpf(id) {
+    async findAll() {
         try {
-            return await Colaborador.findOne({_id: id})
+            return await Colaborador.find()
         } catch (error) {
-            console.log(error.message);
-            return null
+            throw error
         }
     }
 
-    async findByCpf(cpf) {
+    async findById(id) {
         try {
-            return await Colaborador.findOne({cpf: cpf})
+            return await Colaborador.findOne({ _id: id })
         } catch (error) {
-            console.log(error.message);
-            return null
+            throw error
+        }
+    }
+
+    async findByCpfAndRg(cpf, rg = null) {
+        try {
+            let query = { cpf: cpf };
+            if (rg) {
+                query.rg = rg;
+            }
+            return await Colaborador.findOne(query)
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async create(colaborador) {
+        try {
+            return await Colaborador.create(colaborador)
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async deleteById(id) {
+        try {
+            return await Colaborador.deleteOne({ _id: id })
+        } catch (error) {
+            throw error
+        }
+    }
+
+    modelStateIsValid(colaborador){
+        try {
+            return Colaborador.modelStateIsValid(colaborador)
+        } catch (error) {
+            throw error
         }
     }
 

@@ -1,114 +1,64 @@
-const router = require('express').Router()
+const router = require('express').Router();
 
-const ClienteService = require('../services/clienteService')
+const ClienteService = require('../services/clienteService');
+const httpStatus = require('../config/constants/httpstatus');
 
 const clienteService = new ClienteService();
 
 router.post('/', async (req, res) => {
-
     try {
-
         await clienteService.postCliente(req.body);
-
-        res.status(201).json({ message: "Cliente cadastrado com sucesso!" })
-
+        return res.status(httpStatus.CREATED).json({ message: "Cliente cadastrado com sucesso!" });
     } catch (error) {
-        let statusCode = 500;
-        switch (error.message) {
-            case 'Todos os campos devem ser preenchidos.':
-            case 'número da CNH inválido.':
-            case 'CPF inválido.':
-            case 'RG inválido.':
-            case 'O telefone inserido é inválido.':
-            case 'O email inserido é inválido.':
-                statusCode = 400;
-                break;
-            default:
-                statusCode = 500;
-        }
-
-        res.status(statusCode).json({ error: error.message });
+        const status = error.status
+        return res.status(status).json({ error: error.message });
     }
-
-})
+});
 
 router.get('/', async (req, res) => {
-
     try {
-
         const clientes = await clienteService.GetClienteAll();
-
-        res.status(200).json(clientes)
-
+        return res.status(clientes.status).json(clientes.data);
     } catch (error) {
-        res.status(500).json({ error: error })
+        const status = error.status
+        return res.status(status).json({ error: error.message });
     }
-
-})
+});
 
 router.get('/:id', async (req, res) => {
-
-    const id = req.params.id
-
+    const id = req.params.id;
     try {
-
-        const cliente = await clienteService.GetClienteId(id)
-
+        const cliente = await clienteService.GetClienteId(id);
         if (!cliente) {
-            res.status(422).json({ message: "Cliente não encontrado." })
-            return
+            return res.status(httpStatus.NOT_FOUND).json({ message: "Cliente não encontrado." });
         }
-
-        res.status(200).json(cliente)
+        return res.status(cliente.status).json(cliente.data);
     } catch (error) {
-        res.status(500).json({ error: error })
+        const status = error.status
+        return res.status(status).json({ error: error.message });
     }
-
-})
+});
 
 router.put('/:id', async (req, res) => {
-
+    const id = req.params.id;
     try {
-
-        await clienteService.PutCliente(req.body, req.params.id)
-
-        res.status(200).json({ message: "Cliente atualizado com sucesso!" })
-
+        await clienteService.PutCliente(req.body, id);
+        return res.status(httpStatus.SUCCESS).json({ message: "Cliente atualizado com sucesso!" });
     } catch (error) {
-        if (error.message === "Cliente não existe.") {
-            res.status(404).json({ error: error.message });
-        } else if (error.message === "Todos os campos devem ser preenchidos." ||
-                   error.message === "número da CNH inválido." ||
-                   error.message === "CPF inválido." ||
-                   error.message === "RG inválido." ||
-                   error.message === "O telefone inserido é inválido." ||
-                   error.message === "O email inserido é inválido.") {
-            res.status(400).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: error.message });
-        }
+        const status = error.status
+        return res.status(status).json({ error: error.message });
     }
-
-})
+});
 
 router.delete('/:id', async (req, res) => {
-
-    const id = req.params.id
-
+    const id = req.params.id;
     try {
-
-        await clienteService.deleteCliente(id)
-
-        res.status(200).json({ message: "Cliente removido com sucesso!" })
-
+        await clienteService.deleteCliente(id);
+        return res.status(httpStatus.SUCCESS).json({ message: "Cliente removido com sucesso!" });
     } catch (error) {
-        if (error.message === "Cliente não existe.") {
-            res.status(404).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: error })
-        }
+        const status = error.status
+        return res.status(status).json({ error: error.message });
     }
+});
 
-})
-
-module.exports = router
+module.exports = router;

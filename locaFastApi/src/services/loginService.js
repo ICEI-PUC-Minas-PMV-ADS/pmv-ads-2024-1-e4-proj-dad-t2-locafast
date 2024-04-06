@@ -1,77 +1,75 @@
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const secrets = require("../constants/secrets")
+const secrets = require("../config/constants/secrets")
 
 const ColaboradorRepository = require('../repository/ColaboradorRepository')
 const ColaboradorException = require('../exceptions/colaboradorException')
-const httpStatus = require('../constants/httpstatus')
-const httpstatus = require("../constants/httpstatus")
+const httpStatus = require('../config/constants/httpstatus')
+
+
+const colaboradorRepository = new ColaboradorRepository()
 
 class LoginService {
 
-    async findByCpf(req){
+    async findByCpf(req) {
         try {
-            const { cpf } = req.params;
+            const { cpf } = req.body;
             this.validadeRequestData(cpf);
-            let colaborador = await ColaboradorRepository.findByCpf(cpf);
+            let colaborador = await colaboradorRepository.findByCpfAndRg(cpf);
             this.validadeColaboradorNotFound(colaborador)
+            let acessToken = await this.getAcessToken(req)
             return {
                 status: httpStatus.SUCCESS,
                 colaborador: {
                     id: colaborador.id,
                     nome: colaborador.nome,
                     cpf: colaborador.cpf
-                }
+                },
+                acessToken
             }
         } catch (error) {
-            return {
-                status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
-                message: error.message,
-            }
+            throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)
         }
     }
 
-    validadeAcessTokenData(cpf){
-        if(!cpf){
-            throw new ColaboradorException(httpStatus.BAD_REQUEST, "User cpf was not informed");
+    validadeRequestData(cpf) {
+        if (!cpf) {
+            throw new ColaboradorException(httpStatus.BAD_REQUEST, "CPF não foi informado");
         }
     }
 
-    validadeColaboradorNotFound(colaborador){
-        if(!colaborador){
-            throw new Error(httpStatus.BAD_REQUEST, "User was not found.")
+    validadeColaboradorNotFound(colaborador) {
+        if (!colaborador) {
+            throw new ColaboradorException(httpStatus.BAD_REQUEST, "Colaborador não encontrado")
         }
     }
 
-    async getAcessToken(req){
+    async getAcessToken(req) {
         try {
-            const {cpf, password} = req
-            this.validadeAcessTokenData(cpf, password)
-            let user = await ColaboradorRepository.findByCpf(cpf)
-            await this.validadePassword(password, user.senha)
-            const authUser = {id: user.id, nome: user.nome, cpf: user.cpf}
-            const acessToken = jwt.sign({authUser}, secrets.API_SECRET,{expiresIn: "1d"})
+            const { cpf, senha } = req.body
+            this.validadeAcessTokenData(cpf, senha)
+            let user = await colaboradorRepository.findByCpfAndRg(cpf)
+            await this.validadePassword(senha, user.senha)
+            const authUser = { id: user.id, nome: user.nome, cpf: user.cpf }
+            const acessToken = jwt.sign({ authUser }, "YXV0aC1hcGktc2VjcmV0LWRldi0xMjM0NTY=", { expiresIn: "1d" })
             return {
                 status: httpStatus.SUCCESS,
                 acessToken,
             }
         } catch (error) {
-            return {
-                status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
-                message: error.message,
-            }
+            throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)
         }
     }
 
-    validadeAcessTokenData(cpf, password){
-        if(!cpf|| !password){
-            throw new ColaboradorException(httpstatus.UNAUTHORIZED, "CPF and password must be informed.")
+    validadeAcessTokenData(cpf, password) {
+        if (!cpf || !password) {
+            throw new ColaboradorException(httpStatus.UNAUTHORIZED, "CPF e senha devem ser informados.")
         }
     }
 
-    async validadePassword(password, hashPassword){
-        if(!await bcrypt.compare(password, hashPassword)){
-            throw new ColaboradorException(httpstatus.UNAUTHORIZED, "Password doesn't match.")
+    async validadePassword(password, hashPassword) {
+        if (!await bcrypt.compare(password, hashPassword)) {
+            throw new ColaboradorException(httpStatus.UNAUTHORIZED, "Senha incorreta.")
         }
     }
 

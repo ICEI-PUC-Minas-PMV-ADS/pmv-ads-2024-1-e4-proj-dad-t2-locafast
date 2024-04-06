@@ -7,106 +7,66 @@ const colaboradorService = new ColaboradorService();
 router.post('/', async (req, res) => {
 
     try {
-
-        await colaboradorService.postColaborador(req.body)
-
-        res.status(201).json({ message: "Colaborador cadastrado com sucesso!" })
-
+        await colaboradorService.postColaborador(req)
+        return res.status(colaboradorService.status).json(colaboradorService.message)
     } catch (error) {
-        let statusCode = 500;
-        switch (error.message) {
-            case 'Todos os campos devem ser preenchidos.':
-            case 'CPF inválido.':
-            case 'RG inválido.':
-            case 'O telefone inserido é inválido.':
-            case 'O email inserido é inválido.':
-                statusCode = 400;
-                break;
-            default:
-                statusCode = 500;
+        return {
+            status: error.status,
+            message: error.message
         }
-
-        res.status(statusCode).json({ error: error.message });
     }
-
 })
 
-router.get('/', async (req, res) => {
+router.get('/', async (_, res) => {
 
     try {
-
         const colaboradores = await colaboradorService.GetColaboradorAll();
-
-        res.status(200).json(colaboradores)
-
+        return res.status(colaboradores.status).json(colaboradores.colaboradores)
     } catch (error) {
-        res.status(500).json({ error: error })
+        return {
+            status: error.status,
+            message: error.message
+        }
     }
-
 })
 
 router.get('/:id', async (req, res) => {
 
-    const id = req.params.id
-
     try {
-
-        const colaborador = await colaboradorService.GetColaboradorId(id)
-
-        if (!colaborador) {
-            res.status(422).json({ message: "Colaborador não encontrado." })
-            return
-        }
-
-        res.status(200).json(colaborador)
+        const colaborador = await colaboradorService.GetColaboradorId(req.params.id)
+        return res.status(colaborador.status).json(colaborador.user)
     } catch (error) {
-        res.status(500).json({ error: error })
+        return {
+            status: error.status,
+            message: error.message
+        }
     }
-
 })
 
 router.put('/:id', async (req, res) => {
 
     try {
-
-        await colaboradorService.PutColaborador(req.body, req.params.id)
-
-        res.status(200).json({ message: "Colaborador atualizado com sucesso!" })
-
+        const colaboradorAtualizado = await colaboradorService.PutColaborador(req, req.params.id)
+        return res.status(colaboradorAtualizado.status).json({ message: colaboradorAtualizado.message, colaborador: colaboradorAtualizado.user })
     } catch (error) {
-        if (error.message === "Colaborador não existe.") {
-            res.status(404).json({ error: error.message });
-        } else if (error.message === "Todos os campos devem ser preenchidos." ||
-                   error.message === "CPF inválido." ||
-                   error.message === "RG inválido." ||
-                   error.message === "O telefone inserido é inválido." ||
-                   error.message === "O email inserido é inválido.") {
-            res.status(400).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: error.message });
+        return {
+            status: error.status,
+            message: error.message
         }
     }
-
 })
 
 router.delete('/:id', async (req, res) => {
 
-    const id = req.params.id
-
     try {
-
-        await colaboradorService.deleteColaborador(id)
-
-        res.status(200).json({ message: "Colaborador removido com sucesso!" })
-
+        const colaboradorDeletado = await colaboradorService.deleteColaborador(req.params.id)
+        return res.status(colaboradorDeletado.status).json({ message: colaboradorDeletado.message, colaborador: colaboradorDeletado.user })
     } catch (error) {
-        if (error.message === "Colaborador não existe.") {
-            res.status(404).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: error })
+        return {
+            status: error.status,
+            message: error.message
         }
     }
-
 })
 
 module.exports = router
