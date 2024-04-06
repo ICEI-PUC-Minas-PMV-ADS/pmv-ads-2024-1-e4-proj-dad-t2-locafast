@@ -5,12 +5,15 @@ const LoginService = require('../services/loginService')
 const loginService = new LoginService()
 
 router.post('/', async (req, res) => {
-
-    await loginService.findByCpf(req)
-    let acessToken = await loginService.getAcessToken(req)
-
-    return res.status(acessToken.status).json(acessToken);
-
+    try {
+        const colaborador = await loginService.findByCpf(req)
+        return res.status(colaborador.status).json(colaborador);
+    } catch (error) {
+        return {
+            status: error.status,
+            message: error.message
+        }
+    }
 })
 
 

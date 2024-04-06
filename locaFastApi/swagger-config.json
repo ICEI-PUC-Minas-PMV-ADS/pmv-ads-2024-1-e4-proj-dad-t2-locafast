@@ -247,11 +247,94 @@
   },
   "basePath": "/",
   "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Faça login",
+        "description": "Caso você não possua um usuário, logue com cpf 99999999999 e senha admin123",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "cpf": "99999999999",
+                "senha": "admin123"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token de acesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "colaborador": {
+                    "id": "colaboradorId",
+                    "nome": "colaboradorNome",
+                    "cpf": "colaboradorCpf"
+                  },
+                  "acessToken": {
+                    "status": 200,
+                    "acessToken": "token gerado"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    "CPF e senha devem ser informados.",
+                    "Senha incorreta."
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida",
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    "CPF não foi informado",
+                    "Usuário não encontrado"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Ocorreu um erro interno."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cliente": {
       "get": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Listar todos os clientes",
         "description": "Retorna uma lista de todos os clientes cadastrados.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Lista de clientes",
@@ -286,9 +369,16 @@
         }
       },
       "post": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Cadastrar um novo cliente",
         "description": "Cadastra um novo cliente com as informações fornecidas.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -349,9 +439,16 @@
     },
     "/cliente/{id}": {
       "get": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Obter cliente por ID",
         "description": "Retorna um cliente com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -397,9 +494,16 @@
         }
       },
       "put": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Atualizar cliente por ID",
         "description": "Atualiza um cliente com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -479,9 +583,16 @@
         }
       },
       "delete": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Remover cliente por ID",
         "description": "Remove um cliente com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -770,8 +881,16 @@
 },
     "/carro": {
       "get": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Listar todos os carros",
         "description": "Retorna uma lista de todos os carros disponíveis para locação.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Lista de carros",
@@ -801,8 +920,16 @@
         }
       },
       "post": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Cadastrar um novo carro",
         "description": "Cadastra um novo carro com as informações fornecidas.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -855,8 +982,16 @@
     },
     "/carro/{placa}": {
       "get": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Obter carro por placa",
         "description": "Retorna um carro com a placa fornecida.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "placa",
@@ -907,8 +1042,16 @@
         }
       },
       "put": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Atualizar carro por placa",
         "description": "Atualiza um carro com a placa fornecida.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "placa",
@@ -980,8 +1123,16 @@
         }
       },
       "delete": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Remover carro por placa",
         "description": "Remove um carro com a placa fornecida.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "placa",
@@ -1025,6 +1176,16 @@
             }
           }
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "Autenticação JWT",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

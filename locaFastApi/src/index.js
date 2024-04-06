@@ -5,17 +5,20 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('../swagger-config')
 
 const checkToken = require('./config/auth/checkToken')
-
-const app = express()
+const createInitialData = require('./config/db/initialData')
 
 // variaveis de ambiente
 require('dotenv').config()
+
+const app = express()
 
 app.use(
     express.urlencoded({
         extended: true
     })
 )
+
+createInitialData()
 
 app.use(express.json())
 
@@ -30,6 +33,7 @@ const contratoRoutes = require('./routes/contratoRoutes')
 
 
 app.use('/login', loginRoutes);
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
 app.use(checkToken)
@@ -41,9 +45,6 @@ app.use('/login', loginRoutes)
 app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
 app.use('/contrato', contratoRoutes);
-
-// Rota principal
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //conexão com o banco
 mongoose.connect(
