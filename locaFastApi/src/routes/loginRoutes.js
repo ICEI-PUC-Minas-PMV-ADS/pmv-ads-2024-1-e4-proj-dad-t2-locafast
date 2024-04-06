@@ -6,10 +6,9 @@ const loginService = new LoginService()
 
 router.post('/', async (req, res) => {
 
-    await loginService.findByCpf(req)
-    let acessToken = await loginService.getAcessToken(req)
+    const colaborador = await loginService.findByCpf(req)
 
-    return res.status(acessToken.status).json(acessToken);
+    return res.status(colaborador.status).json(colaborador);
 
 })
 

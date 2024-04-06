@@ -17,12 +17,17 @@ class LoginService {
             this.validadeRequestData(cpf);
             let colaborador = await colaboradorRepository.findByCpf(cpf);
             this.validadeColaboradorNotFound(colaborador)
+            let acessToken = await this.getAcessToken(req)
             return {
                 status: httpStatus.SUCCESS,
                 colaborador: {
                     id: colaborador.id,
                     nome: colaborador.nome,
                     cpf: colaborador.cpf
+                },
+                acessToken: {
+                    status: acessToken.status,
+                    token: acessToken
                 }
             }
         } catch (error) {
@@ -41,7 +46,7 @@ class LoginService {
 
     validadeColaboradorNotFound(colaborador) {
         if (!colaborador) {
-            throw new Error(httpStatus.BAD_REQUEST, "User was not found.")
+            throw new ColaboradorException(httpStatus.BAD_REQUEST, "User was not found.")
         }
     }
 

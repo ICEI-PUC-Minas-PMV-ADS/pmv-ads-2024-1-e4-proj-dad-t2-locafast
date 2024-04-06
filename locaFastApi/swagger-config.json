@@ -7,11 +7,78 @@
   },
   "basePath": "/",
   "paths": {
+    "login":{
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Faça login",
+        "description": "Retorna um token para acessar as demais rotas caso o usuário informado esteja cadastrado.",
+        "responses": {
+          "200": {
+            "description": "Lista de clientes",
+            "content": {
+              "application/json": {
+                "example": {
+                  "numeroCnh": "123456789",
+                  "validadeCnh": "2023-12-31",
+                  "estadoEmissor": "SP",
+                  "nome": "Exemplo Cliente",
+                  "cpf": "123.456.789-01",
+                  "rg": "12345678",
+                  "telefone": "(12)3456-7890",
+                  "email": "cliente@example.com",
+                  "dataNascimento": "1990-01-01",
+                  "status": "Ativo",
+                  "genero": "Feminino"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar clientes."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cliente": {
       "get": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Listar todos os clientes",
         "description": "Retorna uma lista de todos os clientes cadastrados.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "numeroCnh": "123456789",
+                "validadeCnh": "2023-12-31",
+                "estadoEmissor": "SP",
+                "nome": "Exemplo Cliente",
+                "cpf": "123.456.789-01",
+                "rg": "12345678",
+                "telefone": "(12)3456-7890",
+                "email": "cliente@example.com",
+                "dataNascimento": "1990-01-01",
+                "status": "Ativo",
+                "genero": "Feminino"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Lista de clientes",
@@ -46,9 +113,16 @@
         }
       },
       "post": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Cadastrar um novo cliente",
         "description": "Cadastra um novo cliente com as informações fornecidas.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -109,9 +183,16 @@
     },
     "/cliente/{id}": {
       "get": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Obter cliente por ID",
         "description": "Retorna um cliente com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -157,9 +238,16 @@
         }
       },
       "put": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Atualizar cliente por ID",
         "description": "Atualiza um cliente com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -239,9 +327,16 @@
         }
       },
       "delete": {
-        "tags": ["Clientes"],
+        "tags": [
+          "Clientes"
+        ],
         "summary": "Remover cliente por ID",
         "description": "Remove um cliente com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "id",
@@ -289,8 +384,16 @@
     },
     "/carro": {
       "get": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Listar todos os carros",
         "description": "Retorna uma lista de todos os carros disponíveis para locação.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Lista de carros",
@@ -320,8 +423,16 @@
         }
       },
       "post": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Cadastrar um novo carro",
         "description": "Cadastra um novo carro com as informações fornecidas.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -374,8 +485,16 @@
     },
     "/carro/{placa}": {
       "get": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Obter carro por placa",
         "description": "Retorna um carro com a placa fornecida.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "placa",
@@ -426,8 +545,16 @@
         }
       },
       "put": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Atualizar carro por placa",
         "description": "Atualiza um carro com a placa fornecida.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "placa",
@@ -499,8 +626,16 @@
         }
       },
       "delete": {
+        "tags": [
+          "Carros"
+        ],
         "summary": "Remover carro por placa",
         "description": "Remove um carro com a placa fornecida.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "placa",
@@ -544,6 +679,16 @@
             }
           }
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "Autenticação JWT",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

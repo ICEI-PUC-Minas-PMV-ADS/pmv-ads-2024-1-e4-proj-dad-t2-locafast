@@ -15,7 +15,6 @@ class ColaboradorRepository {
         try {
             return await Colaborador.findOne({cpf: cpf})
         } catch (error) {
-            console.log(error.message);
             return null
         }
     }

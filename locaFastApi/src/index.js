@@ -27,6 +27,7 @@ const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 
 app.use('/login', loginRoutes);
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
 app.use(checkToken)
@@ -36,9 +37,6 @@ app.use('/carro', carroRoutes);
 app.use('/login', loginRoutes)
 app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
-
-// Rota principal
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //conexão com o banco
 mongoose.connect(
