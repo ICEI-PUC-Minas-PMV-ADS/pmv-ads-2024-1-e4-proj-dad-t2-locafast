@@ -1,58 +1,74 @@
-const Cliente = require('../models/Cliente')
-
+const Cliente = require('../models/Cliente');
+const ClienteException = require('../exceptions/clienteExcepton');
+const httpStatus = require('../config/constants/httpstatus');
 
 class ClienteService {
+
+    async validadeClientExists(cnh, cpf, rg, id = null, message) {
+        const conditions = {
+            $or: [
+                { numeroCnh: cnh },
+                { cpf: cpf },
+                { rg: rg },
+            ]
+        };
+    
+        const clienteExists = await Cliente.findOne(conditions);
+    
+        if (id && clienteExists && clienteExists._id.toString() !== id) {
+            throw new ClienteException(httpStatus.BAD_REQUEST, message);
+        }
+    
+        if (!id && clienteExists) {
+            throw new ClienteException(httpStatus.BAD_REQUEST, message);
+        }
+    }
+
     async GetClienteAll() {
         try {
             const clientes = await Cliente.find();
-            return clientes;
+            return {
+                status: httpStatus.SUCCESS,
+                data: clientes
+            };
         } catch (error) {
-            throw error;
+            throw new ClienteException(httpStatus.INTERNAL_SERVER_ERROR, error.message);
         }
     }
 
     async postCliente(cliente) {
         try {
-
-            const conditions = {
-                $or: [
-                    { numeroCnh: cliente.numeroCnh },
-                    { cpf: cliente.cpf },
-                    { rg: cliente.rg },
-                    { email: cliente.email }
-                ]
-            }
-
-            const clienteExists = await Cliente.findOne(conditions)
-
-            if (clienteExists) {
-                throw new Error('Cliente já possui um cadastro.');
-            }
-
-            const validacaoModelo = Cliente.modelIsValid(cliente);
-            if (validacaoModelo !== null) {
-                throw new Error(validacaoModelo.message);
-            }
+            this.validadeClientExists(cliente.cnh, cliente.cpf, cliente.rg, "Cliente já existe")
+            Cliente.modelIsValid(cliente);
 
             const newCliente = await Cliente.create(cliente);
-            return newCliente;
+            return {
+                status: httpStatus.CREATED,
+                data: newCliente
+            };
 
         } catch (error) {
-            throw error;
+            throw new ClienteException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message);
         }
     }
 
     async GetClienteId(id) {
         try {
-            const cliente = await Cliente.findOne({ _id: id })
+            const cliente = await Cliente.findOne({ _id: id });
             if (cliente) {
-                return cliente
+                return {
+                    status: httpStatus.SUCCESS,
+                    data: cliente
+                };
             } else {
-                return false
+                return {
+                    status: httpStatus.NOT_FOUND,
+                    message: "Cliente não encontrado."
+                };
             }
 
         } catch (error) {
-            throw error
+            throw new ClienteException(httpStatus.INTERNAL_SERVER_ERROR, error.message);
         }
     }
 
@@ -61,35 +77,41 @@ class ClienteService {
             const usuario = await Cliente.findById(id);
 
             if (!usuario) {
-                throw new Error("Cliente não existe.");
+                throw new ClienteException(httpStatus.NOT_FOUND, "Cliente não existe.");
             }
 
-            const validacaoModelo = Cliente.modelIsValid(cliente);
-            if (validacaoModelo !== true) {
-                throw new Error(validacaoModelo.message);
-            }
+            this.validadeClientExists(cliente.cnh, cliente.cpf, cliente.rg, cliente.id, "Um dos dados informados (cpf ou rg ou cnh) já está em outro cadastro")
+            Cliente.modelIsValid(cliente);
 
             Object.assign(usuario, cliente);
             const clienteAtualizado = await usuario.save();
-            return clienteAtualizado;
+            return {
+                status: httpStatus.SUCCESS,
+                message: "Cliente atualizado",
+                data: clienteAtualizado
+            };
 
         } catch (error) {
-            throw error;
+            throw new ClienteException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message);
         }
     }
 
     async deleteCliente(id) {
         try {
-            const usuario = await Cliente.findById(id)
+            const usuario = await Cliente.findById(id);
 
             if (!usuario) {
-                throw new Error("Cliente não existe.");
+                throw new ClienteException(httpStatus.NOT_FOUND, "Cliente não existe.");
             }
 
-            await Cliente.deleteOne({_id: id})
+            await Cliente.deleteOne({ _id: id });
+            return {
+                status: httpStatus.SUCCESS,
+                message: "Cliente deletado."
+            };
 
         } catch (error) {
-            throw error
+            throw new ClienteException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message);
         }
     }
 }
