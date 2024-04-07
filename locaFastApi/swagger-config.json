@@ -545,6 +545,284 @@
           }
         }
       }
+    },
+    "/contrato": {
+      "post": {
+        "summary": "Cadastrar um novo contrato",
+        "description": "Cadastra um novo contrato com as informações fornecidas.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "contratoId": "123456789",
+                "carroId": "987654321",
+                "reservaId": "789456123",
+                "tarifaId": "456123789",
+                "colaboradorId": "654987321",
+                "status": "ativo",
+                "dataRetirada": "2024-04-04T00:00:00.000Z",
+                "dataDevolução": "2024-04-08T00:00:00.000Z",
+                "agenciaRetirada": "Agência A",
+                "agenciaDevolução": "Agência B"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso ao cadastrar contrato",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Contrato cadastrado com sucesso!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "A data de devolução deve ser posterior à data de retirada.",
+                  "message 3": "O status do contrato deve ser ativo, inativo ou cancelado."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao cadastrar contrato."
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Listar todos os contratos",
+        "description": "Retorna uma lista de todos os contratos cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de contratos",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "contratoId": "123456789",
+                    "carroId": "987654321",
+                    "reservaId": "789456123",
+                    "tarifaId": "456123789",
+                    "colaboradorId": "654987321",
+                    "status": "ativo",
+                    "dataRetirada": "2024-04-04T00:00:00.000Z",
+                    "dataDevolução": "2024-04-08T00:00:00.000Z",
+                    "agenciaRetirada": "Agência A",
+                    "agenciaDevolução": "Agência B"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar contratos."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contrato/{id}": {
+      "get": {
+        "summary": "Obter contrato por ID",
+        "description": "Retorna um contrato com o ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do contrato",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contrato encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "contratoId": "123456789",
+                  "carroId": "987654321",
+                  "reservaId": "789456123",
+                  "tarifaId": "456123789",
+                  "colaboradorId": "654987321",
+                  "status": "ativo",
+                  "dataRetirada": "2024-04-04T00:00:00.000Z",
+                  "dataDevolução": "2024-04-08T00:00:00.000Z",
+                  "agenciaRetirada": "Agência A",
+                  "agenciaDevolução": "Agência B"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Contrato não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Contrato não encontrado."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar contrato por ID."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar contrato por ID",
+        "description": "Atualiza um contrato com o ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do contrato",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "contratoId": "123456789",
+                "carroId": "987654321",
+                "reservaId": "789456123",
+                "tarifaId": "456123789",
+                "colaboradorId": "654987321",
+                "status": "ativo",
+                "dataRetirada": "2024-04-04T00:00:00.000Z",
+                "dataDevolução": "2024-04-08T00:00:00.000Z",
+                "agenciaRetirada": "Agência A",
+                "agenciaDevolução": "Agência B"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contrato atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Contrato atualizado com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contrato não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Contrato não existe."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "A data de devolução deve ser posterior à data de retirada.",
+                  "message 3": "O status do contrato deve ser ativo, inativo ou cancelado."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao atualizar contrato."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remover contrato por ID",
+        "description": "Remove um contrato com o ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do contrato",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contrato removido com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Contrato removido com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contrato não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Contrato não existe."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao remover contrato."
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
+  
 }
