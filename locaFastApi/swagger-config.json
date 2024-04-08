@@ -410,19 +410,6 @@
             "bearerAuth": []
           }
         ],
-        "parameters": [
-          {
-            "clientId": "string",
-            "dateRetirada": "string",
-            "dateDevolucao": "string",
-            "agenciaRetirada": "string",
-            "agenciaDevolucao": "string",
-            "tarifaId": "string",
-            "categoriaVeiculo": "string",
-            "valorDiaria": "string",
-            "colaboradorId": "string"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Reserva encontrada",
@@ -475,15 +462,19 @@
         ],
         "requestBody": {
           "content": {
-            "clientId": "37261836",
-            "dateRetirada": "2024-10-10",
-            "dateDevolucao": "2024-10-12",
-            "agenciaRetirada": "Agencia Matriz",
-            "agenciaDevolucao": "Agencia Cardec",
-            "tarifaId": "53216",
-            "categoriaVeiculo": "A",
-            "valorDiaria": "400",
-            "colaboradorId": "165417"
+            "application/json": {
+              "example": {
+                "clientId": "37261836",
+                "dateRetirada": "2024-10-10",
+                "dateDevolucao": "2024-10-12",
+                "agenciaRetirada": "Agencia Matriz",
+                "agenciaDevolucao": "Agencia Cardec",
+                "tarifaId": "53216",
+                "categoriaVeiculo": "A",
+                "valorDiaria": "400",
+                "colaboradorId": "165417"
+              }
+            }
           }
         },
         "responses": {
@@ -728,15 +719,13 @@
         ],
         "parameters": [
           {
-            "clientId": "string",
-            "dateRetirada": "string",
-            "dateDevolucao": "string",
-            "agenciaRetirada": "string",
-            "agenciaDevolucao": "string",
-            "tarifaId": "string",
-            "categoriaVeiculo": "string",
-            "valorDiaria": "string",
-            "colaboradorId": "string"
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da reserva",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -809,6 +798,17 @@
         "security": [
           {
             "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da reserva",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1461,14 +1461,315 @@
         }
       }
     },
-    "components": {
-      "securitySchemes": {
-        "bearerAuth": {
-          "description": "Autenticação JWT",
-          "type": "http",
-          "scheme": "bearer",
-          "bearerFormat": "JWT"
+    "/colaborador": {
+      "post": {
+        "summary": "Cadastrar um novo colaborador",
+        "tags": [
+          "Colaboradores"
+        ],
+        "description": "Cadastra um novo colaborador com as informações fornecidas.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "nome": "Novo Colaborador",
+                "cpf": "16187791732",
+                "rg": "84576325",
+                "telefone": "(31)984718936",
+                "dataNascimento": "05/07/1989",
+                "senha": "colaborador123",
+                "genero": "Masculino"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso ao cadastrar colaborador",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Colaborador cadastrado com sucesso!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "CPF inválido.",
+                  "message 3": "RG inválido.",
+                  "message 4": "O telefone inserido é inválido."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao cadastrar colaborador."
+                }
+              }
+            }
+          }
         }
+      },
+      "get": {
+        "summary": "Listar todos os colaboradores",
+        "tags": [
+          "Colaboradores"
+        ],
+        "description": "Retorna uma lista de todos os colaboradores cadastrados.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de colaboradores",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "nome": "Novo Colaborador",
+                    "cpf": "16187791732",
+                    "rg": "84576325",
+                    "telefone": "(31)984718936",
+                    "dataNascimento": "05/07/1989",
+                    "senha": "colaborador123",
+                    "genero": "Masculino"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar colaboradores."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/colaborador/{id}": {
+      "get": {
+        "tags": [
+          "Colaboradores"
+        ],
+        "summary": "Obter colaborador por ID",
+        "description": "Retorna um colaborador com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do colaborador",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "colaborador encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "65ede1b972f9e877b79e0ef9"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "colaborador não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "colaborador não encontrado."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao buscar colaborador por ID."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Colaboradores"
+        ],
+        "summary": "Atualizar colaborador por ID",
+        "description": "Atualiza um colaborador com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do colaborador",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "nome": "Novo Colaborador",
+                "cpf": "16187791732",
+                "rg": "84576325",
+                "telefone": "(31)984718936",
+                "dataNascimento": "05/07/1989",
+                "senha": "colaborador123",
+                "genero": "Masculino"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "colaborador atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "colaborador atualizado com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "colaborador não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "colaborador não existe."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha na verificação de uma regra de negócio",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message 1": "Todos os campos devem ser preenchidos.",
+                  "message 2": "CPF inválido.",
+                  "message 3": "RG inválido.",
+                  "message 4": "O telefone inserido é inválido."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao atualizar colaborador."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Colaboradores"
+        ],
+        "summary": "Remover colaborador por ID",
+        "description": "Remove um colaborador com o ID fornecido.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do colaborador",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Colaborador removido com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Colaborador removido com sucesso!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Colaborador não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Colaborador não existe."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Erro ao remover colaborador."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "description": "Autenticação JWT",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
