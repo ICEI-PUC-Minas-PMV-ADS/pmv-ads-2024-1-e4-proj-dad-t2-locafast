@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.body {
+    text-align: center; 
+}
+
+.header {
+    background-color: rgba(228, 204, 255, 1);
+    color: rgba(151, 71, 255, 1);
+    padding: 10px;
+    text-align: center;
+    font-family: MerriWeather;
+    font-size: 20px;
+}
+
+.titulo {
+    color: rgba(151, 71, 255, 1);
+    text-align: center;
+    font-size: 3.5ch;
+}
+
+.login {
+    background-color: rgba(228, 204, 255, 1);
+    color: rgba(151, 71, 255, 1);
+    width: 35%;
+    padding: 15px;
+    border-color: rgba(151, 71, 255, 1);
+    border-width: 1px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 9%;
+}
+
+.botao{
+    background-color: rgba(228, 204, 255, 1);
+    color: rgba(151, 71, 255, 1);
+    width: 25%;
+    padding: 15px;
+    border-color: rgba(151, 71, 255, 1);
+    border-radius: 15px;
+    border-width: 1px;
+    font-weight: bold;
+}
+
+.footer {
+    background-color: rgba(151, 71, 255, 1);
+    color: white;
+    padding: 10px;
+    text-align: left;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.lado{
+    text-align: center;
+    display: flex;
+}
+
+.lado2{
+    text-align: center;
+    display: flex;
+}
