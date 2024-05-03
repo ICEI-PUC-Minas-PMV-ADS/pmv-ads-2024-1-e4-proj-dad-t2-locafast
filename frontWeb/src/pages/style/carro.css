@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.body {
+    text-align: center;    
+}
+
+.header {
+    background-color: rgba(228, 204, 255, 1);
+    color: rgba(151, 71, 255, 1);
+    padding: 10px;
+    text-align: center;
+    font-family: MerriWeather;
+    font-size: 20px;
+}
+
+.footer {
+    background-color: rgba(151, 71, 255, 1);
+    color: white;
+    padding: 10px;
+    text-align: left;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.titulo{
+    text-align: center;
+    color: rgba(151, 71, 255, 1);
+}
+
+.tabela {
+    margin: 0 auto; 
+    width: 90%; 
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: rgba(151, 71, 255, 1); 
+    color: white; 
+  }
+  
+  td {
+    background-color: rgba(228, 204, 255, 1); 
+    text-align: center;
+  }
+
+  .detalhes{
+    color: rgba(189, 170, 0, 1);
+    border-color: rgba(189, 170, 0, 1);
+    border-radius: 8px;
+    font-size: 18px;
+  }
+
+  .editar{
+    margin-inline: 50px;
+    color: rgb(45, 154, 255);
+    border-color: rgb(45, 154, 255);
+    border-radius: 8px;
+    font-size: 18px;
+  }
+
+  .apagar{
+    color: red;
+    border-color: red;
+    border-radius: 8px;
+    font-size: 18px;
+  }
+
+  .cadastro{
+    background-color: rgba(228, 204, 255, 1);
+    color: rgba(151, 71, 255, 1);
+    border-color: rgba(151, 71, 255, 1);
+    border-radius: 5px;
+    width: 250px;
+    font-weight: bold;
+    font-size:20px;
+    margin-left: 5%;
+  }
+  
