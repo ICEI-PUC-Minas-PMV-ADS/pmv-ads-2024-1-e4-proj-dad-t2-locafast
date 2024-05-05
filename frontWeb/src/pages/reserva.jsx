@@ -18,9 +18,11 @@ const Reserva = () => {
 
     return (
         <div>
+
             <header className="header">
                 <h1>LocaFast</h1>
             </header>
+
             <div className='titulo'>
                 <h1>Reservas Cadastradas</h1>
             </div>
@@ -68,11 +70,17 @@ const Reserva = () => {
                     </tbody>
                 </table>
             </div>
+
             <div className="footer">
                 <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>
+
         </div>
     );
 };
 
+
 export default Reserva;
+
+export default Reserva;
+
