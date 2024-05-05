@@ -58,3 +58,23 @@ td {
     font-size: 16px;
     margin-left: 5%;
 }
+
+.header {
+    background-color: rgba(228, 204, 255, 1);
+    color: rgba(151, 71, 255, 1);
+    padding: 10px;
+    text-align: center;
+    font-family: MerriWeather;
+    font-size: 20px;
+}
+
+.footer {
+    background-color: rgba(151, 71, 255, 1);
+    color: white;
+    padding: 10px;
+    text-align: left;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+

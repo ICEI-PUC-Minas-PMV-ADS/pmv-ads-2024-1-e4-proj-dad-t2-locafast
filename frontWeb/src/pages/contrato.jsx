@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/reserva.css" />
+<link rel="stylesheet" href="./pages/style/contrato.css" />
 
-const Reserva = () => {
+const Contrato = () => {
     const [data, setData] = useState([
-        { id: 1, clienteId: '123', dateRetirada: '2024-05-10', dateDevolucao: '2024-05-15', agenciaRetirada: 'Ag. Matriz', agenciaDevolucao: 'Ag. Filial Cardec', categoriaVeiculo: 'A', valorDiaria: '150', colaboradorId: '456' },
-        { id: 2, clienteId: '456', dateRetirada: '2024-05-12', dateDevolucao: '2024-05-18', agenciaRetirada: 'Ag. Filial Cardec', agenciaDevolucao: 'Ag. Matriz', categoriaVeiculo: 'B', valorDiaria: '180', colaboradorId: '789' },
+        { id: 1, clienteId: 'João Silva', carroId: '3', reservaId: '3', colaboradorId: 'colaboradorExample', dataRetirada: '22/04/2024', dataDevolucao: '27/05/2024', status: 'Ativo' },
+        { id: 2, clienteId: 'Maria Souza', carroId: '2', reservaId: '2', colaboradorId: 'colaboradorExample', dataRetirada: '21/04/2024', dataDevolucao: '13/05/2024', status: 'Ativo' },
+        { id: 3, clienteId: 'José Santos', carroId: '1', reservaId: '1', colaboradorId: 'colaboradorExample', dataRetirada: '17/03/2024', dataDevolucao: '17/04/2024', status: 'Finalizado' },
     ]);
 
     const handleDelete = (id) => {
@@ -13,24 +14,22 @@ const Reserva = () => {
 
     const handleEdit = (id) => {
         // Implementar lógica de edição
-        console.log(`Editar reserva com id ${id}`);
+        console.log(`Editar contrato com id ${id}`);
     };
 
     return (
         <div>
-
             <header className="header">
                 <h1>LocaFast</h1>
             </header>
-
             <div className='titulo'>
-                <h1>Reservas Cadastradas</h1>
+                <h1>Contratos Feitos</h1>
             </div>
 
             <br /><br />
 
             <div>
-                <button className='cadastro' onClick>Cadastrar reserva</button>
+                <button className='cadastro' onClick>Criar contrato</button>
             </div>
 
             <br /><br />
@@ -40,13 +39,12 @@ const Reserva = () => {
                     <thead>
                         <tr>
                             <th>Cliente</th>
+                            <th>Carro</th>
+                            <th>Reserva</th>
+                            <th>Colaborador</th>
                             <th>Data de Retirada</th>
                             <th>Data de Devolução</th>
-                            <th>Agência de Retirada</th>
-                            <th>Agência de Devolução</th>
-                            <th>Categoria do Veículo</th>
-                            <th>Valor Diária (R$)</th>
-                            <th>Colaborador</th>
+                            <th>Status</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -54,13 +52,12 @@ const Reserva = () => {
                         {data.map(item => (
                             <tr key={item.id}>
                                 <td>{item.clienteId}</td>
-                                <td>{item.dateRetirada}</td>
-                                <td>{item.dateDevolucao}</td>
-                                <td>{item.agenciaRetirada}</td>
-                                <td>{item.agenciaDevolucao}</td>
-                                <td>{item.categoriaVeiculo}</td>
-                                <td>{item.valorDiaria}</td>
+                                <td>{item.carroId}</td>
+                                <td>{item.reservaId}</td>
                                 <td>{item.colaboradorId}</td>
+                                <td>{item.dataRetirada}</td>
+                                <td>{item.dataDevolucao}</td>
+                                <td>{item.status}</td>
                                 <td>
                                     <button className='editar' onClick={() => handleEdit(item.id)}>Editar</button>
                                     <button className='apagar' onClick={() => handleDelete(item.id)}>Apagar</button>
@@ -70,17 +67,11 @@ const Reserva = () => {
                     </tbody>
                 </table>
             </div>
-
             <div className="footer">
                 <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>
-
         </div>
     );
 };
 
-
-export default Reserva;
-
-export default Reserva;
-
+export default Contrato;
