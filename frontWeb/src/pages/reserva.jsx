@@ -82,5 +82,3 @@ const Reserva = () => {
 
 export default Reserva;
 
-export default Reserva;
-
