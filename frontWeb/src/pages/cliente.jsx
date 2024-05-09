@@ -48,7 +48,9 @@ const Cliente = () => {
             <br /><br />
 
             <div>
-                <button className='cadastro' onClick>Cadastrar cliente</button>
+                <Form action='/cadastrocliente'>
+                    <button className='cadastro' onClick>Cadastrar cliente</button>
+                </Form>
             </div>
 
             <br /><br />

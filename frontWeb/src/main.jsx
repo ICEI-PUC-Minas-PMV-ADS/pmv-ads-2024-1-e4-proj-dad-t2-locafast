@@ -13,6 +13,9 @@ import reducers from './reducers.js'
 import Contrato from './pages/contrato.jsx';
 import Carro from './pages/carro.jsx';
 import Cliente from './pages/cliente.jsx';
+import CadastroCarro from './pages/cadastroCarro.jsx';
+import CadastroCliente from './pages/cadastroCliente.jsx';
+import CriarContrato from './pages/criarContrato.jsx'
 
 
 const router = createBrowserRouter([
@@ -31,6 +34,18 @@ const router = createBrowserRouter([
   {
     path: '/cadastroreserva',
     element: <CadastroReserva />,
+  },
+  {
+    path: '/cadastrocarro',
+    element: <CadastroCarro />,
+  },
+  {
+    path: '/cadastrocliente',
+    element: <CadastroCliente />,
+  },
+  {
+    path: '/criarcontrato',
+    element: <CriarContrato />,
   },
   {
     path: '/carro',

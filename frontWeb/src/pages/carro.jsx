@@ -33,7 +33,9 @@ const Table = () => {
             <br /><br />
 
             <div>
-                <button className='cadastro' onClick>Cadastrar carro</button>
+                <Form action='/cadastrocarro'>
+                    <button className='cadastro' onClick>Cadastrar carro</button>
+                </Form>
             </div>
 
             <br /><br />

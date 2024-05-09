@@ -1,11 +1,8 @@
-
-import React from 'react';
 import { Form } from "react-router-dom";
-
 const initialState = {
     user: {cpf: '', senha: '', message: ''}
 }
-import React, { useState } from 'react';
+import React from 'react';
 import '../pages/style/login.css';
 
 function Login() {
@@ -50,7 +47,7 @@ function Login() {
                     <button className="botao" onClick>Criar conta</button>
                 </Form>
             </div>
-            <div class="footer">
+            <div className="footer">
                 <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>
         </div>
