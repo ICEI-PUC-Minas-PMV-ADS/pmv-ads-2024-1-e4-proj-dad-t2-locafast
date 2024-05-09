@@ -21,6 +21,10 @@ const Contrato = () => {
         <div>
             <header className="header">
                 <h1>LocaFast</h1>
+                <button className="header-button">Carros</button>
+                <button className="header-button">Clientes</button>
+                <button className="header-button">Reservas</button>
+                <button className="header-button">Contratos</button>
             </header>
             <div className='titulo'>
                 <h1>Contratos Feitos</h1>
