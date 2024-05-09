@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+
+import { Form } from 'react-router-dom';
+
 import "../pages/style/contrato.css";
+
 
 const Contrato = () => {
     const [data, setData] = useState([
@@ -21,10 +25,20 @@ const Contrato = () => {
         <div>
             <header className="header">
                 <h1>LocaFast</h1>
-                <button className="header-button">Carros</button>
-                <button className="header-button">Clientes</button>
-                <button className="header-button">Reservas</button>
-                <button className="header-button">Contratos</button>
+
+                <Form action='/carro'>
+                    <button className="header-button">Carros</button>
+                </Form>
+                <Form action='/cliente'>
+                    <button className="header-button">Clientes</button>
+                </Form>
+                <Form action='/reserva'>
+                    <button className="header-button">Reservas</button>
+                </Form>
+                <Form action='/contrato'>
+                    <button className="header-button">Contratos</button>
+                </Form>
+
             </header>
             <div className='titulo'>
                 <h1>Contratos Feitos</h1>

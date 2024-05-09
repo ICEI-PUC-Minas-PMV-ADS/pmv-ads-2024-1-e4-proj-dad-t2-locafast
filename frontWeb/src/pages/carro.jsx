@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import "../pages/style/carro.css";
+
+import { Form } from 'react-router-dom';
+
+
 
 const Table = () => {
     const [data, setData] = useState([
@@ -79,10 +82,20 @@ function Carro() {
         <div>
             <header className="header">
                 <h1>LocaFast</h1>
+
+                <Form action='/carro'>
                     <button className="header-button">Carros</button>
+                </Form>
+                <Form action='/cliente'>
                     <button className="header-button">Clientes</button>
+                </Form>
+                <Form action='/reserva'>
                     <button className="header-button">Reservas</button>
+                </Form>
+                <Form action='/contrato'>
                     <button className="header-button">Contratos</button>
+                </Form>
+
             </header>
             <div className='tabela'>
                 <Table /> {/* Aqui está usando o componente Table */}

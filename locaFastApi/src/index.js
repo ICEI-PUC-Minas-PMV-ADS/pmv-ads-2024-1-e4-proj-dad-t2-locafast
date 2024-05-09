@@ -22,6 +22,13 @@ createInitialData()
 
 app.use(express.json())
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With,content-type, Accept, Authorization');
+    next();
+});
+
 // Rotas API
 const clienteRoutes = require('./routes/clienteRoutes');
 const carroRoutes = require('./routes/carroRoutes');
@@ -41,7 +48,6 @@ app.use(checkToken)
 
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
-app.use('/login', loginRoutes)
 app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
 app.use('/contrato', contratoRoutes);
@@ -55,4 +61,4 @@ mongoose.connect(
 })
     .catch((err) => console.log(err))
 
-app.listen(3000)
+app.listen(3002)
