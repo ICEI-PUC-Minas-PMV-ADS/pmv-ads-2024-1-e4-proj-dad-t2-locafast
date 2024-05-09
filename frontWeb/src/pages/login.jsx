@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from "react-router-dom";
-<link rel="stylesheet" href="./pages/style/login.css" />
 
 const initialState = {
     user: {cpf: '', senha: '', message: ''}
@@ -39,7 +38,9 @@ function Login() {
                 <br /><br /><br />
                 <a href="">Esqueci minha senha</a>
                 <br /><br /><br />
-                <button className="botao" onClick={handleLogin}>  Entrar</button>
+                <Form action='reserva'>
+                    <button className="botao" onClick>Logar</button>
+                </Form>
                 <p>{state.message}</p>
                 <br /><br />
                 <Form action='cadastro'>

@@ -7,7 +7,12 @@ import { Provider } from 'react-redux';
 import './pages/style/carro.css'
 import Login from './pages/login.jsx';
 import Cadastro from './pages/cadastro.jsx';
+import Reserva from './pages/reserva.jsx';
+import CadastroReserva from './pages/cadastroReserva.jsx';
 import reducers from './reducers.js'
+import Contrato from './pages/contrato.jsx';
+import Carro from './pages/carro.jsx';
+import Cliente from './pages/cliente.jsx';
 
 
 const router = createBrowserRouter([
@@ -18,6 +23,26 @@ const router = createBrowserRouter([
   {
     path: '/cadastro',
     element: <Cadastro />
+  },
+  {
+    path: '/reserva',
+    element: <Reserva />,
+  },
+  {
+    path: '/cadastroreserva',
+    element: <CadastroReserva />,
+  },
+  {
+    path: '/carro',
+    element: <Carro />,
+  },
+  {
+    path: '/contrato',
+    element: <Contrato />,
+  },
+  {
+    path: '/cliente',
+    element: <Cliente />,
   }
 ]);
 

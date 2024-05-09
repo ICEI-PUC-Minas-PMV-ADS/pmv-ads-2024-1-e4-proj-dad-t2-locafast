@@ -1,0 +1,2 @@
+ - npm install
+ - configure .eniroment env mongodb

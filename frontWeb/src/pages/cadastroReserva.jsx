@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/login.css" />
 
 function cadastroReserva() {
 

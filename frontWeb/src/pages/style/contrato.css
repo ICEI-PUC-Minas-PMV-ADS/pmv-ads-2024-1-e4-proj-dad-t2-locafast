@@ -77,3 +77,12 @@ td {
     bottom: 0;
     width: 100%;
 }
+
+.header-button{
+    color: rgba(151, 71, 255, 1);
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 17px;
+    border-color: transparent;
+  }
+  

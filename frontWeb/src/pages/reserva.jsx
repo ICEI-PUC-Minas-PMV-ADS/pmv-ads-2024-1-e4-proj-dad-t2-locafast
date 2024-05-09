@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/reserva.css" />
+import { Form } from 'react-router-dom';
+import "../pages/style/reserva.css"
 
 const Reserva = () => {
     const [data, setData] = useState([
@@ -16,11 +17,30 @@ const Reserva = () => {
         console.log(`Editar reserva com id ${id}`);
     };
 
+    const cadastroReserva = () => {
+        // Obtendo o history do router
+        const history = router.history;
+        // Navegando para a rota de cadastro de reserva
+        history.push('/cadastroreserva');
+    }
+
     return (
         <div>
 
             <header className="header">
                 <h1>LocaFast</h1>
+                <Form action='/carro'>
+                    <button className="header-button">Carros</button>
+                </Form>
+                <Form action='/cliente'>
+                    <button className="header-button">Clientes</button>
+                </Form>
+                <Form action='/reserva'>
+                    <button className="header-button">Reservas</button>
+                </Form>
+                <Form action='/contrato'>
+                    <button className="header-button">Contratos</button>
+                </Form>
             </header>
 
             <div className='titulo'>
@@ -30,7 +50,9 @@ const Reserva = () => {
             <br /><br />
 
             <div>
-                <button className='cadastro' onClick>Cadastrar reserva</button>
+                <Form action='/cadastroreserva'>
+                    <button className='cadastro' onClick>Cadastrar reserva</button>
+                </Form>
             </div>
 
             <br /><br />
