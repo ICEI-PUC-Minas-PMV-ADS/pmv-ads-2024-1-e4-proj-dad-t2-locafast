@@ -82,5 +82,3 @@ const Cliente = () => {
 
 export default Cliente;
 
-export default Cliente;
-
