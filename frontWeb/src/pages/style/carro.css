@@ -88,4 +88,14 @@ body {
     font-size:20px;
     margin-left: 5%;
   }
+
+  .header-button{
+    color: rgba(151, 71, 255, 1);
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 17px;
+    border-color: transparent;
+    margin-left: 10px;
+    
+  }
   
