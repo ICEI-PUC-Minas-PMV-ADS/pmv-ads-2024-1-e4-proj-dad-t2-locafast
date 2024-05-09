@@ -22,7 +22,7 @@ body {
     font-size: 3.5ch;
 }
 
-.login {
+.cadastro_2 {
     background-color: rgba(228, 204, 255, 1);
     color: rgba(151, 71, 255, 1);
     width: 35%;
@@ -32,7 +32,7 @@ body {
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
-    margin-left: 9%;
+    margin-left: 8.5%;
 }
 
 .botao{
@@ -65,3 +65,9 @@ body {
     text-align: center;
     display: flex;
 }
+
+.navigator {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }

@@ -54,3 +54,9 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+.navigator {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }

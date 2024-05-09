@@ -32,7 +32,7 @@ const Reserva = () => {
 
             <header className="header">
                 <h1>LocaFast</h1>
-
+                <div className='navigator'>
                 <Form action='/carro'>
                     <button className="header-button">Carros</button>
                 </Form>
@@ -45,7 +45,7 @@ const Reserva = () => {
                 <Form action='/contrato'>
                     <button className="header-button">Contratos</button>
                 </Form>
-
+                </div>
             </header>
 
             <div className='titulo'>
@@ -97,7 +97,7 @@ const Reserva = () => {
                     </tbody>
                 </table>
             </div>
-
+                     
             <div className="footer">
                 <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>

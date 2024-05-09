@@ -62,7 +62,11 @@ function cadastroCliente() {
                 <button className="botao" onClick>  Cadastrar cliente</button>
                 <p>{message}</p>
             </div>
-            <br /><br />
+            <br></br>
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="footer">
                 <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>

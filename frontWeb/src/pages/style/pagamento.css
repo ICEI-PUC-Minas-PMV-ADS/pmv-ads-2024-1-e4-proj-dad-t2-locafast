@@ -36,3 +36,8 @@
     background-color: #0056b3;
   }
   
+  .navigator {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
