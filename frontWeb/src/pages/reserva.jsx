@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+
 import { Form } from 'react-router-dom';
-import "../pages/style/reserva.css"
+
+import "../pages/style/reserva.css";
+
 
 const Reserva = () => {
     const [data, setData] = useState([
@@ -29,6 +32,7 @@ const Reserva = () => {
 
             <header className="header">
                 <h1>LocaFast</h1>
+
                 <Form action='/carro'>
                     <button className="header-button">Carros</button>
                 </Form>
@@ -41,6 +45,7 @@ const Reserva = () => {
                 <Form action='/contrato'>
                     <button className="header-button">Contratos</button>
                 </Form>
+
             </header>
 
             <div className='titulo'>

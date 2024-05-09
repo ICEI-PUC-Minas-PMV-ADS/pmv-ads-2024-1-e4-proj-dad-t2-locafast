@@ -1,16 +1,19 @@
+
 import React from 'react';
 import { Form } from "react-router-dom";
 
 const initialState = {
     user: {cpf: '', senha: '', message: ''}
 }
+import React, { useState } from 'react';
+import '../pages/style/login.css';
 
 function Login() {
 
     const state = { ...initialState }
 
     const handleLogin = () => {
-        // Adicione aqui a lógica de login
+        history.push('/cadastroReserva');
     };
 
     return (

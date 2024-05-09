@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+
 import { Form } from 'react-router-dom';
-<link rel="stylesheet" href="./pages/style/contrato.css" />
+
+import "../pages/style/contrato.css";
+
 
 const Contrato = () => {
     const [data, setData] = useState([
@@ -22,6 +25,7 @@ const Contrato = () => {
         <div>
             <header className="header">
                 <h1>LocaFast</h1>
+
                 <Form action='/carro'>
                     <button className="header-button">Carros</button>
                 </Form>
@@ -34,6 +38,7 @@ const Contrato = () => {
                 <Form action='/contrato'>
                     <button className="header-button">Contratos</button>
                 </Form>
+
             </header>
             <div className='titulo'>
                 <h1>Contratos Feitos</h1>

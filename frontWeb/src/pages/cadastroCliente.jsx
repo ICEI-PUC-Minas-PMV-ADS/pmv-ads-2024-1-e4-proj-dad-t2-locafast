@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import "../pages/style/cadastroCliente.css";
+
+
 function cadastroCliente() {
 
     const [username, setUsername] = useState('');

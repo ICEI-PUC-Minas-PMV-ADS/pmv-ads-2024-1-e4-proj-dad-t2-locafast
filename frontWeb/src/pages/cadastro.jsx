@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+
 import { Form } from "react-router-dom";
-<link rel="stylesheet" href="./pages/style/cadastro.css" />
+import "../pages/style/cadastro.css";
+
 
 
 function Cadastro() {

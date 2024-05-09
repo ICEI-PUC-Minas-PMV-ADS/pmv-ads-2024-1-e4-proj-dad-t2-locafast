@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+
 import { Form } from 'react-router-dom';
-<link rel="stylesheet" href="./pages/style/carro.css" />
+
+
 
 const Table = () => {
     const [data, setData] = useState([
@@ -80,6 +82,7 @@ function Carro() {
         <div>
             <header className="header">
                 <h1>LocaFast</h1>
+
                 <Form action='/carro'>
                     <button className="header-button">Carros</button>
                 </Form>
@@ -92,6 +95,7 @@ function Carro() {
                 <Form action='/contrato'>
                     <button className="header-button">Contratos</button>
                 </Form>
+
             </header>
             <div className='tabela'>
                 <Table /> {/* Aqui está usando o componente Table */}
