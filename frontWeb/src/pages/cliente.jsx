@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/cliente.css" />
+import "../pages/style/cliente.css";
 
 const Cliente = () => {
     const [data, setData] = useState([

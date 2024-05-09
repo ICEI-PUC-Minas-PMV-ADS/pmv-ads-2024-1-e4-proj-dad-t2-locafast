@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/login.css" />
+import "../pages/style/cadastroCliente.css";
 
 function cadastroCliente() {
 
