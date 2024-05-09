@@ -47,7 +47,9 @@ const Contrato = () => {
             <br /><br />
 
             <div>
-                <button className='cadastro' onClick>Criar contrato</button>
+                <Form action='/criarcontrato'>
+                    <button className='cadastro' onClick>Criar contrato</button>
+                </Form>
             </div>
 
             <br /><br />
