@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/cadastro.css" />
+import "../pages/style/cadastro.css";
 
 
 function Cadastro() {

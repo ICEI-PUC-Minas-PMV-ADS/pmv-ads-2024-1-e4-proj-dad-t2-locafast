@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/login.css" />
+import '../pages/style/login.css';
 
 function Login() {
 
@@ -8,7 +8,7 @@ function Login() {
     const [message, setMessage] = useState('');
 
     const handleLogin = () => {
-        // Adicione aqui a lógica de login
+        history.push('/cadastroReserva');
     };
 
     return (

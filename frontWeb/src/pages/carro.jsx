@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/carro.css" />
+import "../pages/style/carro.css";
 
 const Table = () => {
     const [data, setData] = useState([

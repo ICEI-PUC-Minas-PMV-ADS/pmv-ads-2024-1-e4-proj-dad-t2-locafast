@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-<link rel="stylesheet" href="./pages/style/contrato.css" />
+import "../pages/style/contrato.css";
 
 const Contrato = () => {
     const [data, setData] = useState([
