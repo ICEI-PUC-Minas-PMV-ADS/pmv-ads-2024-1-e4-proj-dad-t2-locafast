@@ -1222,7 +1222,10 @@
                 "modelo": "Exemplo Modelo",
                 "ano": 2020,
                 "cor": "Branco",
-                "status": "Disponível"
+                "status": "Disponível",
+                "chassi": "9BWZZZ377VT004251",
+                "anoFabricacao": 2020,
+                "categoria": "SUV"
               }
             }
           }
