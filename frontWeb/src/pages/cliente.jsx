@@ -25,7 +25,7 @@ const Cliente = () => {
 
             <header className="header">
                 <h1>LocaFast</h1>
-
+                <div className='navigator'>
                 <Form action='/carro'>
                     <button className="header-button">Carros</button>
                 </Form>
@@ -38,7 +38,7 @@ const Cliente = () => {
                 <Form action='/contrato'>
                     <button className="header-button">Contratos</button>
                 </Form>
-
+                </div>
             </header>
 
             <div className='titulo'>

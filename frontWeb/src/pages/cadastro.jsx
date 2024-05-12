@@ -21,48 +21,48 @@ function Cadastro() {
                 <h2 className='titulo'>Crie sua conta</h2>
                 <br />
                 <div className='lado'>
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="text"
                         placeholder="Usuário"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="text"
                         placeholder="Nome completo"
                     />
                 </div>
                 <br /><br /><br />
                 <div className='lado2'>
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="password"
                         placeholder="Senha"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="text"
                         placeholder="CPF"
                     />
                 </div>
                 <br /><br /><br />
                 <div className='lado'>
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="text"
                         placeholder="RG"
                     />
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="text"
                         placeholder="Telefone"
                     />
                 </div>
                 <br /><br /><br />
                 <div className='lado2'>
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="text"
                         placeholder="Data de nascimento"
                     />
-                    <input className='login'
+                    <input className='cadastro_2'
                         type="text"
                         placeholder="Gênero"
                     />

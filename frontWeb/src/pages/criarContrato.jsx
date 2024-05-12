@@ -61,7 +61,10 @@ function criarContrato() {
                 <p>{message}</p>
             </div>
             <br /><br />
-            <div className="footer">
+            <br />
+            <br />
+            <br />
+            <br />            <div className="footer">
                 <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>
         </div>

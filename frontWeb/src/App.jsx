@@ -25,8 +25,6 @@ function App() {
         <Route path="/cadastroReserva" element={<CadastroReserva />} />
         <Route path="/contrato" element={<Contrato />} />
         <Route path="/criarContrato" element={<CriarContrato />} />
-        {/* Rota padrão, caso a URL não corresponda a nenhuma das rotas acima */}
-        <Route path="*" element={<Login />} />
       </Routes>
     </Router>
   );
