@@ -41,3 +41,11 @@ h3{
     margin-left: 21.5%;
     color: rgba(151, 71, 255, 1);
 }
+
+
+.navigator {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+

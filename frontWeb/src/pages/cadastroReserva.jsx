@@ -71,7 +71,11 @@ function cadastroReserva() {
                 <button className="botao" onClick>  Cadastrar reserva</button>
                 <p>{message}</p>
             </div>
-            <br /><br />
+            <br></br>
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="footer">
                 <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>

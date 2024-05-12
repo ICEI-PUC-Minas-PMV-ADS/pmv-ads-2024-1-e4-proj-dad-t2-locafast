@@ -80,3 +80,8 @@
     
   }
   
+  .navigator {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
