@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-import './pages/style/carro.css'
 import Login from './pages/login.jsx';
 import Cadastro from './pages/cadastro.jsx';
 import Reserva from './pages/reserva.jsx';

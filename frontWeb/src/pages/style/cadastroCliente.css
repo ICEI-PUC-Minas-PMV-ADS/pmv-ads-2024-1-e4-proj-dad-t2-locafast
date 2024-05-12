@@ -1,12 +1,3 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.body {
-    text-align: center;    
-}
-
 .header {
     background-color: rgba(228, 204, 255, 1);
     color: rgba(151, 71, 255, 1);
@@ -45,23 +36,16 @@ body {
     font-weight: bold;
 }
 
-.footer {
-    background-color: rgba(151, 71, 255, 1);
-    color: white;
-    padding: 10px;
-    text-align: left;
-    bottom: 0;
-    width: 100%;
-}
-
 h3{
     text-align: left;
     margin-left: 21.5%;
     color: rgba(151, 71, 255, 1);
 }
 
+
 .navigator {
     align-items: center;
     justify-content: center;
     display: flex;
   }
+
