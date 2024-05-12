@@ -1,0 +1,8 @@
+.header {
+    background-color: rgba(228, 204, 255, 1);
+    color: rgba(151, 71, 255, 1);
+    padding: 10px;
+    text-align: center;
+    font-family: MerriWeather;
+    font-size: 20px;
+}

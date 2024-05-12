@@ -1,9 +1,13 @@
-import { Form } from "react-router-dom";
+import React from 'react';
+
+import FormLogin from "../components/form";
+import Footer from "../components/footer";
+
+import '../pages/style/login.css';
+
 const initialState = {
     user: {cpf: '', senha: '', message: ''}
 }
-import React from 'react';
-import '../pages/style/login.css';
 
 function Login() {
 
@@ -14,42 +18,9 @@ function Login() {
     };
 
     return (
-        <div>
-            <header className="header">
-                <h1>LocaFast</h1>
-            </header>
-            <br /><br />
-            <div className='body'>
-                <h2 className='titulo'>Acesse sua conta</h2>
-                <br />
-                <input className='login'
-                    type="text"
-                    placeholder="Usuário"
-                    value={state.cpf}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <br /><br /><br />
-                <input className='login'
-                    type="password"
-                    placeholder="Senha"
-                    value={state.senha}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <br /><br /><br />
-                <a href="">Esqueci minha senha</a>
-                <br /><br /><br />
-                <Form action='reserva'>
-                    <button className="botao" onClick>Logar</button>
-                </Form>
-                <p>{state.message}</p>
-                <br /><br />
-                <Form action='cadastro'>
-                    <button className="botao" onClick>Criar conta</button>
-                </Form>
-            </div>
-            <div className="footer">
-                <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
-            </div>
+        <div className="loginPage">
+            <FormLogin />
+            <Footer />
         </div>
     );
 }

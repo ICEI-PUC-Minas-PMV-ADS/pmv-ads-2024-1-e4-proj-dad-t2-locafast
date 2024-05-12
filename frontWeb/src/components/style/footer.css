@@ -1,0 +1,8 @@
+.footer {
+    background-color: rgba(151, 71, 255, 1);
+    color: white;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    font-family: MerriWeather;
+}

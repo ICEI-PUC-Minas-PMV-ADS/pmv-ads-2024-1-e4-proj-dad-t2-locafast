@@ -1,0 +1,82 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 300px;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: #FFFAFA;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 7px rgb(182, 180, 180);
+}
+
+.form a {
+    padding-top: 10px;
+    font-size: 12px;
+    text-decoration: none;
+    color: #5568FE;
+}
+
+.form-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8F8FF;
+}
+
+.lf-icon-form {
+    height: 100px;
+    width: 100px;
+}
+
+.input-form-container {
+    position: relative;
+    display: inline-block;
+    background-color: rgba(228, 204, 255, 1);
+    margin-top: 10px;
+    border-radius: 5px;
+    height: 40px;
+    width: 85%;
+}
+
+.input-form {
+    background-color: transparent;
+    height: 100%;
+    width: 85%;
+    outline: none;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.input-form::placeholder {
+    font-size: 14px;
+    color: #778899;
+}
+.input-form-container i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #778899;
+}
+
+.button-form {
+    background-color: rgba(151, 71, 255, 1);
+    margin-top: 20px;
+    border-radius:  5px;
+    height: 40px;
+    width: 85%;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.button-form:hover {
+    color: #F8F8FF;
+    transform: scale(1.05);
+}
