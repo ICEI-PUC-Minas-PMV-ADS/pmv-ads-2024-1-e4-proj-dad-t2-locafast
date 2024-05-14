@@ -1,0 +1,87 @@
+@import url('../../consts/colors.css');
+
+.table-container {
+    width: 70vw;
+    height: 70vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    overflow: hidden;
+}
+
+.table-header {
+    width: 100%;
+    height: 10%;
+    background-color: var(--header-table-color);
+    padding: .8rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-body {
+    width: 95%;
+    max-height: calc(86% - 1.6rem);
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: auto;
+}
+
+.table-body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table-body:hover::-webkit-scrollbar-thumb{
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+thead, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr:hover {
+    background-color: #fff6;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    height: 40px;
+    width: 60px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+#delete {
+    background-color: #d893a3;
+    color: #b30021;
+}
+
+#edit {
+    background-color: #86e49d;
+    color: #006b21
+}

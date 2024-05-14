@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-import { Form } from 'react-router-dom';
+import Table from '../components/table';
+import SideBar from '../components/sideBar';
 
-import "../pages/style/contrato.css";
+import "../pages/style/container.css"
 
 
 const Contrato = () => {
@@ -22,73 +23,24 @@ const Contrato = () => {
     };
 
     return (
-        <div>
-            <header className="header">
-                <h1>LocaFast</h1>
-                <div className='navigator'>
-                <Form action='/carro'>
-                    <button className="header-button">Carros</button>
-                </Form>
-                <Form action='/cliente'>
-                    <button className="header-button">Clientes</button>
-                </Form>
-                <Form action='/reserva'>
-                    <button className="header-button">Reservas</button>
-                </Form>
-                <Form action='/contrato'>
-                    <button className="header-button">Contratos</button>
-                </Form>
-                </div>
-            </header>
-            <div className='titulo'>
-                <h1>Contratos Feitos</h1>
-            </div>
-
-            <br /><br />
-
-            <div>
-                <Form action='/criarcontrato'>
-                    <button className='cadastro' onClick>Criar contrato</button>
-                </Form>
-            </div>
-
-            <br /><br />
-
-            <div className='tabela'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Carro</th>
-                            <th>Reserva</th>
-                            <th>Colaborador</th>
-                            <th>Data de Retirada</th>
-                            <th>Data de Devolução</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map(item => (
-                            <tr key={item.id}>
-                                <td>{item.clienteId}</td>
-                                <td>{item.carroId}</td>
-                                <td>{item.reservaId}</td>
-                                <td>{item.colaboradorId}</td>
-                                <td>{item.dataRetirada}</td>
-                                <td>{item.dataDevolucao}</td>
-                                <td>{item.status}</td>
-                                <td>
-                                    <button className='editar' onClick={() => handleEdit(item.id)}>Editar</button>
-                                    <button className='apagar' onClick={() => handleDelete(item.id)}>Apagar</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div className="footer">
-                <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
+        <div className='container'>
+            <SideBar />
+            <div className='itens-container'>
+                <Table
+                    title={'Contratos'}
+                    trs={[
+                        'Id',
+                        'Cliente',
+                        'Carro ID',
+                        'Reserva ID',
+                        'Colaborador ID',
+                        'Data de Retirada',
+                        'Data de Devolução',
+                        'Status',
+                        'Ações'
+                    ]}
+                    data={data}
+                />
             </div>
         </div>
     );

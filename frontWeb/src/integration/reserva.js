@@ -1,6 +1,8 @@
 import axios from "axios";
 import Usuario from "./usuario";
 
+import url from '../consts/consts'
+
 export default class Reserva {
     constructor() {
         this.usuario = new Usuario();
@@ -27,7 +29,7 @@ export default class Reserva {
         }
 
         try {
-            await axios.post('http://localhost:3002/reserva', dataObj);
+            await axios.post(`${url.API_URL}${"/reserva"}`, dataObj);
             alert("cadastrado");
         } catch (error) {
             console.log(error.message);
@@ -36,16 +38,17 @@ export default class Reserva {
 
     async getAllReserves() {
         try {
-            const response = await axios.get('http://localhost:3002/reserva');
+            const response = await axios.get("http:localhost:3000/reserva");
+            console.log(response.data)
             return response.data
         } catch (error) {
-            console.log(error.message);
+            console.error('Erro ao chamar a API:', error.message);
         }
     }
 
     async getReserveById(reserveId) {
         try {
-            const response = await axios.get(`http://localhost:3002/reserva/${reserveId}`);
+            const response = await axios.get(`http://localhost:3000/reserva/${reserveId}`);
             return response.data;
         } catch (error) {
             console.log(error.message);

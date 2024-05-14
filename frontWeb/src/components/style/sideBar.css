@@ -1,0 +1,147 @@
+@import url('../../consts/colors.css');
+
+.sidebar {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 15%;
+    max-width: 250px;
+    min-width: 58px;
+    background: var(--sidebar-color);
+    padding: 10px 14px;
+    transition: var(--tran-05);
+}
+
+.sidebar header .img-text {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .lf-icon-form {
+    display: flex;
+    align-items: center;
+}
+.sidebar.close {
+    width: 58px;
+}
+
+.sidebar .text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: var(--tran-03);
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.sidebar.close .text {
+    opacity: 0;
+}
+
+
+.sidebar li {
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar li .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    min-width: 60px;
+}
+
+.sidebar li .icon,
+.sidebar li .text {
+    color: var(--text-color);
+    transition: var(--tran-02);
+}
+
+.sidebar header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.sidebar li a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: var(--tran-04);
+}
+
+.sidebar li a:hover {
+    background: var(--primary-color);
+}
+
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text {
+    color: var(--sidebar-color);
+}
+
+.nav-link {
+    color: var(--text-color);
+    transition: var(--tran-03);
+    border-radius: 10px;
+}
+
+.nav-link:hover {
+    background: var(--header-table-color);
+}
+
+.sidebar .search-box {
+    background: var(--primary-color-light);
+    border-radius: 10px;
+}
+
+.search-box input {
+    height: 100%;
+    width: 100%;
+    background: var(--primary-color-light);
+    outline: none;
+    border-radius: 10px;
+}
+
+.toggle {
+    position: absolute;
+    top: 50%;
+    left: 101%;
+    transform: translateY(-50%) rotate(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background: var(--footer-color);
+    color: var(--sidebar-color);
+    font-size: 22px;
+    transition: var(--tran-03);
+}
+
+.sidebar.close .toggle {
+    transform: translateY(-50%)
+}
+
+
+.menu-bar {
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.application-name {
+    font-size: 25px;
+    font-weight: 500;
+    padding-left: 10px;
+}
