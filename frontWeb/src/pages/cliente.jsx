@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Form } from 'react-router-dom';
 
-import "../pages/style/cliente.css";
+import Table from '../components/table';
+import SideBar from '../components/sideBar';
+
+import "../pages/style/container.css"
 
 
 const Cliente = () => {
     const [data, setData] = useState([
-        { id: 1, nome: 'João Silva', cpf: '12345678901', telefone: '(11) 98765-4321', email: 'joao@example.com', dataNascimento: '1990-05-15', estado: 'Ativo', genero: 'Masculino' },
-        { id: 2, nome: 'Maria Souza', cpf: '98765432109', telefone: '(21) 98765-4321', email: 'maria@example.com', dataNascimento: '1985-12-10', estado: 'Ativo', genero: 'Feminino' },
-        { id: 3, nome: 'José Santos', cpf: '45678912301', telefone: '(31) 98765-4321', email: 'jose@example.com', dataNascimento: '1982-07-20', estado: 'Inativo', genero: 'Masculino' },
+        { id: 1, nome: 'João Silva', cpf: '12345678901', telefone: '(11) 98765-4321', email: 'joao@example.com', dataNascimento: '1990-05-15', status: 'Ativo', genero: 'Masculino' },
+        { id: 2, nome: 'Maria Souza', cpf: '98765432109', telefone: '(21) 98765-4321', email: 'maria@example.com', dataNascimento: '1985-12-10', status: 'Ativo', genero: 'Feminino' },
+        { id: 3, nome: 'José Santos', cpf: '45678912301', telefone: '(31) 98765-4321', email: 'jose@example.com', dataNascimento: '1982-07-20', status: 'Inativo', genero: 'Masculino' },
     ]);
 
     const handleDelete = (id) => {
@@ -21,79 +24,25 @@ const Cliente = () => {
     };
 
     return (
-        <div>
-
-            <header className="header">
-                <h1>LocaFast</h1>
-                <div className='navigator'>
-                <Form action='/carro'>
-                    <button className="header-button">Carros</button>
-                </Form>
-                <Form action='/cliente'>
-                    <button className="header-button">Clientes</button>
-                </Form>
-                <Form action='/reserva'>
-                    <button className="header-button">Reservas</button>
-                </Form>
-                <Form action='/contrato'>
-                    <button className="header-button">Contratos</button>
-                </Form>
-                </div>
-            </header>
-
-            <div className='titulo'>
-                <h1>Clientes Cadastrados</h1>
+        <div className='container'>
+            <SideBar />
+            <div className='itens-container'>
+                <Table
+                    title={'Clientes'}
+                    trs={[
+                        'Id',
+                        'Nome',
+                        'CPF',
+                        'Telefone',
+                        'Email',
+                        'Data Nascimento',
+                        'Status',
+                        'Gênero',
+                        'Ações'
+                    ]}
+                    data={data}
+                />
             </div>
-
-            <br /><br />
-
-            <div>
-                <Form action='/cadastrocliente'>
-                    <button className='cadastro' onClick>Cadastrar cliente</button>
-                </Form>
-            </div>
-
-            <br /><br />
-
-            <div className='tabela'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Telefone</th>
-                            <th>Email</th>
-                            <th>Data de Nascimento</th>
-                            <th>Estado</th>
-                            <th>Gênero</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map(item => (
-                            <tr key={item.id}>
-                                <td>{item.nome}</td>
-                                <td>{item.cpf}</td>
-                                <td>{item.telefone}</td>
-                                <td>{item.email}</td>
-                                <td>{item.dataNascimento}</td>
-                                <td>{item.estado}</td>
-                                <td>{item.genero}</td>
-                                <td>
-                                    <button className='editar' onClick={() => handleEdit(item.id)}>Editar</button>
-                                    <button className='apagar' onClick={() => handleDelete(item.id)}>Apagar</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            <div className="footer">
-                <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
-            </div>
-
-
         </div>
     );
 };

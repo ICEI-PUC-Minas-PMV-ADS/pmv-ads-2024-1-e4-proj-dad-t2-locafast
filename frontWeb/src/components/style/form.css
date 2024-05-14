@@ -19,19 +19,14 @@
 }
 
 .form-container {
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
     justify-content: center;
     align-items: center;
-    background-color: #F8F8FF;
-}
-
-.lf-icon-form {
-    height: 100px;
-    width: 100px;
+    background-color: transparent;
+    height: 100%;
 }
 
 .input-form-container {

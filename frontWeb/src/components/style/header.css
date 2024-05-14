@@ -1,8 +1,13 @@
+@import url('../../consts/colors.css');
+
 .header {
-    background-color: rgba(228, 204, 255, 1);
-    color: rgba(151, 71, 255, 1);
+    display: flex;
+    background-color: var(--header-color);
     padding: 10px;
     text-align: center;
-    font-family: MerriWeather;
     font-size: 20px;
+    height: 4vh;
+    z-index: 1000;
+    top: 0;
+    box-shadow: 0 .2rem .6rem #0005;
 }

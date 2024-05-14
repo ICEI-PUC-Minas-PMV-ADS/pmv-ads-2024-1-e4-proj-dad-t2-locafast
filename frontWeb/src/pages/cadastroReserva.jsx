@@ -15,9 +15,6 @@ function cadastroReserva() {
 
     return (
         <div>
-            <header className="header">
-                <h1>LocaFast</h1>
-            </header>
             <br />
             <div className='body'>
                 <h2 className='titulo'>Cadastro de reserva</h2>
@@ -70,14 +67,6 @@ function cadastroReserva() {
                 <br /><br /><br /><br />
                 <button className="botao" onClick>  Cadastrar reserva</button>
                 <p>{message}</p>
-            </div>
-            <br></br>
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="footer">
-                <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
             </div>
         </div>
     );
