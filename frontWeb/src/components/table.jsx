@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import './style/table.css';
 
@@ -8,17 +9,17 @@ export default props => {
         <th>{item}</th>
     ))
 
-    const mapTableTds = (obj) => {
-
-        for (let item in obj) {
-            return obj[item]
-        }
-    }
-
     return (
-        <div className='table-container'>
+        <div id="table-container-id" className='table-container'>
             <section className="table-header">
-                <h1>{props.title}</h1>
+                <div className="table-title">
+                    <h1>{props.title}</h1>
+                </div>
+                <div className="button-container">
+                    {
+                        props.btnTxt ? <button id="create">{props.btnTxt}</button> : ""
+                    }
+                </div>
             </section>
             <section className="table-body">
                 <table>
@@ -41,7 +42,7 @@ export default props => {
                                     }
                                     <td>
                                         <div className="buttons-container">
-                                            <button className='button' id="edit" >Editar</button>
+                                            <button className='button' id="edit">Editar</button>
                                             <button className='button' id="delete" >Apagar</button>
                                         </div>
                                     </td>

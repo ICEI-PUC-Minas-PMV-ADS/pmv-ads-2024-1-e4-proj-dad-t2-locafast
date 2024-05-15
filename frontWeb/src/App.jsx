@@ -1,16 +1,20 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
+
+import './components/style/content.css'
 
 import Content from './components/content';
+import SideBar from './components/sideBar';
 
 import './app.css'
 
 function App() {
   return (
     <main className='app'>
-      <BrowserRouter>
-        <Content />
-      </BrowserRouter>
+      <SideBar />
+      <div className='content'>
+        <Outlet />
+      </div>
     </main>
   );
 }

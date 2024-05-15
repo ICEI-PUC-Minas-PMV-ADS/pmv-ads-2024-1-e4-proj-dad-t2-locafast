@@ -45,7 +45,6 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
 app.use(checkToken)
 
-
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
 app.use('/reserva', reservaRoutes);

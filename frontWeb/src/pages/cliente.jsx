@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Form } from 'react-router-dom';
 
 import Table from '../components/table';
-import SideBar from '../components/sideBar';
 
 import "../pages/style/container.css"
 
@@ -25,7 +23,6 @@ const Cliente = () => {
 
     return (
         <div className='container'>
-            <SideBar />
             <div className='itens-container'>
                 <Table
                     title={'Clientes'}
