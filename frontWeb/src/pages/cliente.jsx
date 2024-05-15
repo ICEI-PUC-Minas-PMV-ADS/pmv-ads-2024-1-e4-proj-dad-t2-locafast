@@ -25,6 +25,7 @@ const Cliente = () => {
         <div className='container'>
             <div className='itens-container'>
                 <Table
+                    goto={'/app/cadastrocliente'}
                     title={'Clientes'}
                     trs={[
                         'Id',

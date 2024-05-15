@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Table from '../components/table';
 
 import "../pages/style/container.css"
+import { Outlet } from 'react-router-dom';
 
 const Reserva = () => {
     const [data, setData] = useState([
@@ -28,6 +29,7 @@ const Reserva = () => {
         <div className='container'>
             <div className='itens-container'>
                 <Table 
+                    goto={'/app/cadastroreserva'}
                     btnTxt={'Criar Reserva'}
                     title={'Reservas'}
                     trs={[

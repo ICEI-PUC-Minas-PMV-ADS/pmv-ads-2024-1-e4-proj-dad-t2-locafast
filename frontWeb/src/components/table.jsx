@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import './style/table.css';
 
 export default props => {
+
+    const navigate = useNavigate();
+
+    const navigateTo = () => {
+        navigate(props.goto);
+    };
 
     const mapTableHeader = props.trs.map((item) => (
         <th>{item}</th>
@@ -17,7 +24,7 @@ export default props => {
                 </div>
                 <div className="button-container">
                     {
-                        props.btnTxt ? <button id="create">{props.btnTxt}</button> : ""
+                        props.btnTxt ? <button onClick={navigateTo} id="create">{props.btnTxt}</button> : ""
                     }
                 </div>
             </section>

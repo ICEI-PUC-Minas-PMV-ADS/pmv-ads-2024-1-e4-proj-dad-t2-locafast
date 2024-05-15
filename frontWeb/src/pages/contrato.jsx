@@ -25,6 +25,7 @@ const Contrato = () => {
         <div className='container'>
             <div className='itens-container'>
                 <Table
+                    goto={'/app/criarcontrato'}
                     btnTxt={'Abrir Contrato'}
                     title={'Contratos'}
                     trs={[

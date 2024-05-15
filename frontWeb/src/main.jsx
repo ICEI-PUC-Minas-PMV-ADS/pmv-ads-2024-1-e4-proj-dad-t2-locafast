@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         element: <Reserva />,
       },
       {
+        path: "cadastroreserva",
+        element: <CadastroReserva />
+      },
+      {
         path: "contrato",
         element: <Contrato />,
       },
@@ -42,6 +46,18 @@ const router = createBrowserRouter([
       {
         path: "cadastro",
         element: <Cadastro />,
+      },
+      {
+        path: "cadastrocarro",
+        element: <CadastroCarro />
+      },
+      {
+        path: "cadastrocliente",
+        element: <CadastroCliente />
+      },
+      {
+        path: "criarcontrato",
+        element: <CriarContrato />
       }
     ],
   }

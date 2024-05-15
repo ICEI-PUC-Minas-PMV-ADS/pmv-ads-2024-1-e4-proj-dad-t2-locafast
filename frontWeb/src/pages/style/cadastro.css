@@ -13,8 +13,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-width: var(--min-form-width);
-    width: var(--form-width);
     height: var(--form-height);
 }
 
@@ -64,6 +62,7 @@
 }
 
 form div input {
+    position: relative;
     margin-bottom: 10px;
     padding-left: 10px;
     outline: none;

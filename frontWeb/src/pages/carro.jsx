@@ -27,6 +27,7 @@ const Carro = () => {
         <div className='container'>
             <div className='itens-container'>
                 <Table 
+                    goto={'/app/cadastrocarro'}
                     btnTxt={'Cadastrar Carro'}
                     title={'Carros'}
                     trs={[

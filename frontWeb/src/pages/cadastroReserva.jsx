@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import "../pages/style/cadastroReserva.css";
+import FormCadastro from '../components/formCadastro';
+import ButtonCadastro from '../components/buttonCadastro';
 
 
 function cadastroReserva() {
@@ -14,60 +16,24 @@ function cadastroReserva() {
     };
 
     return (
-        <div>
-            <br />
-            <div className='body'>
-                <h2 className='titulo'>Cadastro de reserva</h2>
-
-                <h3>ID do cliente</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o ID do cliente"
+        <div className='reserva-container'>
+            <form method='POST'>
+                <div id='header-form'>
+                    <h2>Cadastro de Reserva</h2>
+                </div>
+                <FormCadastro placeholder={[
+                    'Código de Cliente',
+                    'Data de Retirada',
+                    'Data de Devolução',
+                    'Agência de Retirada',
+                    'Agência de devolução',
+                    'Categoria do veículo',
+                    'Valor da Diária']}
                 />
-                <br />
-                <h3>Data de retirada</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a data de retirada do veículo"
-                />
-                <br />
-                <h3>Data de devolução</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a data de devolução do veículo"
-                />
-                <br />
-                <h3>Agência de retirada</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a agência de retirada do veículo"
-                />
-                <br />
-                <h3>Agência de devolução</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a agência de devolução do veículo"
-                />
-                <br />
-                <h3>Categoria do véiculo</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a categoria do veículo"
-                />
-                <h3>Valor da diária</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o valor da diária do veículo"
-                />
-                <h3>ID do colaborador</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o ID do colaborador"
-                />
-                <br /><br /><br /><br />
-                <button className="botao" onClick>  Cadastrar reserva</button>
-                <p>{message}</p>
-            </div>
+                <div id='button-container'>
+                    <ButtonCadastro text={"Cadastrar"} width={'65%'} />
+                </div>
+            </form>
         </div>
     );
 }

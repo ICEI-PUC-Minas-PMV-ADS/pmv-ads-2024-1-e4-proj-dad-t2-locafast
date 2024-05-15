@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 
 import './components/style/content.css'
 
-import Content from './components/content';
 import SideBar from './components/sideBar';
 
 import './app.css'

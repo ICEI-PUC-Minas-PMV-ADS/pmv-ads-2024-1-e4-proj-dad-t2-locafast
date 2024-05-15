@@ -1,5 +1,4 @@
-const mongoose = require("mongoose")
-const validator = require('validator');
+const mongoose = require("mongoose");
 
 const reservaSchema = new mongoose.Schema({
     clientId: String,
@@ -19,7 +18,6 @@ const reservaSchema = new mongoose.Schema({
             'Ag. Filial Cardec'
         ]
     },
-    tarifaId: String,
     categoriaVeiculo: {
         type: String,
         enum: [

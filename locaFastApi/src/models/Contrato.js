@@ -13,10 +13,6 @@ const contratoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    tarifaId: {
-        type: String,
-        required: true
-    },
     colaboradorId: {
         type: String,
         required: true
