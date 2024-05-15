@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+
+import FormCadastro from '../components/formCadastro';
+import ButtonCadastro from '../components/buttonCadastro';
+
 import "../pages/style/criarContrato.css";
 
 function criarContrato() {
@@ -8,65 +12,24 @@ function criarContrato() {
     const [message, setMessage] = useState('');
 
     return (
-        <div>
-            <header className="header">
-                <h1>LocaFast</h1>
-            </header>
-            <br />
-            <div className='body'>
-                <h2 className='titulo'>Criar contrato</h2>
-
-                <h3>ID do cliente</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o ID do cliente"
+        <div className='contrato-container'>
+            <form method='POST'>
+                <div id='header-form'>
+                    <h2>Abertura de contrato</h2>
+                </div>
+                <FormCadastro placeholder={[
+                    'Reserva',
+                    'Placa',
+                    'Data de Retirada',
+                    'Data de Devolução',
+                    'Agência de Retirada',
+                    'Agência de devolução'
+                ]}
                 />
-                <br />
-                <h3>ID do carro</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o ID do carro"
-                />
-                <br />
-                <h3>ID da reserva</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o ID da reserva"
-                />
-                <br />
-                <h3>ID do colaborador</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o ID do colaborador"
-                />
-                <br />
-                <h3>Data de retirada</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a data de retirada"
-                />
-                <br />
-                <h3>Data de devolução</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a data de devolução"
-                />
-                <h3>Status</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o status do contrato"
-                />
-                <br /><br /><br /><br />
-                <button className="botao" onClick>  Criar contrato</button>
-                <p>{message}</p>
-            </div>
-            <br /><br />
-            <br />
-            <br />
-            <br />
-            <br />            <div className="footer">
-                <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
-            </div>
+                <div id='button-container'>
+                    <ButtonCadastro text={"Abrir Contrato"} width={'65%'} />
+                </div>
+            </form>
         </div>
     );
 }
