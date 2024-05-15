@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FormLogin from "../components/formLogin";
+import Footer from "../components/footer";
 
 import '../pages/style/login.css';
 
@@ -19,6 +20,7 @@ function Login() {
     return (
         <div className="loginPage">
             <FormLogin />
+            <Footer />
         </div>
     );
 }
