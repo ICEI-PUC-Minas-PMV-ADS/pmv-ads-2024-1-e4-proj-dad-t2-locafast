@@ -13,8 +13,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-width: var(--min-form-width);
-    width: var(--form-width);
     height: var(--form-height);
 }
 
@@ -43,7 +41,8 @@
 #middle-right {
     display: flex;
     flex-direction: column;
-    margin: 0px 30px 0px 0px
+    margin: 0px 30px 0px 0px;
+
 }
 
 #middle-right, #middle-left {
@@ -67,6 +66,7 @@ form div input {
     margin-bottom: 10px;
     padding-left: 10px;
     outline: none;
+
 }
 
 #header-form, #button-container {
