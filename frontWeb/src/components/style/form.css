@@ -59,19 +59,3 @@
     transform: translateY(-50%);
     color: #778899;
 }
-
-.button-form {
-    background-color: rgba(151, 71, 255, 1);
-    margin-top: 20px;
-    border-radius:  5px;
-    height: 40px;
-    width: 85%;
-    font-size: 20px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.button-form:hover {
-    color: #F8F8FF;
-    transform: scale(1.05);
-}

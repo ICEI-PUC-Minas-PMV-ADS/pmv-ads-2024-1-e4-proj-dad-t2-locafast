@@ -12,12 +12,9 @@
 
 .table-header {
     width: 100%;
-    height: 10%;
+    height: 15%;
     background-color: var(--header-table-color);
-    padding: .8rem 1rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .table-body {
@@ -60,7 +57,8 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: #fff6;
+    background-color: var(--background-color-light-mode);
+    transition: var(--tran-02);
 }
 
 .buttons-container {
@@ -74,14 +72,63 @@ tbody tr:hover {
     width: 60px;
     margin: 5px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #delete {
     background-color: #d893a3;
     color: #b30021;
+    transition: var(--tran-02);
+}
+
+#delete:hover {
+    background-color: #b30021;
+    color: var(--primary-color-light);
 }
 
 #edit {
     background-color: #86e49d;
     color: #006b21
+}
+
+#edit:hover {
+    background-color: #006b21;
+    color: var(--primary-color-light);
+    transition: var(--tran-02);
+}
+
+.table-title {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.table-title h1 {
+    padding-left: 30px;
+}
+
+.button-container {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+}
+
+.button-container button {
+    background-color: var(--header-color);
+    font-size: 18px;
+    height: 40px;
+    min-width: 100px;
+    width: 150px;
+    border-radius: 10px;
+    transition: var(--tran-03);
+    cursor: pointer;
+}
+
+.button-container button:hover {
+        color: #F8F8FF;
+        transform: scale(1.05);
 }

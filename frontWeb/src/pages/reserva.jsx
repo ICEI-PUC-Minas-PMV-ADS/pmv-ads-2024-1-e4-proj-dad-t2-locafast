@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import Table from '../components/table';
-import SideBar from '../components/sideBar';
 
 import "../pages/style/container.css"
 
@@ -27,9 +26,9 @@ const Reserva = () => {
 
     return (
         <div className='container'>
-            <SideBar />
             <div className='itens-container'>
                 <Table 
+                    btnTxt={'Criar Reserva'}
                     title={'Reservas'}
                     trs={[
                         'Id',

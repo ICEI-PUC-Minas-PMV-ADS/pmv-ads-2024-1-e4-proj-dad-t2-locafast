@@ -125,6 +125,7 @@
     color: var(--sidebar-color);
     font-size: 22px;
     transition: var(--tran-03);
+    cursor: pointer;
 }
 
 .sidebar.close .toggle {

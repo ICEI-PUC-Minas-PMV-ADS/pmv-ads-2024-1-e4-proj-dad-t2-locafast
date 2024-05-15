@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormLogin from "../components/form";
+import FormLogin from "../components/formLogin";
 
 import '../pages/style/login.css';
 

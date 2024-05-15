@@ -2,8 +2,8 @@ import React from "react";
 
 import './style/form.css'
 
-import LfIcon from '../icons/lfIcon.png'
 import Icon from "./icon";
+import ButtonCadastro from "./buttonCadastro";
 
 export default () => {
     return (
@@ -19,7 +19,7 @@ export default () => {
                     <input className="input-form" type="password" placeholder="senha"></input>
                     <i className='bx bx-lock-alt' ></i>
                 </div>
-                <button className="button-form">Entrar</button>
+                <ButtonCadastro text={"Entrar"} width={'85%'}/>
                 <a href="#">Esqueceu a senha?</a>
             </form>
         </div>

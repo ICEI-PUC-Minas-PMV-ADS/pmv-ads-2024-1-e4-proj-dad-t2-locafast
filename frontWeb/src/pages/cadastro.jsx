@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-
 import { Form } from "react-router-dom";
+
+import FormCadastro from '../components/formCadastro';
+import ButtonCadastro from '../components/buttonCadastro';
+
 import "../pages/style/cadastro.css";
 
 
@@ -12,68 +15,26 @@ function Cadastro() {
     const [message, setMessage] = useState('');
 
     return (
-        <div>
-            <header className="header">
-                <h1>LocaFast</h1>
-            </header>
-            <br /><br />
-            <div className='body'>
-                <h2 className='titulo'>Crie sua conta</h2>
-                <br />
-                <div className='lado'>
-                    <input className='cadastro_2'
-                        type="text"
-                        placeholder="Usuário"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <input className='cadastro_2'
-                        type="text"
-                        placeholder="Nome completo"
-                    />
+        <div className='userSign'>
+            <form method='POST'>
+                <div id='header-form'>
+                    <h2>Cadastro de Usuário</h2>
                 </div>
-                <br /><br /><br />
-                <div className='lado2'>
-                    <input className='cadastro_2'
-                        type="password"
-                        placeholder="Senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <input className='cadastro_2'
-                        type="text"
-                        placeholder="CPF"
-                    />
+                <FormCadastro id={"top"} placeholder={['Nome']} />
+                <div id='middle'>
+                    <FormCadastro id={"middle-left"} placeholder={['CPF', 'RG', 'Telefone']} />
+                    <FormCadastro id={"middle-right"} placeholder={['Senha']}>
+                        <input id='date' type='date'/>
+                        <select>
+                            <option>Masculino</option>
+                            <option>Feminino</option>
+                        </select>
+                    </FormCadastro>
                 </div>
-                <br /><br /><br />
-                <div className='lado'>
-                    <input className='cadastro_2'
-                        type="text"
-                        placeholder="RG"
-                    />
-                    <input className='cadastro_2'
-                        type="text"
-                        placeholder="Telefone"
-                    />
+                <div id='button-container'>
+                    <ButtonCadastro text={"Cadastrar"} width={'65%'}/>
                 </div>
-                <br /><br /><br />
-                <div className='lado2'>
-                    <input className='cadastro_2'
-                        type="text"
-                        placeholder="Data de nascimento"
-                    />
-                    <input className='cadastro_2'
-                        type="text"
-                        placeholder="Gênero"
-                    />
-                </div>
-                <br /><br /><br /><br />
-                <button className="botao" onClick>  Criar Conta</button>
-
-                <div class="footer">
-                    <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
-                </div>
-            </div>
+            </form>
         </div>
     );
 }
