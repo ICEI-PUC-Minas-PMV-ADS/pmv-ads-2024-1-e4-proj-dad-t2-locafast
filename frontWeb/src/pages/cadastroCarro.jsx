@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import FormCadastro from '../components/formCadastro';
+import ButtonCadastro from '../components/buttonCadastro';
+
 import "../pages/style/cadastroCarro.css";
 
 
@@ -14,66 +17,26 @@ function cadastroCarro() {
     };
 
     return (
-        <div>
-            <header className="header">
-                <h1>LocaFast</h1>
-            </header>
-            <br />
-            <div className='body'>
-                <h2 className='titulo'>Cadastro de carros</h2>
-                <h3>Marca</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a marca"
+        <div className='cliente-container'>
+            <form method='POST'>
+                <div id='header-form'>
+                    <h2>Cadastro de Carros</h2>
+                </div>
+                <FormCadastro placeholder={[
+                    'Placa',
+                    'Chassi',
+                    'Modelo',
+                    'Marca',
+                    'Ano de Fabricacao',
+                    'Categoria do veículo',
+                    'Cor',
+                    'categoria',
+                ]}
                 />
-                <br />
-                <h3>Modelo</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o modelo"
-                />
-                <br />
-                <h3>Número da placa</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o número da placa"
-                />
-                <br />
-                <h3>Número do chassi</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o número do chassi"
-                />
-                <br />
-                <h3>Ano de fabricação</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe o ano de fabricação"
-                />
-                <br />
-                <h3>Cor</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a cor do veículo"
-                />
-                <br />
-                <h3>Categoria do véiculo</h3>
-                <input className='login'
-                    type="text"
-                    placeholder="Informe a categoria do veículo"
-                />
-                <br /><br /><br /><br />
-                <button className="botao" onClick>  Cadastrar carro</button>
-                <p>{message}</p>
-            </div>
-            <br></br>
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="footer">
-                <p>&copy; 2024 - LocaFast Aluguel de Carros</p>
-            </div>
+                <div id='button-container'>
+                    <ButtonCadastro text={"Cadastrar"} width={'65%'} />
+                </div>
+            </form>
         </div>
     );
 }
