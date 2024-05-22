@@ -38,9 +38,12 @@ export default class Reserva {
 
     async getAllReserves() {
         try {
-            const response = await axios.get("http:localhost:3000/reserva");
-            console.log(response.data)
-            return response.data
+            await axios.get('http://localhost:3000/reserva')
+                .then((result) => {
+                    return result.data
+                }).catch((err) => {
+                    return err
+                });
         } catch (error) {
             console.error('Erro ao chamar a API:', error.message);
         }

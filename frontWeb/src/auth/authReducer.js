@@ -1,4 +1,4 @@
-const userKey = '_myloca_user'
+const userKey = 'token'
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem(userKey)),
     validToken: false

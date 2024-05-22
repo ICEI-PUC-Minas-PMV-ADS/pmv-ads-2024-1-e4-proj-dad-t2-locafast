@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 import Table from '../components/table';
+import Card from '../components/card';
 
-import "../pages/style/container.css"
+import "../pages/style/contrato.css"
 
 
 const Contrato = () => {
@@ -23,25 +24,15 @@ const Contrato = () => {
 
     return (
         <div className='container'>
-            <div className='itens-container'>
-                <Table
-                    goto={'/app/criarcontrato'}
-                    btnTxt={'Abrir Contrato'}
-                    title={'Contratos'}
-                    trs={[
-                        'Id',
-                        'Cliente',
-                        'Carro ID',
-                        'Reserva ID',
-                        'Colaborador ID',
-                        'Data de Retirada',
-                        'Data de Devolução',
-                        'Status',
-                        'Ações'
-                    ]}
-                    data={data}
-                />
-            </div>
+            {
+                data ?
+                data.map(item => {
+                    return (
+                        <Card key={item.id} data={item} keyTitle={'id'} keysToRender={['clienteId', 'carroId', 'reservaId']}/>
+                    )
+                }) :
+                <div></div>
+            }
         </div>
     );
 };

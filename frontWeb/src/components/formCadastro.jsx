@@ -1,7 +1,5 @@
 import React from "react";
 
-import ButtonCadastro from "./buttonCadastro";
-
 import './style/formCadastro.css'
 
 export default props => {
