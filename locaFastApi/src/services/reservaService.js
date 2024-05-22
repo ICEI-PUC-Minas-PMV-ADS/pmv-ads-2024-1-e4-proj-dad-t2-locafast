@@ -32,13 +32,13 @@ class ReservaService {
                 throw new Error('Reserva já possui um cadastro.');
             }
 
-            const cliente_check = await Cliente.findById(id);
+            const cliente_check = await Cliente.findById(reserva.clientId);
 
             if (!cliente_check ) {
                 throw new Error("Cliente não existe.");
             }
 
-            const colaborador_check = await Colaborador.findById(id);
+            const colaborador_check = await Colaborador.findById(reserva.colaboradorId);
 
             if (!colaborador_check) {
                 throw new Error("Colaborador não existe.");

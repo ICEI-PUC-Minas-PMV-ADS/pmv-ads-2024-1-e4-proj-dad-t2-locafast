@@ -43,7 +43,7 @@ reservaSchema.statics.modelIsValid = function(reserva) {
         return new Error('Data inválida.');
     }
 
-    if (reserva.dateRetirada < reserva.dateDevolucao  ) {
+    if (reserva.dateDevolucao < reserva.dateRetirada  ) {
         return new Error('A locação do automóvel deve ser de pelo menos 1 dia.');
     }
 
