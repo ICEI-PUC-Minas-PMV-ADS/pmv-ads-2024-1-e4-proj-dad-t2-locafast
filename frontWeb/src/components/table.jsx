@@ -36,26 +36,29 @@ export default props => {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.data.map(item => {
-                            let keys = Object.keys(item)
-                            return (
-                                <tr key={item.id}>
-                                    {
-                                        keys.map(key => {
-                                            return (
-                                                <td>{item[key]}</td>
-                                            )
-                                        })
-                                    }
-                                    <td>
-                                        <div className="buttons-container">
-                                            <button className='button' id="edit">Editar</button>
-                                            <button className='button' id="delete" >Apagar</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
+                        {props.data ?
+                            props.data.map(item => {
+                                let keys = Object.keys(item)
+                                return (
+                                    <tr key={item.id}>
+                                        {
+                                            keys.map(key => {
+                                                return (
+                                                    <td>{item[key]}</td>
+                                                )
+                                            })
+                                        }
+                                        <td>
+                                            <div className="buttons-container">
+                                                <button className='button' id="edit">Editar</button>
+                                                <button className='button' id="delete" >Apagar</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            }) :
+                            <tr></tr>
+                        }
                     </tbody>
                 </table>
             </section >

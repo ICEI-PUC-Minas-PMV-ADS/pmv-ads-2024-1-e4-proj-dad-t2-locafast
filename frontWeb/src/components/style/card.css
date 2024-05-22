@@ -1,0 +1,27 @@
+@import url('../../consts/colors.css');
+
+
+
+.card-container {
+    border-radius: 10px;
+    height: 125px;
+    width: 175px;
+    background-color: var(--sidebar-color);
+    margin: 10px;
+    border: 2px solid var(--header-table-color);
+    overflow: hidden;
+}
+
+.title-container {
+    display: flex;
+    background-color: var(--header-table-color);
+    justify-content: center;
+}
+
+.card-container li {
+    list-style: none
+}
+
+.card-content-container {
+    padding: 10px;
+}

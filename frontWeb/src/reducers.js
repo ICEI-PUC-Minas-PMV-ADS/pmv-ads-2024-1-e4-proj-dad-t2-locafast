@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
 
+import AuthReducer from './auth/authReducer'
+
 const rootReducer = combineReducers({
-    user: () => ({sumary: {colaborador: "teste", acessToken: 'dsafsdfsdf'}})
+    user: () => ({
+        auth: AuthReducer
+    })
 })
 
 export default rootReducer
