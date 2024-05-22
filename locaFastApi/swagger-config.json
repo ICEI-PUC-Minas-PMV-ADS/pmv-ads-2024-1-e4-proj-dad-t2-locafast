@@ -420,7 +420,6 @@
                 "dateDevolucao": "2024-10-12",
                 "agenciaRetirada": "Agencia Matriz",
                 "agenciaDevolucao": "Agencia Cardec",
-                "tarifaId": "53216",
                 "categoriaVeiculo": "A",
                 "valorDiaria": "400",
                 "colaboradorId": "165417"
@@ -469,10 +468,8 @@
                 "dateDevolucao": "2024-10-12",
                 "agenciaRetirada": "Agencia Matriz",
                 "agenciaDevolucao": "Agencia Cardec",
-                "tarifaId": "53216",
                 "categoriaVeiculo": "A",
-                "valorDiaria": "400",
-                "colaboradorId": "165417"
+                "valorDiaria": "400"
               }
             }
           }
@@ -585,7 +582,6 @@
               "dateDevolucao": "string",
               "agenciaRetirada": "string",
               "agenciaDevolucao": "string",
-              "tarifaId": "string",
               "categoriaVeiculo": "string",
               "valorDiaria": "string",
               "colaboradorId": "string"
@@ -598,7 +594,6 @@
               "dateDevolucao": "2024-10-12",
               "agenciaRetirada": "Agencia Matriz",
               "agenciaDevolucao": "Agencia Cardec",
-              "tarifaId": "53216",
               "categoriaVeiculo": "A",
               "valorDiaria": "400",
               "colaboradorId": "165417"
@@ -666,7 +661,6 @@
               "dateDevolucao": "string",
               "agenciaRetirada": "string",
               "agenciaDevolucao": "string",
-              "tarifaId": "string",
               "categoriaVeiculo": "string",
               "valorDiaria": "string",
               "colaboradorId": "string"
@@ -737,7 +731,6 @@
                 "dateDevolucao": "2024-10-12",
                 "agenciaRetirada": "Agencia Matriz",
                 "agenciaDevolucao": "Agencia Cardec",
-                "tarifaId": "53216",
                 "categoriaVeiculo": "A",
                 "valorDiaria": "400",
                 "colaboradorId": "165417"
@@ -864,7 +857,6 @@
                 "contratoId": "123456789",
                 "carroId": "987654321",
                 "reservaId": "789456123",
-                "tarifaId": "456123789",
                 "colaboradorId": "654987321",
                 "status": "ativo",
                 "dataRetirada": "2024-04-04T00:00:00.000Z",
@@ -931,7 +923,6 @@
                     "contratoId": "123456789",
                     "carroId": "987654321",
                     "reservaId": "789456123",
-                    "tarifaId": "456123789",
                     "colaboradorId": "654987321",
                     "status": "ativo",
                     "dataRetirada": "2024-04-04T00:00:00.000Z",
@@ -988,7 +979,6 @@
                   "contratoId": "123456789",
                   "carroId": "987654321",
                   "reservaId": "789456123",
-                  "tarifaId": "456123789",
                   "colaboradorId": "654987321",
                   "status": "ativo",
                   "dataRetirada": "2024-04-04T00:00:00.000Z",
@@ -1050,7 +1040,6 @@
                 "contratoId": "123456789",
                 "carroId": "987654321",
                 "reservaId": "789456123",
-                "tarifaId": "456123789",
                 "colaboradorId": "654987321",
                 "status": "ativo",
                 "dataRetirada": "2024-04-04T00:00:00.000Z",
