@@ -35,8 +35,13 @@ const Reserva = () => {
         console.log(`Editar reserva com id ${id}`);
     };
 
-    const cadastroReserva = () => {
-        // Implemente a lógica para navegar para a rota de cadastro de reserva
+    const deleteReserva = async (id) => {
+        try {
+            await axios.delete(`/reserva/${id}`);
+            setData(data.filter(reserva => reserva._id !== id));
+        } catch (error) {
+            console.error('Erro ao deletar reserva:', error);
+        }
     };
 
     return (
@@ -59,6 +64,7 @@ const Reserva = () => {
                         'Ações'
                     ]}
                     data={data}
+                    onDelete={deleteReserva}
                 />
             </div>
         </div>

@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
         }
         const decoded = await promisify(jwt.verify)(
             acessToken,
-            "YXV0aC1hcGktc2VjcmV0LWRldi0xMjM0NTY="
+            process.env.JWT_SECRET
         )
         req.authUser = decoded.authUser
         return next()

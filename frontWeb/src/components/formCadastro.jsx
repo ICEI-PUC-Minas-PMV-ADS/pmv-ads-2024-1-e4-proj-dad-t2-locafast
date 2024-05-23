@@ -7,9 +7,15 @@ export default props => {
     return (
         <div id={props.id ? props.id : ""} className="input-container">
             {
-                props.placeholder.map(el => {
-                    return <input id={el} placeholder={el}></input>
-                })
+                props.placeholders.map((placeholder, index) => (
+                    <input 
+                        key={index}
+                        id={placeholder}
+                        placeholder={placeholder}
+                        value={props.values[placeholder]}
+                        onChange={props.handleChange[placeholder]}
+                    />
+                ))
             }
             {
                 props.children > 1 ?

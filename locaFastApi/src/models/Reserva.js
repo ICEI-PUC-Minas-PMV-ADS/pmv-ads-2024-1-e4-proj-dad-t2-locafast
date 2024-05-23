@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const reservaSchema = new mongoose.Schema({
-    clientId: String,
+    clienteId: String,
     dateRetirada: Date,
     dateDevolucao: Date,
     agenciaRetirada: {
