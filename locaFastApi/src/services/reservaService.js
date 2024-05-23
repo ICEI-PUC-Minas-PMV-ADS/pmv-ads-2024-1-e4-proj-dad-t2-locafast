@@ -1,40 +1,37 @@
+const jwt = require('jsonwebtoken');
 const Reserva = require('../models/Reserva')
+const ReservaDTO = require('../Dtos/reservaDto')
 const Cliente = require('../models/Cliente')
 const Colaborador = require('../models/Colaborador')
 
 
 class ReservaService {
-    
+
     async GetReservaAll() {
         try {
             const reservas = await Reserva.find();
-            return reservas;
+            const reservasDTO = reservas.map(reserva => new ReservaDTO(reserva));
+            return reservasDTO;
         } catch (error) {
             throw error;
         }
     }
 
-    async postReserva(reserva) {
+    async postReserva(req) {
         try {
 
-            const conditions = {
-                $or: [
-                    { colaboradorId: reserva.colaboradorId },
-                    { clientId: reserva.clientId },
-                    { dataRetirada: reserva.dataRetirada },
-                    { valorDiaria: reserva.valorDiaria },
-                ]
-            }
+            const token = req.headers.authorization.split(' ')[1];
+            const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+            const colaboradorId = decodedToken.authUser.id;
 
-            const reservaExists = await Reserva.findOne(conditions)
+            const reserva = {
+                ...req.body,
+                colaboradorId
+            };
 
-            if (reservaExists) {
-                throw new Error('Reserva já possui um cadastro.');
-            }
+            const cliente_check = await Cliente.findById(reserva.clienteId);
 
-            const cliente_check = await Cliente.findById(reserva.clientId);
-
-            if (!cliente_check ) {
+            if (!cliente_check) {
                 throw new Error("Cliente não existe.");
             }
 
@@ -51,7 +48,7 @@ class ReservaService {
             }
 
             const newReserva = await Reserva.create(reserva);
-            return newReserva;
+            return new ReservaDTO(newReserva);
 
         } catch (error) {
             throw error;
@@ -102,7 +99,7 @@ class ReservaService {
                 throw new Error("Reserva não existe.");
             }
 
-            await Reserva.deleteOne({_id: id})
+            await Reserva.deleteOne({ _id: id })
 
         } catch (error) {
             throw error

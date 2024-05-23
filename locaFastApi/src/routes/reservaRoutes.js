@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
 
     try {
 
-        await reservaService.postReserva(req.body)
+        await reservaService.postReserva(req)
 
         res.status(201).json({ message: "Reserva cadastrada com sucesso!" })
 

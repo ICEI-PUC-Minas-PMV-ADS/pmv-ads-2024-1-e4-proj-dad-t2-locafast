@@ -40,7 +40,7 @@ export default props => {
                             props.data.map(item => {
                                 let keys = Object.keys(item)
                                 return (
-                                    <tr key={item.id}>
+                                    <tr key={item._id}>
                                         {
                                             keys.map(key => {
                                                 return (
@@ -51,7 +51,7 @@ export default props => {
                                         <td>
                                             <div className="buttons-container">
                                                 <button className='button' id="edit">Editar</button>
-                                                <button className='button' id="delete" >Apagar</button>
+                                                <button className='button' id="delete" onClick={() => props.onDelete(item._id)}>Apagar</button>
                                             </div>
                                         </td>
                                     </tr>
