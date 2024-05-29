@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Image, Platform } from "react-native";
+import { Text, View, StyleSheet, Image, Platform, Dimensions } from "react-native";
 import Icon from '../icons/icon.png'
 
 export default () => {
@@ -15,14 +15,14 @@ export default () => {
 const styles = StyleSheet.create({
     container: {
         display: "flex",
-        padding: 10,
         marginTop: Platform.OS === 'ios' ? 20 : 0,
-        borderBottomWidth: 1,
         border: "#BBB",
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "#F6F5FF",
-        height: "10%"
+        height: Dimensions.get('window').height * 0.08,
+        width: Dimensions.get('window').width
     },
     image: {
         height: 30,

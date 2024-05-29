@@ -1,11 +1,30 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, FlatList, Dimensions } from "react-native";
 
-export default () => {
+import Card from "../components/card";
+import reservas from "../data/reserva"
+
+export default ({ navigation }) => {
+
+    const [data, setData] = useState(reservas)
 
     return (
         <View style={styles.body}>
-            <Text>Componente reserva</Text>
+            <FlatList
+                data={data}
+                keyExtractor={item => `${item._id}`}
+                renderItem={({ item }) =>
+                    <Card
+                        keyTitle={"_id"}
+                        data={{ ...item }}
+                        onPress={() => navigation.navigate('detalhesReserva', { reserva: item })}
+                        keysToRender={[
+                            "clienteId",
+                            "dateRetirada",
+                            "dateDevolucao",
+                            "categoriaVeiculo"
+                        ]} />}
+            />
         </View>
     )
 }
@@ -16,6 +35,6 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "80%"
+        width: Dimensions.get('window').width
     }
 })
