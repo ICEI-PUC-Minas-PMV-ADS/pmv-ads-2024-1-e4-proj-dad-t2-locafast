@@ -1,11 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
 
-export default () => {
+export default props => {
 
     return (
         <View style={styles.container}>
-            <Text>footer</Text>
+            <Text>teste</Text>
         </View>
     )
 }
@@ -15,10 +15,11 @@ const styles = StyleSheet.create({
         display: "flex",
         padding: 10,
         height: "30px",
-        borderTopWidth: 1,
-        border: "#BBB",
         flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "#F6F5FF",
-        height: "10%"
+        height: Dimensions.get('window').height * 0.08,
+        width: Dimensions.get('window').width
     }
 })
