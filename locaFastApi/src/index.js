@@ -25,8 +25,8 @@ app.use(express.json())
 
 
 const allowedOrigins = [
-    'http://localhost:5173',
-    'http://localhost:8081'
+    process.env.FRONT_WEB_PORT,
+    process.env.MOBILE_PORT
 ];
 
 app.use(cors({
