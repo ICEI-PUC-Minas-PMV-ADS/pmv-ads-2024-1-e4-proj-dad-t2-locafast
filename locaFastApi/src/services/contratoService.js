@@ -5,7 +5,7 @@ class ContratoService {
     async postContrato(dadosDoContrato) {
         try {
             // Verificar se todos os campos obrigatórios estão presentes
-            const camposObrigatorios = ['contratoId', 'carroId', 'reservaId', 'tarifaId', 'colaboradorId', 'status', 'dataRetirada', 'dataDevolução', 'agenciaRetirada', 'agenciaDevolução'];
+            const camposObrigatorios = ['contratoId', 'carroId', 'reservaId', 'colaboradorId', 'status', 'dataRetirada', 'dataDevolução', 'agenciaRetirada', 'agenciaDevolução'];
             for (const campo of camposObrigatorios) {
                 if (!dadosDoContrato[campo]) {
                     throw new Error(`O campo ${campo} é obrigatório.`);
