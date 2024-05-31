@@ -5,6 +5,7 @@ const ColaboradorRepository = require('../repository/ColaboradorRepository')
 const httpStatus = require('../config/constants/httpstatus')
 
 const colaboradorRepository = new ColaboradorRepository()
+const Carro = require('../models/Colaborador');
 
 class ColaboradorService {
 
@@ -40,16 +41,8 @@ class ColaboradorService {
     async postColaborador(req) {
         try {
 
-            this.validadeUserExists(req.body.cpf, req.body.rg)
-            const validacaoModelo = colaboradorRepository.modelIsValid(req.body);
-
-            req.body.senha = hashPassword(req.body.senha)
-
-            await colaboradorRepository.create(req.body);
-            return {
-                status: httpStatus.CREATED,
-                message: "Colaborador cadastrado com sucesso!"
-            };
+            const Colaborador = await Colab.create(req);
+            return Colaborador;
 
         } catch (error) {
             throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)

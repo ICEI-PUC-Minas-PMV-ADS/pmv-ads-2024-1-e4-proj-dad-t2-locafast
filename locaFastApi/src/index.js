@@ -23,11 +23,13 @@ createInitialData()
 
 app.use(express.json())
 
+/*
 app.use(cors({
     origin: 'http://localhost:5173'
 }
 ));
-
+*/
+app.use(cors());
 // Rotas API
 const clienteRoutes = require('./routes/clienteRoutes');
 const carroRoutes = require('./routes/carroRoutes');

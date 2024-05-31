@@ -11,10 +11,7 @@ const colaboradorSchema = new mongoose.Schema({
     telefone: String,
     dataNascimento: Date,
     senha: String,
-    genero: {
-        type: String,
-        enum: ['Masculino', 'Feminino']
-    },
+    genero: String
 })
 
 colaboradorSchema.statics.modelIsValid = function(colaborador) {
@@ -23,17 +20,7 @@ colaboradorSchema.statics.modelIsValid = function(colaborador) {
         return new ColaboradorException(httpStatus.BAD_REQUEST, 'Todos os campos devem ser preenchidos.');
     }
 
-    if (colaborador.cpf.length !== 11) {
-        return new ColaboradorException(httpStatus.BAD_REQUEST, 'CPF inválido.');
-    }
 
-    if (colaborador.rg.length !== 8) {
-        return new ColaboradorException(httpStatus.BAD_REQUEST, 'RG inválido.');
-    }
-
-    if (!validator.isMobilePhone(colaborador.telefone, 'pt-BR')) {
-        return new ColaboradorException(httpStatus.BAD_REQUEST, 'O telefone inserido é inválido.');
-    }
 }
 
 const Colaborador = mongoose.model('Colaboradores', colaboradorSchema)
