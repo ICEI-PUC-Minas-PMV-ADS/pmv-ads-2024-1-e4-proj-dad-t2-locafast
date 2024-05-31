@@ -5,38 +5,14 @@ import FormCadastro from '../components/formCadastro';
 import ButtonCadastro from '../components/buttonCadastro';
 
 import "../pages/style/cadastro.css";
-import axios from '../config/axiosConfig'
+
 
 
 function Cadastro() {
 
-    const [formData, setFormData] = useState({
-        nome: '',
-        cpf: '',
-        rg: '',
-        telefone: '',
-        generoo: '',
-        dataNascimento: '',
-        senha: ''
-    });
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post('/reserva', {
-                clienteId: formData.clienteId,
-                agenciaRetirada: formData.agenciaRetirada,
-                agenciaDevolucao: formData.agenciaDevolucao,
-                categoriaVeiculo: formData.categoriaVeiculo,
-                valorDiaria: formData.valorDiaria,
-                dateRetirada: formData.dateRetirada,
-                dateDevolucao: formData.dateDevolucao
-            });
-            alert('Reserva criada com sucesso:');
-        } catch (error) {
-            console.error('Erro ao criar reserva:', error);
-        }
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
     return (
         <div className='userSign'>
