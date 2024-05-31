@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form } from "react-router-dom";
 
 import FormCadastro from '../components/formCadastro';
 import ButtonCadastro from '../components/buttonCadastro';
@@ -19,10 +20,10 @@ function Cadastro() {
                 <div id='header-form'>
                     <h2>Cadastro de Usuário</h2>
                 </div>
-                <FormCadastro id={"top"} placeholders={['Nome']} />
+                <FormCadastro id={"top"} placeholder={['Nome']} />
                 <div id='middle'>
-                    <FormCadastro id={"middle-left"} placeholders={['CPF', 'RG', 'Telefone']} />
-                    <FormCadastro id={"middle-right"} placeholders={['Senha']}>
+                    <FormCadastro id={"middle-left"} placeholder={['CPF', 'RG', 'Telefone']} />
+                    <FormCadastro id={"middle-right"} placeholder={['Senha']}>
                         <input id='date' type='date'/>
                         <select>
                             <option>Masculino</option>

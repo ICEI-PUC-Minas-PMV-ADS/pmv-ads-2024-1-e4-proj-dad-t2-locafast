@@ -23,6 +23,7 @@ createInitialData()
 
 app.use(express.json())
 
+
 const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:8081'
@@ -40,6 +41,7 @@ app.use(cors({
         return callback(null, true);
     }
 }));
+
 
 // Rotas API
 const clienteRoutes = require('./routes/clienteRoutes');
