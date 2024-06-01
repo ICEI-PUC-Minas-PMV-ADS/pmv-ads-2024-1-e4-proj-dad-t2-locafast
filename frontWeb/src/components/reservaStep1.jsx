@@ -20,19 +20,18 @@ export default () => {
                             'Nome',
                             'CPF',
                         ]}
+                        id={'clientData'}
                         values={formData}
                         handleChange={handleChange}
-                    />
+                    >
+                    </FormCadastro>
+                    <div id="sub-title-icon">
+                        <h2>{'LOCAL E DATA'}</h2>
+                        <i class='bx bx-map' ></i>
+                    </div>
                 </div>
                 <div id="local-retirada">
-                    <FormCadastro
-                        placeholders={[
-                            'agenciaRetirada',
-                            'agenciaDevolucao'
-                        ]}
-                        values={formData}
-                        handleChange={handleChange}
-                    />
+                    
                 </div>
             </form>
         </div>

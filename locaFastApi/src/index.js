@@ -26,21 +26,11 @@ app.use(express.json())
 
 const allowedOrigins = [
     process.env.FRONT_WEB_PORT,
-    process.env.MOBILE_PORT
+    process.env.MOBILE_PORT,
+    process.env.API_URL
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'A política de CORS desse site não permite acessos dessa url';
-            return callback(new Error(msg), false);
-        }
-
-        return callback(null, true);
-    }
-}));
+app.use(cors());
 
 
 // Rotas API
@@ -55,6 +45,7 @@ const contratoRoutes = require('./routes/contratoRoutes')
 
 app.use('/login', loginRoutes);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/colaborador', colaboradorRoutes);
 
 //rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
 app.use(checkToken)
@@ -62,7 +53,6 @@ app.use(checkToken)
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
 app.use('/reserva', reservaRoutes);
-app.use('/colaborador', colaboradorRoutes);
 app.use('/contrato', contratoRoutes);
 
 //conexão com o banco

@@ -35,10 +35,10 @@ const Login = ({ navigation }) => {
 
         if (response.status === 200) {
           // Se o login for bem-sucedido, navegue para a tela 'home'
-          const accessToken  = response.data;
+          //const accessToken  = response.data;
           //console.log(accessToken.acessToken.acessToken);// resposta
-          localStorage.setItem('token', accessToken.acessToken.acessToken);
-          console.log('Token:', accessToken.acessToken.acessToken);
+          //localStorage.setItem('token', accessToken.acessToken.acessToken);
+          //console.log('Token:', accessToken.acessToken.acessToken);
           //alert("Logado com sucesso!");
           navigation.navigate('cadastro');
           setErrorMessage('');
@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontFamily: 'Poppins',
     marginBottom: 20,
   },
   login: {

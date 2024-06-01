@@ -1,8 +1,18 @@
 @import url('../../consts/colors.css');
 
+input {
+    padding-left: 10px;
+    outline: none;
+    height: 50px;
+}
+
 #cliente {
     border-bottom: 1px solid var(--text-color);
     width: 100%;
+}
+
+#local-retirada {
+    flex: 1;
 }
 
 #cliente .sub-title {
@@ -13,9 +23,20 @@
     justify-content: flex-end;
 }
 
-#cliente .sub-title h2 {
+#sub-title-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#cliente .sub-title h2, #sub-title-icon h2 {
     font-size: 16px;
+    color: var(--text-color);
     padding-left: 10px;
+}
+
+#sub-title-icon i {
+    font-size: 16px;
     color: var(--text-color);
 }
 
