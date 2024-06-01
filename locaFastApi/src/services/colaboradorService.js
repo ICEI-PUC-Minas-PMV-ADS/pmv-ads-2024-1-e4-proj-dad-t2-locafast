@@ -5,7 +5,7 @@ const ColaboradorRepository = require('../repository/ColaboradorRepository')
 const httpStatus = require('../config/constants/httpstatus')
 
 const colaboradorRepository = new ColaboradorRepository()
-const Carro = require('../models/Colaborador');
+const Colaborador = require('../models/Colaborador');
 
 class ColaboradorService {
 
@@ -41,8 +41,26 @@ class ColaboradorService {
     async postColaborador(req) {
         try {
 
-            const Colaborador = await Colab.create(req);
-            return Colaborador;
+            this.validadeUserExists(req.body.cpf, req.body.rg)
+            
+            //const validacaoModelo = colaboradorRepository.modelIsValid(req.body);
+            //console.log(req.body)
+            let password = await bcrypt.hash(req.body.senha, 10)
+            let objeto  = {
+                nome: req.body.nome,
+                cpf: req.body.cpf,
+                rg: req.body.rg,
+                telefone: req.body.telefone,
+                dataNascimento: req.body.dataNascimento,
+                senha:  password,
+                genero: req.body.genero
+            }
+            //console.log(req.body)
+            await colaboradorRepository.create(objeto);
+            return {
+                status: httpStatus.CREATED,
+                message: "Colaborador cadastrado com sucesso!"
+            };
 
         } catch (error) {
             throw new ColaboradorException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message)

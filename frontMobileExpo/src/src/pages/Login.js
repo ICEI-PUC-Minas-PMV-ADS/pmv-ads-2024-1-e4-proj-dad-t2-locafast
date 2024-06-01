@@ -41,8 +41,7 @@ const Login = ({ navigation }) => {
           console.log('Token:', accessToken.acessToken.acessToken);
           //alert("Logado com sucesso!");
           navigation.navigate('cadastro');
-          setErrorMessage('');
-          setIsVisible(true); 
+          setIsVisible(false); 
 
         } else {
           setErrorMessage('Erro na senha ou CPF. Por favor, tente novamente.');
