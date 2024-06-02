@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -7,11 +7,32 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import contratos from '../data/contratosData';
+import {getContratos, deleteContrato} from '../data/contratosData';
 import ContractModal from '../components/ContractModal';
 
-const ContractListScreen = ({navigation}) => {
-  const [data, setData] = useState(contratos);
+const Contrato = ({navigation, route}) => {
+  const [data, setData] = useState([]);
+
+  const loadContracts = () => {
+    const contratos = getContratos();
+    console.log('Contratos carregados:', contratos);
+    setData(contratos);
+  };
+
+  useEffect(() => {
+    loadContracts();
+  }, []);
+
+  useEffect(() => {
+    if (route.params?.refresh) {
+      loadContracts();
+    }
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadContracts();
+    });
+    return unsubscribe;
+  }, [navigation, route.params]);
+
   const [selectedContract, setSelectedContract] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -25,35 +46,22 @@ const ContractListScreen = ({navigation}) => {
     setSelectedContract(null);
   };
 
-  const handleEdit = () => {
-    setModalVisible(false);
-    navigation.navigate('CadastroDeContrato', {contract: selectedContract});
+  const handleSave = updatedContract => {
+    setData(prevData =>
+      prevData.map(contract =>
+        contract.reservaId === updatedContract.reservaId
+          ? updatedContract
+          : contract,
+      ),
+    );
   };
 
   const handleDelete = () => {
-    Alert.alert(
-      'Excluir Contrato',
-      'Tem certeza que deseja excluir este contrato?',
-      [
-        {
-          text: 'Cancelar',
-          style: 'cancel',
-        },
-        {
-          text: 'Excluir',
-          onPress: () => {
-            setData(
-              data.filter(
-                contract => contract.reservaId !== selectedContract.reservaId,
-              ),
-            );
-            setModalVisible(false);
-          },
-          style: 'destructive',
-        },
-      ],
-      {cancelable: true},
-    );
+    if (selectedContract) {
+      deleteContrato(selectedContract.reservaId);
+      loadContracts();
+      setModalVisible(false);
+    }
   };
 
   return (
@@ -64,9 +72,11 @@ const ContractListScreen = ({navigation}) => {
         renderItem={({item}) => (
           <TouchableOpacity onPress={() => handlePress(item)}>
             <View style={styles.card}>
-              <Text>Carro: {item.carroId}</Text>
-              <Text>ID do Colaborador: {item.colaboradorId}</Text>
-              <Text>Status: {item.status}</Text>
+              <Text style={styles.cardText}>Carro: {item.carroId}</Text>
+              <Text style={styles.cardText}>
+                ID do Colaborador: {item.colaboradorId}
+              </Text>
+              <Text style={styles.cardText}>Status: {item.status}</Text>
             </View>
           </TouchableOpacity>
         )}
@@ -80,7 +90,7 @@ const ContractListScreen = ({navigation}) => {
         visible={modalVisible}
         onClose={handleCloseModal}
         contract={selectedContract}
-        onEdit={handleEdit}
+        onSave={handleSave}
         onDelete={handleDelete}
       />
     </View>
@@ -102,6 +112,9 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
     marginBottom: 10,
   },
+  cardText: {
+    fontSize: 18,
+  },
   button: {
     borderRadius: 5,
     height: 50,
@@ -117,4 +130,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ContractListScreen;
+export default Contrato;

@@ -1,4 +1,4 @@
-const contratos = [
+let contratos = [
   {
     carroId: 'ABC-1234',
     reservaId: Math.random(),
@@ -19,7 +19,20 @@ const contratos = [
     agenciaRetirada: 'Agência C',
     agenciaDevolucao: 'Agência D',
   },
-  // Adicione mais contratos conforme necessário
 ];
 
-export default contratos;
+export const getContratos = () => {
+  return [...contratos]; // Retorna uma cópia do array para evitar modificações diretas
+};
+
+export const addContrato = contrato => {
+  contratos.push(contrato);
+  console.log('Contrato adicionado:', contrato);
+  console.log('Todos os contratos:', contratos);
+};
+
+export const deleteContrato = reservaId => {
+  contratos = contratos.filter(contrato => contrato.reservaId !== reservaId);
+  console.log('Contrato deletado, reservaId:', reservaId);
+  console.log('Todos os contratos:', contratos);
+};
