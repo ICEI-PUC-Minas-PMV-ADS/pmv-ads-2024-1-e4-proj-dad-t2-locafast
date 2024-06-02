@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
         }
         const decoded = await promisify(jwt.verify)(
             acessToken,
-            process.env.JWT_SECRET
+            "YXV0aC1hcGktc2VjcmV0LWRldi0xMjM0NTY="
         )
         req.authUser = decoded.authUser
         return next()
@@ -31,4 +31,3 @@ module.exports = async (req, res, next) => {
         return res.status(status).json({ status, message: error.message, })
     }
 }
-

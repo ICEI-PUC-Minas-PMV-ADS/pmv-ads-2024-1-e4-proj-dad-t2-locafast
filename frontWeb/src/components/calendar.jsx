@@ -3,7 +3,7 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import './style/calendar.css'
 
-export default props => {
+export default ({ title, selectedDate, onDateChange }) => {
     const [date, setDate] = useState(new Date())
 
     const choiceData = (newDate) => {
@@ -13,11 +13,11 @@ export default props => {
     return(
         <div className="calendar-container">
             <div className="calendar-title-container">
-                <h2>{props.title}</h2>
+                <h2>{title}</h2>
             </div>
             <Calendar
-                onChange={choiceData}
-                value={date}
+                onChange={onDateChange}
+                value={selectedDate}
                 locale="pt-BR"
             />
         </div>

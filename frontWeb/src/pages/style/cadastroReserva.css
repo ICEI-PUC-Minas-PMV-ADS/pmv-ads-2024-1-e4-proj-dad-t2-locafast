@@ -17,8 +17,9 @@
 .steps-container {
     display: flex;
     flex-direction: column;
-    flex: 6;
+    height: 70%;
     background-color: var(--toggle-color);
+    overflow: auto;
 }
 
 .reserva-form-container {
@@ -40,6 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
     background-color: var(--header-table-color);
     border-radius: 5px 5px 0 0;
     height: 50px;
@@ -76,6 +78,7 @@
     display: flex;
     flex: 1;
     justify-content: space-between;
+    flex-shrink: 0;
 }
 
 .top-form .input-container {
@@ -95,6 +98,7 @@
 
 .nav-bar {
     height: 50px;
+    flex-shrink: 0;
 }
 
 .nav-bar ul {

@@ -1,6 +1,6 @@
 @import url('../../consts/colors.css');
 
-input {
+#clientData input {
     padding-left: 10px;
     outline: none;
     height: 50px;
@@ -11,8 +11,43 @@ input {
     width: 100%;
 }
 
-#local-retirada {
-    flex: 1;
+#info-retirada {
+    display: flex;
+    justify-content: space-around;
+}
+
+#locais {
+    flex: 1.5;
+}
+
+#local-retirada, #local-devolucao {
+    margin: 10px;
+}
+
+.steps-container input {
+    background-color: var(--sidebar-color);
+}
+
+#data-retirada-input, #hora-retirada-input {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+#data-retirada-input input, #hora-retirada-input input {
+    min-height: 54px;
+    padding-left: 10px;
+    margin: 10px 10px 0 0;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    border-color: hsl(0, 0%, 80%);;
+    outline: none;
+}
+
+#data-retirada-input input {
+    cursor: not-allowed;
 }
 
 #cliente .sub-title {

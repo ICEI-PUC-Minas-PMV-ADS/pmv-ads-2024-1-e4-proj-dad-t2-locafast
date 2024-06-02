@@ -25,13 +25,24 @@ const Contrato = () => {
     return (
         <div className='container'>
             {
-                data ?
-                data.map(item => {
-                    return (
-                        <Card key={item.id} data={item} keyTitle={'id'} keysToRender={['clienteId', 'carroId', 'reservaId']}/>
-                    )
-                }) :
-                <div></div>
+                <Table 
+                goto={'/app/criarContrato'}
+                btnTxt={'Abrir contrato'}
+                title={'Contratos'}
+                trs={[
+                    'Id',
+                    'clienteId',
+                    'carroId',
+                    'reservaId',
+                    'colaboradorId',
+                    'dataRetirada',
+                    'dataDevolucao',
+                    'status',
+                    'Ações'
+                ]}
+                data={data}
+                onDelete={handleDelete}
+            />
             }
         </div>
     );

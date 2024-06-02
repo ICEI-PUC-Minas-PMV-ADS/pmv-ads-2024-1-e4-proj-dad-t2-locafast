@@ -15,7 +15,7 @@ import ReservaStep1 from './components/reservaStep1.jsx';
 import ReservaStep2 from './components/reservaStep2.jsx';
 import ReservaStep3 from './components/reservaStep3.jsx';
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: '',
+        element: <Navigate to="reserva" />
+      },
+      {
         path: "reserva",
         element: <Reserva />,
       },
@@ -34,19 +38,23 @@ const router = createBrowserRouter([
         path: "cadastroreserva",
         element: <CadastroReserva />,
         children: [
-            {
-              path: 'reserva-passo-1',
-              element: <ReservaStep1/>
-            },
-            {
-              path: 'reserva-passo-2',
-              element: <ReservaStep2/>
-            },
-            {
-              path: 'reserva-passo-3',
-              element: <ReservaStep3/>
-            }
-          ]
+          {
+            path: '',
+            element: <Navigate to="reserva-passo-1" />
+          },
+          {
+            path: 'reserva-passo-1',
+            element: <ReservaStep1 />
+          },
+          {
+            path: 'reserva-passo-2',
+            element: <ReservaStep2 />
+          },
+          {
+            path: 'reserva-passo-3',
+            element: <ReservaStep3 />
+          }
+        ]
       },
       {
         path: "contrato",
