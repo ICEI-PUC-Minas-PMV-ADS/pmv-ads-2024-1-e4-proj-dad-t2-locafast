@@ -1,35 +1,98 @@
-import React from 'react';
-import {Modal, View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, Text, TextInput, Button, Modal} from 'react-native';
 
-const ContractModal = ({visible, onClose, contract, onEdit, onDelete}) => {
+const ContractModal = ({visible, onClose, contract, onSave, onDelete}) => {
+  const [editableContract, setEditableContract] = useState(contract);
+
+  useEffect(() => {
+    setEditableContract(contract);
+  }, [contract]);
+
+  const handleSave = () => {
+    if (editableContract) {
+      onSave(editableContract);
+      onClose();
+    }
+  };
+
   if (!contract) {
     return null;
   }
 
   return (
-    <Modal transparent={true} visible={visible} onRequestClose={onClose}>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={visible}
+      onRequestClose={onClose}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Detalhes do Contrato</Text>
-          <Text>Reserva: {contract.reservaId}</Text>
-          <Text>Carro: {contract.carroId}</Text>
-          <Text>ID do Colaborador: {contract.colaboradorId}</Text>
-          <Text>Status: {contract.status}</Text>
-          <Text>Data de Retirada: {contract.dataRetirada}</Text>
-          <Text>Data de Devolução: {contract.dataDevolucao}</Text>
-          <Text>Agência de Retirada: {contract.agenciaRetirada}</Text>
-          <Text>Agência de Devolução: {contract.agenciaDevolucao}</Text>
-          <TouchableOpacity style={styles.button} onPress={onEdit}>
-            <Text style={styles.buttonText}>EDITAR</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, styles.deleteButton]}
-            onPress={onDelete}>
-            <Text style={styles.buttonText}>EXCLUIR</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={onClose}>
-            <Text style={styles.buttonText}>FECHAR</Text>
-          </TouchableOpacity>
+          <Text style={styles.modalTitle}>Editar Contrato</Text>
+          <TextInput
+            style={styles.input}
+            value={editableContract?.carroId}
+            onChangeText={text =>
+              setEditableContract({...editableContract, carroId: text})
+            }
+            placeholder="ID do Carro"
+          />
+          <TextInput
+            style={styles.input}
+            value={editableContract?.reservaId.toString()}
+            editable={false}
+            placeholder="ID da Reserva"
+          />
+          <TextInput
+            style={styles.input}
+            value={editableContract?.colaboradorId.toString()}
+            editable={false}
+            placeholder="ID do Colaborador"
+          />
+          <TextInput
+            style={styles.input}
+            value={editableContract?.status}
+            onChangeText={text =>
+              setEditableContract({...editableContract, status: text})
+            }
+            placeholder="Status"
+          />
+          <TextInput
+            style={styles.input}
+            value={editableContract?.dataRetirada}
+            onChangeText={text =>
+              setEditableContract({...editableContract, dataRetirada: text})
+            }
+            placeholder="Data de Retirada"
+          />
+          <TextInput
+            style={styles.input}
+            value={editableContract?.dataDevolucao}
+            onChangeText={text =>
+              setEditableContract({...editableContract, dataDevolucao: text})
+            }
+            placeholder="Data de Devolução"
+          />
+          <TextInput
+            style={styles.input}
+            value={editableContract?.agenciaRetirada}
+            onChangeText={text =>
+              setEditableContract({...editableContract, agenciaRetirada: text})
+            }
+            placeholder="Agência de Retirada"
+          />
+          <TextInput
+            style={styles.input}
+            value={editableContract?.agenciaDevolucao}
+            onChangeText={text =>
+              setEditableContract({...editableContract, agenciaDevolucao: text})
+            }
+            placeholder="Agência de Devolução"
+          />
+          <View style={styles.buttonContainer}>
+            <Button title="Salvar" onPress={handleSave} />
+            <Button title="Cancelar" onPress={onClose} />
+            <Button title="Excluir" onPress={onDelete} color="red" />
+          </View>
         </View>
       </View>
     </Modal>
@@ -41,33 +104,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    width: '80%',
-    padding: 20,
+    width: '90%',
     backgroundColor: 'white',
+    padding: 20,
     borderRadius: 10,
+    alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    fontSize: 20,
+    marginBottom: 20,
   },
-  button: {
-    backgroundColor: '#AC86DF',
-    borderRadius: 5,
+  input: {
+    width: '100%',
     height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 5,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 8,
+    borderRadius: 5,
   },
-  deleteButton: {
-    backgroundColor: '#FF5C5C',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
 });
 

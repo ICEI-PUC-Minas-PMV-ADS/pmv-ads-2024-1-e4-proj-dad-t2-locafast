@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
 import Login from "./pages/login.jsx";
 import Cadastro from './pages/cadastro.jsx';
 import Carro from './pages/carro.jsx';
@@ -11,9 +11,6 @@ import CadastroCliente from './pages/cadastroCliente.jsx';
 import CadastroReserva from './pages/cadastroReserva.jsx';
 import Contrato from './pages/contrato.jsx';
 import CriarContrato from './pages/criarContrato.jsx';
-import ReservaStep1 from './components/reservaStep1.jsx';
-import ReservaStep2 from './components/reservaStep2.jsx';
-import ReservaStep3 from './components/reservaStep3.jsx';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -33,20 +30,6 @@ const router = createBrowserRouter([
       {
         path: "cadastroreserva",
         element: <CadastroReserva />,
-        children: [
-            {
-              path: 'reserva-passo-1',
-              element: <ReservaStep1/>
-            },
-            {
-              path: 'reserva-passo-2',
-              element: <ReservaStep2/>
-            },
-            {
-              path: 'reserva-passo-3',
-              element: <ReservaStep3/>
-            }
-          ]
       },
       {
         path: "contrato",
