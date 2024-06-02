@@ -17,49 +17,41 @@ npx react-native run-android # ou npx react-native run-ios
 npm install @react-native-async-storage/async-storage
 
 */
-
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Alert } from "react-native";
-import { addCarro } from '../data/carros';
+import { updateCarro } from '../data/carros';
 import { Picker } from '@react-native-picker/picker';
 
-const CadastroCarro = ({ navigation }) => {
-  const [placa, setPlaca] = useState('');
-  const [marca, setMarca] = useState('');
-  const [modelo, setModelo] = useState('');
-  const [ano, setAno] = useState('');
-  const [cor, setCor] = useState('');
-  const [status, setStatus] = useState('Disponível');
-  const [chassi, setChassi] = useState('');
-  const [anoFabricacao, setAnoFabricacao] = useState('');
-  const [categoria, setCategoria] = useState('');
+const EditarCarro = ({ route, navigation }) => {
+  const { carro } = route.params;
 
-  const handleCadastroCarro = () => {
-    if (!placa || !marca || !modelo || !ano || !cor || !status || !chassi || !anoFabricacao || !categoria) {
-      Alert.alert('Erro', 'Todos os campos devem ser preenchidos.');
-      return;
-    }
+  const [placa, setPlaca] = useState(carro.placa);
+  const [marca, setMarca] = useState(carro.marca);
+  const [modelo, setModelo] = useState(carro.modelo);
+  const [ano, setAno] = useState(carro.ano.toString());
+  const [cor, setCor] = useState(carro.cor);
+  const [status, setStatus] = useState(carro.status);
+  const [chassi, setChassi] = useState(carro.chassi);
+  const [anoFabricacao, setAnoFabricacao] = useState(carro.anoFabricacao.toString());
+  const [categoria, setCategoria] = useState(carro.categoria);
 
-    const novoCarro = { placa, marca, modelo, ano: parseInt(ano), cor, status, chassi, anoFabricacao: parseInt(anoFabricacao), categoria };
-    addCarro(novoCarro);
+  const handleEditarCarro = () => {
+    const carroEditado = {
+      placa,
+      marca,
+      modelo,
+      ano: parseInt(ano),
+      cor,
+      status,
+      chassi,
+      anoFabricacao: parseInt(anoFabricacao),
+      categoria
+    };
+    updateCarro(carroEditado);
     Alert.alert(
       "Sucesso",
-      "Carro cadastrado com sucesso!",
+      "Carro atualizado com sucesso!",
       [
-        {
-          text: "Cadastrar Novo Carro",
-          onPress: () => {
-            setPlaca('');
-            setMarca('');
-            setModelo('');
-            setAno('');
-            setCor('');
-            setStatus('Disponível');
-            setChassi('');
-            setAnoFabricacao('');
-            setCategoria('');
-          }
-        },
         {
           text: "Voltar",
           onPress: () => navigation.navigate('ConsultaCarros')
@@ -76,6 +68,7 @@ const CadastroCarro = ({ navigation }) => {
         value={placa}
         placeholder="Placa"
         placeholderTextColor="#8a2be2"
+        editable={false}
       />
       <TextInput
         style={styles.input}
@@ -136,8 +129,8 @@ const CadastroCarro = ({ navigation }) => {
         placeholder="Categoria"
         placeholderTextColor="#8a2be2"
       />
-      <TouchableOpacity style={styles.button} onPress={handleCadastroCarro}>
-        <Text style={styles.buttonText}>Cadastrar</Text>
+      <TouchableOpacity style={styles.button} onPress={handleEditarCarro}>
+        <Text style={styles.buttonText}>Salvar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -182,4 +175,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CadastroCarro;
+export default EditarCarro;
