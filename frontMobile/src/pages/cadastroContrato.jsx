@@ -5,34 +5,49 @@ import {
   StyleSheet,
   TouchableOpacity,
   Text,
+  Alert,
 } from 'react-native';
-import contratos from '../data/contratosData';
+import {addContrato} from '../data/contratosData';
 
 export default ({navigation}) => {
   const [carroId, setCarroId] = useState('');
-  const [reservaId, setReservaId] = useState('');
-  const [colaboradorId, setColaboradorId] = useState('');
   const [status, setStatus] = useState('');
   const [dataRetirada, setDataRetirada] = useState('');
   const [dataDevolucao, setDataDevolucao] = useState('');
   const [agenciaRetirada, setAgenciaRetirada] = useState('');
   const [agenciaDevolucao, setAgenciaDevolucao] = useState('');
 
-  function handleSubmit() {
-    const data = {
-      carroId,
-      reservaId,
-      colaboradorId,
-      status,
-      dataRetirada,
-      dataDevolucao,
-      agenciaRetirada,
-      agenciaDevolucao,
-    };
+  const handleSubmit = () => {
+    if (
+      carroId &&
+      status &&
+      dataRetirada &&
+      dataDevolucao &&
+      agenciaRetirada &&
+      agenciaDevolucao
+    ) {
+      const data = {
+        carroId,
+        status,
+        dataRetirada,
+        dataDevolucao,
+        agenciaRetirada,
+        agenciaDevolucao,
+        colaboradorId: Math.random().toString(),
+        reservaId: Math.random().toString(),
+      };
 
-    contratos.push(data);
-    navigation.navigate('ListaContratos');
-  }
+      console.log('Dados do contrato a ser adicionado:', data);
+      addContrato(data);
+      Alert.alert('Sucesso', 'Contrato adicionado com sucesso!');
+      navigation.navigate('ListaContratos', {refresh: true});
+    } else {
+      Alert.alert(
+        'Erro',
+        'Preencha todos os campos para adicionar um contrato.',
+      );
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -41,18 +56,6 @@ export default ({navigation}) => {
         onChangeText={setCarroId}
         value={carroId}
         placeholder="ID do Carro"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setReservaId}
-        value={reservaId}
-        placeholder="ID da Reserva"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setColaboradorId}
-        value={colaboradorId}
-        placeholder="ID do Colaborador"
       />
       <TextInput
         style={styles.input}
