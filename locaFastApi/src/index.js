@@ -1,5 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const cors = require("cors")
 
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('../swagger-config')
@@ -21,6 +22,8 @@ app.use(
 createInitialData()
 
 app.use(express.json())
+
+app.use(cors())
 
 // Rotas API
 const clienteRoutes = require('./routes/clienteRoutes');

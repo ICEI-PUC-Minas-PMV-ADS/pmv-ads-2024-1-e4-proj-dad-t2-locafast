@@ -1,8 +1,21 @@
 import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, Alert } from "react-native";
+
+import axios from '../config/axiosConfig'
 
 export default ({ route }) => {
     const { reserva } = route.params;
+
+    const deleteReserva = async (id) => {
+        try {
+            await axios.delete(`/reserva/${id}`);
+            Alert.alert('Reserva deletada com sucesso');
+            navigation.navigate('Reserva', { update: true });
+        } catch (error) {
+            console.error('Erro ao deletar reserva:', error);
+            Alert.alert('Erro ao deletar reserva');
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -49,6 +62,9 @@ export default ({ route }) => {
                 editable={false}
                 keyboardType="numeric"
             />
+            <TouchableOpacity style={styles.button} onPress={() => deleteReserva(reserva._id)}>
+                <Text style={styles.buttonText}>Excluir</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -69,4 +85,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         backgroundColor: '#f0f0f0'
     },
+    button: {
+        borderRadius: 5,
+        height: 50,
+        backgroundColor: "#b30021",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+    }
 });

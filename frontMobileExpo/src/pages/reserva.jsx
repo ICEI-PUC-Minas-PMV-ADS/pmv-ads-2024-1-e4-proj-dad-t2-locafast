@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, Dimensions } from "react-native";
 
 import Card from "../components/card";
-import reservas from "../data/reserva"
+import axios from "../config/axiosConfig";
 
-export default ({ navigation }) => {
+export default ({ navigation, route }) => {
 
-    const [data, setData] = useState(reservas)
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get('/reserva');
+                    setData(response.data);
+                } catch (error) {
+                    console.error('Erro na requisição:', error);
+                }
+            };
+
+            fetchData();
+        } else {
+            console.log('Não há token')
+        }
+    }, [route.params?.update]);
 
     return (
         <View style={styles.body}>
@@ -17,7 +37,7 @@ export default ({ navigation }) => {
                     <Card
                         keyTitle={"_id"}
                         data={{ ...item }}
-                        onPress={() => navigation.navigate('detalhesReserva', { reserva: item })}
+                        onPress={() => navigation.navigate('Detalhes da Reserva', { reserva: item })}
                         keysToRender={[
                             "clienteId",
                             "dateRetirada",

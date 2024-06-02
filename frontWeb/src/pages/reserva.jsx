@@ -30,11 +30,6 @@ const Reserva = () => {
         }
     }, [navigate]);
 
-
-    const handleEdit = (id) => {
-        console.log(`Editar reserva com id ${id}`);
-    };
-
     const deleteReserva = async (id) => {
         try {
             await axios.delete(`/reserva/${id}`);
