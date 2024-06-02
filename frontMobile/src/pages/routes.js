@@ -6,6 +6,9 @@ import CadastroReserva from './cadastroReserva';
 import DetalhesReserva from './detalhesReserva';
 import Contrato from './contrato';
 import CadastroContrato from './cadastroContrato';
+import Cliente from './cliente';
+import CadastroCliente from './cadastroCliente';
+import DetalhesCliente from './detalhesCliente';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +30,16 @@ function ContratoRoutes() {
   );
 }
 
+function ClienteRoutes() {
+  return (
+    <Stack.Navigator initialRouteName="Clientes">
+      <Stack.Screen name="Clientes" component={Cliente} />
+      <Stack.Screen name="CadastroCliente" component={CadastroCliente} />
+      <Stack.Screen name="DetalhesCliente" component={DetalhesCliente} />
+    </Stack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 function Routes() {
@@ -41,6 +54,11 @@ function Routes() {
       <Tab.Screen
         name="Contratos"
         component={ContratoRoutes}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Clientes"
+        component={ClienteRoutes}
         options={{headerShown: false}}
       />
     </Tab.Navigator>
