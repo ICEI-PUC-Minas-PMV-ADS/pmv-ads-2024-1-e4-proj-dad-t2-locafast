@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, ScrollView } from "react-native";
 
-import reservas from '../data/cliente'
+import reservas from '../data/cliente';
 
 export default () => {
+    const [_id, setId] = useState();
     const [idCliente, setIdCliente] = useState();
     const [numeroCnh, setNumeroCnh] = useState();
     const [validadeCnh, setValidadeCnh] = useState();
@@ -19,6 +20,7 @@ export default () => {
 
     function handleSubmit() {
         const data = {
+            _id,
             idCliente,
             numeroCnh,
             validadeCnh,
@@ -37,92 +39,104 @@ export default () => {
     }
 
     return (
-        <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                onChangeText={setIdCliente}
-                value={idCliente}
-                placeholder="ID Cliente"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setNumeroCnh}
-                value={numeroCnh}
-                placeholder="Número da CNH"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setValidadeCnh}
-                value={validadeCnh}
-                placeholder="Validade da CNH"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setEstadoEmissor}
-                value={estadoEmissor}
-                placeholder="Estado emissor"
-            /> 
-            <TextInput
-                style={styles.input}
-                onChangeText={setNome}
-                value={nome}
-                placeholder="Nome"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setCpf}
-                value={cpf}
-                placeholder="CPF"
-                keyboardType="numeric"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setRg}
-                value={rg}
-                placeholder="RG"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setTelefone}
-                value={telefone}
-                placeholder="Número do telefone"
-                keyboardType="numeric"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setEmail}
-                value={email}
-                placeholder="email"
-            />
-            <TextInput
-                style={styles.input}
-                onChangeText={setDataNascimento}
-                value={dataNascimento}
-                placeholder="Data de nascimento"
-            /> 
-            <TextInput
-                style={styles.input}
-                onChangeText={setStatus}
-                value={status}
-                placeholder="Status"
-            /> 
-            <TextInput
-                style={styles.input}
-                onChangeText={setGenero}
-                value={genero}
-                placeholder="Gênero"
-            />             
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                <Text style={styles.buttonText}>Cadastrar</Text>
-            </TouchableOpacity>
-        </View>
+        <ScrollView contentContainerStyle={styles.container}>
+            <View style={styles.innerContainer}>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setId}
+                    value={_id}
+                    placeholder="ID"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setIdCliente}
+                    value={idCliente}
+                    placeholder="ID Cliente"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setNumeroCnh}
+                    value={numeroCnh}
+                    placeholder="Número da CNH"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setValidadeCnh}
+                    value={validadeCnh}
+                    placeholder="Validade da CNH"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setEstadoEmissor}
+                    value={estadoEmissor}
+                    placeholder="Estado emissor"
+                /> 
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setNome}
+                    value={nome}
+                    placeholder="Nome"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setCpf}
+                    value={cpf}
+                    placeholder="CPF"
+                    keyboardType="numeric"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setRg}
+                    value={rg}
+                    placeholder="RG"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setTelefone}
+                    value={telefone}
+                    placeholder="Número do telefone"
+                    keyboardType="numeric"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setEmail}
+                    value={email}
+                    placeholder="email"
+                />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setDataNascimento}
+                    value={dataNascimento}
+                    placeholder="Data de nascimento"
+                /> 
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setStatus}
+                    value={status}
+                    placeholder="Status"
+                /> 
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setGenero}
+                    value={genero}
+                    placeholder="Gênero"
+                />             
+                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                    <Text style={styles.buttonText}>Cadastrar</Text>
+                </TouchableOpacity>
+            </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        flexGrow: 1,
+        paddingVertical: 20,
+    },
+    innerContainer: {
         flex: 1,
-        padding: 16,
+        paddingHorizontal: 16,
         justifyContent: 'center',
     },
     input: {
