@@ -1,7 +1,10 @@
 @import url('../../consts/colors.css');
-input {
+input, select {
     border-radius: 5px;
     height: 40px;
     background: var(--primary-color-light);
+    margin-top: 10px;
+    margin-bottom: 10 px;
+    
 }
 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Alert} from 'react-native';
 import axios from 'axios';
 import IconLogin from '../icons/icon.png'
 
+
+
 const Login = ({ navigation }) => {
   const handlePress = () => {
-    navigation.navigate('cadastro');
+    navigation.navigate('Cadastro');
   };
 
   const [cpf, setCPF] = useState('');

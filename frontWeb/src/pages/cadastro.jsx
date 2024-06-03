@@ -24,7 +24,9 @@ function Cadastro() {
                 <div id='middle'>
                     <FormCadastro id={"middle-left"} placeholder={['CPF', 'RG', 'Telefone']} />
                     <FormCadastro id={"middle-right"} placeholder={['Senha']}>
+                        
                         <input id='date' type='date'/>
+
                         <select>
                             <option>Masculino</option>
                             <option>Feminino</option>
