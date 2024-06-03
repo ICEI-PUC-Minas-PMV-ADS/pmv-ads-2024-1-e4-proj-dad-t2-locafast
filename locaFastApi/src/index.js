@@ -1,6 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const cors = require('cors');
+const cors = require("cors")
 
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('../swagger-config')
@@ -23,26 +23,7 @@ createInitialData()
 
 app.use(express.json())
 
-
-const allowedOrigins = [
-    process.env.FRONT_WEB_PORT,
-    process.env.MOBILE_PORT
-];
-
-app.use(cors())/*{
-    origin: function (origin, callback) {
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'A política de CORS desse site não permite acessos dessa url';
-            return callback(new Error(msg), false);
-        }
-
-        return callback(null, true);
-    }
-}));*/
-
-
+app.use(cors())
 
 // Rotas API
 const clienteRoutes = require('./routes/clienteRoutes');
@@ -60,8 +41,10 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
 app.use(checkToken)
 
+
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
+app.use('/login', loginRoutes)
 app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
 app.use('/contrato', contratoRoutes);

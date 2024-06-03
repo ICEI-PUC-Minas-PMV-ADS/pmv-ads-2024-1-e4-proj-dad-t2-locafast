@@ -1,39 +1,5 @@
 @import url('../../consts/colors.css');
 
-.titulo {
-    color: rgba(151, 71, 255, 1);
-    text-align: center;
-    font-size: 4.5ch;
-}
-
-.login {
-    background-color: rgba(228, 204, 255, 1);
-    color: rgba(151, 71, 255, 1);
-    width: 55%;
-    padding: 15px;
-    border-color: rgba(151, 71, 255, 1);
-    border-width: 1px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.botao {
-    background-color: rgba(228, 204, 255, 1);
-    color: rgba(151, 71, 255, 1);
-    padding: 15px;
-    border-color: rgba(151, 71, 255, 1);
-    border-radius: 15px;
-    border-width: 1px;
-    font-weight: bold;
-}
-
-h3 {
-    text-align: left;
-    margin-left: 21.5%;
-    color: rgba(151, 71, 255, 1);
-}
-
 .navigator {
     align-items: center;
     justify-content: center;
@@ -48,11 +14,22 @@ h3 {
     width: 80%;
 }
 
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    background-color: var(--toggle-color);
+    overflow: auto;
+}
+
 .reserva-form-container {
+    display: flex;
+    flex-direction: column;
     background-color: var(--sidebar-color);
     height: 100%;
     width: 65%;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .reserva-form-container form .input-container {
@@ -64,6 +41,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
     background-color: var(--header-table-color);
     border-radius: 5px 5px 0 0;
     height: 50px;
@@ -100,6 +78,7 @@ h3 {
     display: flex;
     flex: 1;
     justify-content: space-between;
+    flex-shrink: 0;
 }
 
 .top-form .input-container {
@@ -113,12 +92,13 @@ h3 {
     width: 300px;
     height: 50px;
     padding-left: 10px;
-    border: 2px solid var(--text-color);
+    border: 1px solid var(--text-color);
     outline: none;
 }
 
 .nav-bar {
     height: 50px;
+    flex-shrink: 0;
 }
 
 .nav-bar ul {
