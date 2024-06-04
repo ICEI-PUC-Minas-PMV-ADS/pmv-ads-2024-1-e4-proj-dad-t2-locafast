@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, Dimensions } from "react-native";
 
 import Card from "../components/card";
-import clientes from "../data/cliente"
+//import clientes from "../data/cliente"
 
 export default ({ navigation }) => {
     const [data, setData] = useState(clientes);

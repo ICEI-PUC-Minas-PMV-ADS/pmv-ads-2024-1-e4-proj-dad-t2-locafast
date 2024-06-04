@@ -1,25 +1,33 @@
 import React from "react";
 
-import ButtonCadastro from "./buttonCadastro";
-
-import './style/formCadastro.css'
-
-export default props => {
-
+const InputContainer = (props) => {
+    const { id, placeholders = [], values, handleChange = () => { } } = props;
+  
     return (
-        <div id={props.id ? props.id : ""} className="input-container">
-            {
-                props.placeholder.map(el => {
-                    return <input id={el} placeholder={el}></input>
-                })
-            }
-            {
-                props.children > 1 ?
-                props.children.map(child => {
-                    return child
-                }) :
-                props.children
-            }
-        </div>
-    )
-}
+      <div id={id ? id : ""} className="input-container">
+        {placeholders.length > 0 ? (
+          placeholders.map((placeholder, index) => (
+            <input
+              key={index}
+              id={placeholder}
+              placeholder={placeholder}
+              value={values[placeholder] || ''}
+              onChange={(e) => handleChange(e)}
+            />
+          ))
+        ) : (
+          <input
+            placeholder={placeholders}
+            value={values[placeholders] || ''}
+            onChange={(e) => handleChange(e)}
+          />
+        )}
+        {React.Children.count(props.children) > 0 &&
+          React.Children.map(props.children, child => child)
+        }
+      </div>
+    );
+  };
+  
+  export default InputContainer;
+  

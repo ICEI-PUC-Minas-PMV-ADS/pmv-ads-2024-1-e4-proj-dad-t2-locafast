@@ -42,7 +42,7 @@ const Login = ({ navigation }) => {
           //console.log(accessToken.acessToken.acessToken);// resposta
           localStorage.setItem('token', accessToken.acessToken.acessToken);
           //alert("Logado com sucesso!");
-          navigation.navigate('cadastro');
+          navigation.navigate('Cadastro');
           setErrorMessage('');
           setIsVisible(true); 
 
