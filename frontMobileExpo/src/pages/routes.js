@@ -102,6 +102,17 @@ function ClienteRoutes() {
   );
 }
 
+function ColaboradorRoutes() {
+  return (
+    <ClienteStack.Navigator initialRouteName="Cadastro de Colaborador">
+      <ClienteStack.Screen
+        name="Cadastro de Colaborador"
+        component={CadastroColaborador}
+      />
+    </ClienteStack.Navigator>
+  );
+}
+
 function MainRoutes() {
   return (
     <Tab.Navigator
