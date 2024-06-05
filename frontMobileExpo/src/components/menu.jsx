@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-nati
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+
 
 export default ({ navigation }) => {
     return (
@@ -20,7 +20,7 @@ export default ({ navigation }) => {
                         <Text>Cadastro de Reserva</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Abertura de Contrato')}}>
+                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate("Abertura de Contrato")}}>
                     <View>
                         <MaterialCommunityIcons name="clipboard-plus-outline" size={30} color={'#A9A9A9'} />
                     </View>
@@ -46,7 +46,7 @@ export default ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Cadastro de Colaborador')}}>
                     <View>
-                        <FontAwesome6 name="users-line" size={30} color={'#A9A9A9'} />
+                    <AntDesign name="adduser" size={30} color={'#A9A9A9'} />
                     </View>
                     <View style={styles.optionTitle}>
                         <Text>Cadastro de Colaborador</Text>

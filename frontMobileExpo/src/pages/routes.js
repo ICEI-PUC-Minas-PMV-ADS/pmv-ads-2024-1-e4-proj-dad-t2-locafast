@@ -104,12 +104,12 @@ function ClienteRoutes() {
 
 function ColaboradorRoutes() {
   return (
-    <ClienteStack.Navigator initialRouteName="Cadastro de Colaborador">
+    <ColaboradorStack.Navigator initialRouteName="Cadastro de Colaborador">
       <ClienteStack.Screen
         name="Cadastro de Colaborador"
         component={CadastroColaborador}
       />
-    </ClienteStack.Navigator>
+    </ColaboradorStack.Navigator>
   );
 }
 
