@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-nati
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 
 export default ({ navigation }) => {
