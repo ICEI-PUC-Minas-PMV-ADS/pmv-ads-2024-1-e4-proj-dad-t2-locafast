@@ -4,6 +4,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+
 export default ({ navigation }) => {
     return (
         <View style={styles.menuContainer}>
@@ -41,6 +43,14 @@ export default ({ navigation }) => {
                     </View>
                     <View style={styles.optionTitle}>
                         <Text>Cadastro de Cliente</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Cadastro de Colaborador')}}>
+                    <View>
+                        <FontAwesome6 name="users-line" size={30} color={'#A9A9A9'} />
+                    </View>
+                    <View style={styles.optionTitle}>
+                        <Text>Cadastro de Colaborador</Text>
                     </View>
                 </TouchableOpacity>
             </View>

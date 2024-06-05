@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from "react-router-dom";
 
-import FormCadastro from '../components/formCadastro';
+import FormCadastro from '../components/formUser';
 import ButtonCadastro from '../components/buttonCadastro';
 
 import "../pages/style/cadastro.css";

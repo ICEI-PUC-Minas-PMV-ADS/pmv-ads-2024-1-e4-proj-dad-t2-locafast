@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, ScrollView } from "react-native";
 
-import reservas from '../data/cliente';
 
 export default () => {
     const [_id, setId] = useState();

@@ -26,10 +26,6 @@ export default props => {
             </header>
             <div className="menu-bar">
                 <div className="menu">
-                    <li className="search-box">
-                        <i className="bx bx-search icon"></i>
-                        <input type="search" placeholder="Pesquisa..." />
-                    </li>
                     <ul className="menu-links">
                         <li className="nav-link">
                             <Link  to={'reserva'}>

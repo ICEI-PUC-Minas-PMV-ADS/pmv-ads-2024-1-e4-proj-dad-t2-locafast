@@ -7,7 +7,7 @@ import IconLogin from '../icons/icon.png'
 
 const Login = ({ navigation }) => {
   const handlePress = () => {
-    navigation.navigate('Cadastro');
+    navigation.navigate('Reservas');
   };
 
   const [cpf, setCPF] = useState('');
