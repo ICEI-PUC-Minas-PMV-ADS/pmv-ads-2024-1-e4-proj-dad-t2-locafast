@@ -20,7 +20,7 @@
 }
 
 .title-card-container {
-    flex: 2;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,10 +29,6 @@
 .title-card-container h2 {
     font-size: 15px;
     color: var(--text-color);
-}
-
-.info-container, .check-container {
-    flex: 1;
 }
 
 .title-container {
@@ -54,15 +50,20 @@
     border-radius: 50%;
 }
 
+.check.selected {
+    border: 1px solid rgb(0, 255, 85);
+}
+
 .description-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .description-container h3 {
     color: var(--text-color);
     font-size: 10px;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
 }
 
 .value-container {

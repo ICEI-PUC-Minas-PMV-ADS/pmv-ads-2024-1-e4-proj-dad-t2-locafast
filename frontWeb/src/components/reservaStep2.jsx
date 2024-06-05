@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 import Card from "./card";
-
-import './style/reservaStep2.css'
+import './style/reservaStep2.css';
 
 const groups = [
     {
@@ -73,9 +72,13 @@ const groups = [
     },
 ];
 
-
 export default () => {
     const [formData, handleChange] = useOutletContext();
+    const [selectedCard, setSelectedCard] = useState(null);
+
+    const handleSelect = (group) => {
+        setSelectedCard(group);
+    };
 
     return (
         <div className="step-2-container">
@@ -84,16 +87,18 @@ export default () => {
             </div>
             <div className="scroll-container">
                 <div className="cards-container">
-                    {groups.map(car => (
+                    {groups.map(card => (
                         <Card
-                            key={car.group}
-                            group={car.group}
-                            description={car.description}
-                            value={car.value}
+                            key={card.group}
+                            group={card.group}
+                            description={card.description}
+                            value={card.value}
+                            isSelected={card.group === selectedCard}
+                            onSelect={handleSelect}
                         />
                     ))}
                 </div>
             </div>
         </div>
-    )
+    );
 }
