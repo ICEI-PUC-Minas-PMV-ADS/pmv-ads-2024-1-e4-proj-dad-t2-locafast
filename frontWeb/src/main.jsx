@@ -12,7 +12,7 @@ import CadastroReserva from './pages/cadastroReserva.jsx';
 import Contrato from './pages/contrato.jsx';
 import CriarContrato from './pages/criarContrato.jsx';
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +24,36 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: '',
+        element: <Navigate to="reserva" />
+      },
+      {
         path: "reserva",
         element: <Reserva />,
       },
       {
         path: "cadastroreserva",
         element: <CadastroReserva />,
+
+        children: [
+          {
+            path: '',
+            element: <Navigate to="reserva-passo-1" />
+          },
+          {
+            path: 'reserva-passo-1',
+            element: <ReservaStep1 />
+          },
+          {
+            path: 'reserva-passo-2',
+            element: <ReservaStep2 />
+          },
+          {
+            path: 'reserva-passo-3',
+            element: <ReservaStep3 />
+          }
+        ]
+
       },
       {
         path: "contrato",

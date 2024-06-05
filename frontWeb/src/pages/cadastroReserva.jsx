@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Outlet } from "react-router-dom";
-
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../pages/style/cadastroReserva.css";
 import FormCadastro from '../components/formCadastro';
 import ButtonCadastro from '../components/buttonCadastro';
@@ -28,19 +27,18 @@ function CadastroReserva() {
         }));
     };
 
+    const handleDateChange = (field, date) => {
+        setFormData(prevState => ({
+            ...prevState,
+            [field]: date
+        }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/reserva', {
-                clienteId: formData.clienteId,
-                agenciaRetirada: formData.agenciaRetirada,
-                agenciaDevolucao: formData.agenciaDevolucao,
-                categoriaVeiculo: formData.categoriaVeiculo,
-                valorDiaria: formData.valorDiaria,
-                dateRetirada: formData.dateRetirada,
-                dateDevolucao: formData.dateDevolucao
-            });
+            const response = await axios.post('/reserva', formData);
             alert('Reserva criada com sucesso!');
         } catch (error) {
             console.error('Erro ao criar reserva:', error);
@@ -51,10 +49,18 @@ function CadastroReserva() {
         <div className='reserva-container'>
             <div className='calendars-container'>
                 <div className='calendar-single'>
-                    <Calendar title={'Retirada'} />
+                    <Calendar
+                        title={'Retirada'}
+                        selectedDate={formData.dateRetirada}
+                        onDateChange={(date) => handleDateChange('dateRetirada', date)}
+                    />
                 </div>
                 <div className='calendar-single'>
-                    <Calendar title={'Devolução'} />
+                    <Calendar
+                        title={'Devolução'}
+                        selectedDate={formData.dateDevolucao}
+                        onDateChange={(date) => handleDateChange('dateDevolucao', date)}
+                    />
                 </div>
             </div>
             <div className='reserva-form-container'>
@@ -70,7 +76,6 @@ function CadastroReserva() {
                         values={formData}
                         handleChange={handleChange}
                     />
-
                 </div>
                 <nav className='nav-bar'>
                     <ul className='nav-links'>
@@ -80,7 +85,7 @@ function CadastroReserva() {
                     </ul>
                 </nav>
                 <div className='steps-container'>
-                    <Outlet />
+                    <Outlet context={[formData, handleChange, handleSubmit]} />
                 </div>
             </div>
         </div>

@@ -1,17 +1,23 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import Routes from './src/Routes/Routes';
+import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
 
-const App = () => {
+import Routes from './pages/routes';
 
-return (
+function App() {
 
-  <NavigationContainer>
-    <Routes/>
-  </NavigationContainer>
-
-);
-
+  return (
+    <SafeAreaView style={styles.appBody}>
+        <Routes />
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  appBody: {
+    display: "flex",
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+  }
+})
 
 export default App;
