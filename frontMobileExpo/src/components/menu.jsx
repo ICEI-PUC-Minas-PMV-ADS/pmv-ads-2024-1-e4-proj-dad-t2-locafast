@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import AntDesign from 'react-native-vector-icons/AntDesign'
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default ({ navigation }) => {
     return (
@@ -12,7 +11,7 @@ export default ({ navigation }) => {
                 <Text style={styles.topMenuText}>Todas Opções</Text>
             </View>
             <View style={styles.bottomMenu}>
-                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Cadastro Reserva')}}>
+                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('CadastroReserva')}}>
                     <View>
                         <MaterialCommunityIcons name="calendar-plus" size={30} color={'#A9A9A9'} />
                     </View>
@@ -20,7 +19,7 @@ export default ({ navigation }) => {
                         <Text>Cadastro de Reserva</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate("Abertura de Contrato")}}>
+                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate("CadastroContrato")}}>
                     <View>
                         <MaterialCommunityIcons name="clipboard-plus-outline" size={30} color={'#A9A9A9'} />
                     </View>
@@ -28,7 +27,7 @@ export default ({ navigation }) => {
                         <Text>Abrir Contrato</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Novo Carro')}}>
+                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('NovoCarro')}}>
                     <View>
                         <Ionicons name="car-outline" size={30} color={'#A9A9A9'} />
                     </View>
@@ -36,7 +35,7 @@ export default ({ navigation }) => {
                         <Text>Novo Carro</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Cadastro de Cliente')}}>
+                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('CadastroCliente')}}>
                     <View>
                         <AntDesign name="adduser" size={30} color={'#A9A9A9'} />
                     </View>
@@ -44,9 +43,9 @@ export default ({ navigation }) => {
                         <Text>Cadastro de Cliente</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Cadastro de Colaborador')}}>
+                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('CadastroColaborador')}}>
                     <View>
-                    <AntDesign name="adduser" size={30} color={'#A9A9A9'} />
+                        <AntDesign name="adduser" size={30} color={'#A9A9A9'} />
                     </View>
                     <View style={styles.optionTitle}>
                         <Text>Cadastro de Colaborador</Text>
@@ -54,8 +53,8 @@ export default ({ navigation }) => {
                 </TouchableOpacity>
             </View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     menuContainer: {
@@ -94,6 +93,5 @@ const styles = StyleSheet.create({
     },
     optionTitle: {
         paddingLeft: '10px',
-
     }
-})
+});
