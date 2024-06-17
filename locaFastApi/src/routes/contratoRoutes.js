@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-//Importar serviço de contrato.
-const ContratoService = require("../services/contratoService")
+const ContratoService = require("../services/contratoService");
 const contratoService = new ContratoService();
 
-// Rota para criar um novo contrato
 router.post('/', async (req, res) => {
     try {
         const novoContrato = await contratoService.postContrato(req.body);
@@ -15,7 +12,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Rota para obter todos os contratos
 router.get('/', async (req, res) => {
     try {
         const contratos = await contratoService.getContrato();
@@ -25,7 +21,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Rota para obter um contrato por ID
 router.get('/:id', async (req, res) => {
     try {
         const contrato = await contratoService.getContratoById(req.params.id);
@@ -39,7 +34,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Rota para atualizar um contrato
 router.put('/:id', async (req, res) => {
     try {
         const contratoAtualizado = await contratoService.putContrato(req.body, req.params.id);
@@ -49,7 +43,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Rota para excluir um contrato
 router.delete('/:id', async (req, res) => {
     try {
         await contratoService.deleteContrato(req.params.id);

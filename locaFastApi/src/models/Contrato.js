@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const contratoSchema = new mongoose.Schema({
-    contratoId: {
-        type: String,
-        required: true
-    },
     carroId: {
         type: String,
         required: true
@@ -17,6 +13,10 @@ const contratoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    clienteId: {
+        type: String,
+        required: true
+    },
     status: {
         type: String,
         enum: ['ativo', 'inativo', 'cancelado'],
@@ -26,12 +26,12 @@ const contratoSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    dataDevolução: {
+    dataDevolucao: {
         type: Date,
         required: true,
         validate: {
             validator: function(value) {
-                return value > this.dataRetirada; // Garante que a data de devolução seja posterior à data de retirada
+                return value > this.dataRetirada;
             },
             message: 'A data de devolução deve ser posterior à data de retirada.'
         }
@@ -40,7 +40,7 @@ const contratoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    agenciaDevolução: {
+    agenciaDevolucao: {
         type: String,
         required: true
     }

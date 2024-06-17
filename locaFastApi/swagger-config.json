@@ -9,9 +9,7 @@
   "paths": {
     "/login": {
       "post": {
-        "tags": [
-          "Login"
-        ],
+        "tags": ["Login"],
         "summary": "Faça login",
         "description": "Caso você não possua um usuário, logue com cpf 99999999999 e senha admin123",
         "requestBody": {
@@ -62,10 +60,7 @@
             "content": {
               "application/json": {
                 "example": {
-                  "errors": [
-                    "CPF não foi informado",
-                    "Usuário não encontrado"
-                  ]
+                  "errors": ["CPF não foi informado", "Usuário não encontrado"]
                 }
               }
             }
@@ -85,9 +80,7 @@
     },
     "/cliente": {
       "get": {
-        "tags": [
-          "Clientes"
-        ],
+        "tags": ["Clientes"],
         "summary": "Listar todos os clientes",
         "description": "Retorna uma lista de todos os clientes cadastrados.",
         "security": [
@@ -129,9 +122,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Clientes"
-        ],
+        "tags": ["Clientes"],
         "summary": "Cadastrar um novo cliente",
         "description": "Cadastra um novo cliente com as informações fornecidas.",
         "security": [
@@ -199,9 +190,7 @@
     },
     "/cliente/{id}": {
       "get": {
-        "tags": [
-          "Clientes"
-        ],
+        "tags": ["Clientes"],
         "summary": "Obter cliente por ID",
         "description": "Retorna um cliente com o ID fornecido.",
         "security": [
@@ -254,9 +243,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Clientes"
-        ],
+        "tags": ["Clientes"],
         "summary": "Atualizar cliente por ID",
         "description": "Atualiza um cliente com o ID fornecido.",
         "security": [
@@ -343,9 +330,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Clientes"
-        ],
+        "tags": ["Clientes"],
         "summary": "Remover cliente por ID",
         "description": "Remove um cliente com o ID fornecido.",
         "security": [
@@ -400,9 +385,7 @@
     },
     "/reserva": {
       "get": {
-        "tags": [
-          "Reservas"
-        ],
+        "tags": ["Reservas"],
         "summary": "Obter reservas",
         "description": "Retorna as reservas de locação de automóveis.",
         "security": [
@@ -449,9 +432,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Reservas"
-        ],
+        "tags": ["Reservas"],
         "summary": "Cadastrar uma nova reserva",
         "description": "Cadastra uma nova reserva com as informações fornecidas.",
         "security": [
@@ -511,9 +492,7 @@
     },
     "/reserva{id}": {
       "get": {
-        "tags": [
-          "Reservas"
-        ],
+        "tags": ["Reservas"],
         "summary": "Obter reserva por ID",
         "description": "Retorna uma reserva com o ID fornecido.",
         "security": [
@@ -565,9 +544,7 @@
           }
         },
         "put": {
-          "tags": [
-            "Reservas"
-          ],
+          "tags": ["Reservas"],
           "summary": "Atualizar reserva",
           "description": "Atualiza um reserva com o id fornecido.",
           "security": [
@@ -644,9 +621,7 @@
           }
         },
         "delete": {
-          "tags": [
-            "Reservas"
-          ],
+          "tags": ["Reservas"],
           "summary": "Remover reserva por ID",
           "description": "Remove um reserva com o ID fornecido.",
           "security": [
@@ -701,9 +676,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Reservas"
-        ],
+        "tags": ["Reservas"],
         "summary": "Atualizar reserva por ID",
         "description": "Atualiza uma reserva com o ID fornecido.",
         "security": [
@@ -783,9 +756,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Reservas"
-        ],
+        "tags": ["Reservas"],
         "summary": "Remover reserva por ID",
         "description": "Remove uma reserva com o ID fornecido.",
         "security": [
@@ -841,9 +812,7 @@
     "/contrato": {
       "post": {
         "summary": "Cadastrar um novo contrato",
-        "tags": [
-          "Contratos"
-        ],
+        "tags": ["Contratos"],
         "description": "Cadastra um novo contrato com as informações fornecidas.",
         "security": [
           {
@@ -854,15 +823,15 @@
           "content": {
             "application/json": {
               "example": {
-                "contratoId": "123456789",
                 "carroId": "987654321",
                 "reservaId": "789456123",
                 "colaboradorId": "654987321",
+                "clienteId": "123456789",
                 "status": "ativo",
                 "dataRetirada": "2024-04-04T00:00:00.000Z",
-                "dataDevolução": "2024-04-08T00:00:00.000Z",
+                "dataDevolucao": "2024-04-08T00:00:00.000Z",
                 "agenciaRetirada": "Agência A",
-                "agenciaDevolução": "Agência B"
+                "agenciaDevolucao": "Agência B"
               }
             }
           }
@@ -904,9 +873,7 @@
       },
       "get": {
         "summary": "Listar todos os contratos",
-        "tags": [
-          "Contratos"
-        ],
+        "tags": ["Contratos"],
         "description": "Retorna uma lista de todos os contratos cadastrados.",
         "security": [
           {
@@ -924,11 +891,12 @@
                     "carroId": "987654321",
                     "reservaId": "789456123",
                     "colaboradorId": "654987321",
+                    "clienteId": "123456789",
                     "status": "ativo",
                     "dataRetirada": "2024-04-04T00:00:00.000Z",
-                    "dataDevolução": "2024-04-08T00:00:00.000Z",
+                    "dataDevolucao": "2024-04-08T00:00:00.000Z",
                     "agenciaRetirada": "Agência A",
-                    "agenciaDevolução": "Agência B"
+                    "agenciaDevolucao": "Agência B"
                   }
                 ]
               }
@@ -950,9 +918,7 @@
     "/contrato/{id}": {
       "get": {
         "summary": "Obter contrato por ID",
-        "tags": [
-          "Contratos"
-        ],
+        "tags": ["Contratos"],
         "description": "Retorna um contrato com o ID fornecido.",
         "security": [
           {
@@ -980,11 +946,12 @@
                   "carroId": "987654321",
                   "reservaId": "789456123",
                   "colaboradorId": "654987321",
+                  "clienteId": "123456789",
                   "status": "ativo",
                   "dataRetirada": "2024-04-04T00:00:00.000Z",
-                  "dataDevolução": "2024-04-08T00:00:00.000Z",
+                  "dataDevolucao": "2024-04-08T00:00:00.000Z",
                   "agenciaRetirada": "Agência A",
-                  "agenciaDevolução": "Agência B"
+                  "agenciaDevolucao": "Agência B"
                 }
               }
             }
@@ -1013,9 +980,7 @@
       },
       "put": {
         "summary": "Atualizar contrato por ID",
-        "tags": [
-          "Contratos"
-        ],
+        "tags": ["Contratos"],
         "description": "Atualiza um contrato com o ID fornecido.",
         "security": [
           {
@@ -1041,11 +1006,12 @@
                 "carroId": "987654321",
                 "reservaId": "789456123",
                 "colaboradorId": "654987321",
+                "clienteId": "123456789",
                 "status": "ativo",
                 "dataRetirada": "2024-04-04T00:00:00.000Z",
-                "dataDevolução": "2024-04-08T00:00:00.000Z",
+                "dataDevolucao": "2024-04-08T00:00:00.000Z",
                 "agenciaRetirada": "Agência A",
-                "agenciaDevolução": "Agência B"
+                "agenciaDevolucao": "Agência B"
               }
             }
           }
@@ -1097,9 +1063,7 @@
       },
       "delete": {
         "summary": "Remover contrato por ID",
-        "tags": [
-          "Contratos"
-        ],
+        "tags": ["Contratos"],
         "description": "Remove um contrato com o ID fornecido.",
         "security": [
           {
@@ -1154,9 +1118,7 @@
     "/carro": {
       "get": {
         "summary": "Listar todos os carros",
-        "tags": [
-          "Carros"
-        ],
+        "tags": ["Carros"],
         "security": [
           {
             "bearerAuth": []
@@ -1193,9 +1155,7 @@
       },
       "post": {
         "summary": "Cadastrar um novo carro",
-        "tags": [
-          "Carros"
-        ],
+        "tags": ["Carros"],
         "security": [
           {
             "bearerAuth": []
@@ -1258,9 +1218,7 @@
     "/carro/{placa}": {
       "get": {
         "summary": "Obter carro por placa",
-        "tags": [
-          "Carros"
-        ],
+        "tags": ["Carros"],
         "security": [
           {
             "bearerAuth": []
@@ -1318,9 +1276,7 @@
       },
       "put": {
         "summary": "Atualizar carro por placa",
-        "tags": [
-          "Carros"
-        ],
+        "tags": ["Carros"],
         "security": [
           {
             "bearerAuth": []
@@ -1399,9 +1355,7 @@
       },
       "delete": {
         "summary": "Remover carro por placa",
-        "tags": [
-          "Carros"
-        ],
+        "tags": ["Carros"],
         "security": [
           {
             "bearerAuth": []
@@ -1456,9 +1410,7 @@
     "/colaborador": {
       "post": {
         "summary": "Cadastrar um novo colaborador",
-        "tags": [
-          "Colaboradores"
-        ],
+        "tags": ["Colaboradores"],
         "description": "Cadastra um novo colaborador com as informações fornecidas.",
         "security": [
           {
@@ -1518,9 +1470,7 @@
       },
       "get": {
         "summary": "Listar todos os colaboradores",
-        "tags": [
-          "Colaboradores"
-        ],
+        "tags": ["Colaboradores"],
         "description": "Retorna uma lista de todos os colaboradores cadastrados.",
         "security": [
           {
@@ -1561,9 +1511,7 @@
     },
     "/colaborador/{id}": {
       "get": {
-        "tags": [
-          "Colaboradores"
-        ],
+        "tags": ["Colaboradores"],
         "summary": "Obter colaborador por ID",
         "description": "Retorna um colaborador com o ID fornecido.",
         "security": [
@@ -1616,9 +1564,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Colaboradores"
-        ],
+        "tags": ["Colaboradores"],
         "summary": "Atualizar colaborador por ID",
         "description": "Atualiza um colaborador com o ID fornecido.",
         "security": [
@@ -1699,9 +1645,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Colaboradores"
-        ],
+        "tags": ["Colaboradores"],
         "summary": "Remover colaborador por ID",
         "description": "Remove um colaborador com o ID fornecido.",
         "security": [
