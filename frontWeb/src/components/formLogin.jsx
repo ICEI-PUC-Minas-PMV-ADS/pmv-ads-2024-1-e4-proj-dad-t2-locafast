@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ReactInputMask from "react-input-mask";
+
 import './style/form.css';
 import login from '../integration/login'; // Importe a função de login
 import Icon from "./icon";
@@ -22,7 +24,7 @@ export default () => {
                 <Icon size={"100px"} />
                 <h2>LocaFast</h2>
                 <div className="input-form-container">
-                    <input className="input-form" type="text" placeholder="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)}></input>
+                    <ReactInputMask mask={"999.999.999-99"} className="input-form" type="text" placeholder="cpf" value={cpf} onChange={(e) => setCpf(e.target.value)}/>
                     <i className='bx bx-user'></i>
                 </div>
                 <div className="input-form-container">

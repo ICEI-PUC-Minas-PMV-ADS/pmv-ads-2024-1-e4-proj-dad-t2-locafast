@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const agencias = require("../Enums/agencias")
 
 const reservaSchema = new mongoose.Schema({
     clienteId: String,
@@ -6,17 +7,11 @@ const reservaSchema = new mongoose.Schema({
     dateDevolucao: Date,
     agenciaRetirada: {
         type: String,
-        enum: [
-            'Ag. Matriz',
-            'Ag. Filial Cardec'
-        ]
+        enum: agencias
     },
     agenciaDevolucao: {
         type: String,
-        enum: [
-            'Ag. Matriz',
-            'Ag. Filial Cardec'
-        ]
+        enum: agencias
     },
     categoriaVeiculo: {
         type: String,
@@ -29,6 +24,8 @@ const reservaSchema = new mongoose.Schema({
         ]
     },
     valorDiaria: String,
+    nomeRequisitante: String,
+    telefoneRequisitante: String,
     colaboradorId: String,
 
 })

@@ -13,7 +13,7 @@ async function createInitialData() {
 
     await Colaborador.create({
         nome: "Admin",
-        cpf: "99999999999",
+        cpf: "999.999.999-99",
         rg: "99999999",
         telefone: "(31)999999999",
         dataNascimento: "09/09/9999",

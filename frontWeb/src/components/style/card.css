@@ -50,8 +50,12 @@
     border-radius: 50%;
 }
 
-.check.selected {
-    border: 1px solid rgb(0, 255, 85);
+.card-container.selected .top-card .check-container .check {
+    border: 1px solid var(--footer-color);
+}
+
+.card-container.selected {
+    box-shadow: 2px 2px 10px var(--footer-color);
 }
 
 .description-container {

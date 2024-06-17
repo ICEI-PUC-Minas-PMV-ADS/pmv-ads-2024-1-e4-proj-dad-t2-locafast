@@ -116,10 +116,6 @@
     border-bottom: 2px solid var(--text-color);
 }
 
-.nav-bar ul li:hover {
-    border-bottom-color: var(--footer-color);
-}
-
 .nav-bar ul li a {
     display: flex;
     text-decoration: none;
@@ -129,6 +125,18 @@
     color: var(--text-color);
 }
 
-.nav-bar ul li a:hover {
+.nav-links .active {
+    border-bottom: 3px solid var(--footer-color);
+}
+
+.nav-links .active a {
     color: var(--footer-color);
+}
+
+input.invalid {
+    border: 2px solid red !important;
+}
+
+.blocked a {
+    cursor: not-allowed !important;
 }

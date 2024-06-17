@@ -1,0 +1,74 @@
+@import url('../../consts/colors.css');
+
+#reserva-step-3 {
+    padding-bottom: 40px;
+}
+
+.subtitle {
+    border-bottom: 1px solid var(--text-color);
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.subtitle h2 {
+    font-size: 16px;
+    color: var(--text-color);
+    padding-left: 10px;
+}
+
+.info-message {
+    border-radius: 7px;
+    background-color: var(--background-color-light-mode);
+    margin: 10px 0 10px 20px;
+    height: 50px;
+    display: inline-block;
+    padding: 1px;
+}
+
+.info-message div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.info-message div .info-container-icon i {
+    color: var(--text-color);
+}
+
+.info-message div h3 {
+    padding: 0 10px 0 5px;
+    color: #2f2f2f;
+    cursor: default;
+}
+
+.info-message .info-container-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.info-message h3 {
+    font-size: 15px;
+}
+
+.agencias-retirada, 
+.data-info,
+.total-info,
+.grupo-info
+{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.agencias-retirada h3,
+.grupo-info h3,
+.data-info h3,
+.total-info h3
+{
+    font-size: 15px;
+    color: var(--text-color);
+}

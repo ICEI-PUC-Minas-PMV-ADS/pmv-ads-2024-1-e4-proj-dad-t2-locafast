@@ -23,7 +23,7 @@ colaboradorSchema.statics.modelIsValid = function(colaborador) {
         return new ColaboradorException(httpStatus.BAD_REQUEST, 'Todos os campos devem ser preenchidos.');
     }
 
-    if (colaborador.cpf.length !== 11) {
+    if (colaborador.cpf.length !== 14) {
         return new ColaboradorException(httpStatus.BAD_REQUEST, 'CPF inválido.');
     }
 

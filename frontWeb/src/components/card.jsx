@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './style/card.css';
 
 export default function Card(props) {
-    const handleClick = () => {
-        props.onSelect(props.group);
-    };
 
     return (
-        <button onClick={handleClick}>
-            <div className="card-container">
+        <button onClick={() => props.onSelect(props.group, props.value)}>
+            <div className={`card-container ${props.isSelected ? 'selected' : ''}`}>
                 <div className="top-card">
                     <div className="info-container">
                         <i className='bx bx-info-circle'></i>
@@ -17,7 +14,7 @@ export default function Card(props) {
                         <h2>{`Grupo ${props.group}`}</h2>
                     </div>
                     <div className="check-container">
-                        <div className={`check ${props.isSelected ? 'selected' : ''}`}></div>
+                        <div className={"check"}></div>
                     </div>
                 </div>
                 <div className="description-container">

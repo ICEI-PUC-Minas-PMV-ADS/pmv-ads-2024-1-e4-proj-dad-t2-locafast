@@ -72,12 +72,23 @@ const groups = [
     },
 ];
 
-export default () => {
-    const [formData, handleChange] = useOutletContext();
-    const [selectedCard, setSelectedCard] = useState(null);
+const ReservaStep2 = () => {
+    const [formData, setFormData, validations, setValidations, validateTime] = useOutletContext();
+    const [selectedGroup, setSelectedGroup] = useState(formData.categoriaVeiculo);
 
-    const handleSelect = (group) => {
-        setSelectedCard(group);
+    const handleCardChange = (group, value) => {
+        setValidations(prevState => ({
+            ...prevState,
+            categoriaVeiculo: {
+                value: group,
+                valid: true
+            },
+            valorDiaria: {
+                value: value,
+                valid: true
+            }
+        }));
+        setSelectedGroup(group)
     };
 
     return (
@@ -93,8 +104,8 @@ export default () => {
                             group={card.group}
                             description={card.description}
                             value={card.value}
-                            isSelected={card.group === selectedCard}
-                            onSelect={handleSelect}
+                            isSelected={selectedGroup === card.group}
+                            onSelect={handleCardChange}
                         />
                     ))}
                 </div>
@@ -102,3 +113,5 @@ export default () => {
         </div>
     );
 }
+
+export default ReservaStep2;

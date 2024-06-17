@@ -72,6 +72,26 @@ class ClienteService {
         }
     }
 
+    async GetClienteCpf(cpf) {
+        try {
+            const cliente = await Cliente.findOne({ cpf: cpf });
+            if (cliente) {
+                return {
+                    status: httpStatus.SUCCESS,
+                    data: cliente
+                };
+            } else {
+                return {
+                    status: httpStatus.NOT_FOUND,
+                    message: "Cliente não encontrado."
+                };
+            }
+
+        } catch (error) {
+            throw new ClienteException(httpStatus.INTERNAL_SERVER_ERROR, error.message);
+        }
+    }
+
     async PutCliente(cliente, id) {
         try {
             const usuario = await Cliente.findById(id);

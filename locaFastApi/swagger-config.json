@@ -18,7 +18,7 @@
           "content": {
             "application/json": {
               "example": {
-                "cpf": "99999999999",
+                "cpf": "999.999.999-99",
                 "senha": "admin123"
               }
             }

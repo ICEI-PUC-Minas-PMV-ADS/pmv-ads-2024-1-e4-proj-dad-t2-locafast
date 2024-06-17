@@ -44,6 +44,7 @@
     box-sizing: border-box;
     border-color: hsl(0, 0%, 80%);;
     outline: none;
+    color: var(--text-color);
 }
 
 #data-retirada-input input {
@@ -85,4 +86,9 @@
 
 #cliente .input-container input {
     width: 30%;
+    height: 50px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: hsl(0, 0%, 80%);
+    outline: none;
 }

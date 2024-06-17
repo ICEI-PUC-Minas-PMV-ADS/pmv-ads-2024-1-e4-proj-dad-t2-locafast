@@ -24,6 +24,7 @@ const ReservaStack = createNativeStackNavigator();
 const ContratoStack = createNativeStackNavigator();
 const CarroStack = createNativeStackNavigator();
 const ClienteStack = createNativeStackNavigator();
+const ColaboradorStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function AuthRoutes() {
@@ -102,17 +103,6 @@ function ClienteRoutes() {
   );
 }
 
-function ColaboradorRoutes() {
-  return (
-    <ClienteStack.Navigator initialRouteName="Cadastro de Colaborador">
-      <ClienteStack.Screen
-        name="Cadastro de Colaborador"
-        component={CadastroColaborador}
-      />
-    </ClienteStack.Navigator>
-  );
-}
-
 function MainRoutes() {
   return (
     <Tab.Navigator
@@ -159,7 +149,7 @@ function MainRoutes() {
       <Tab.Screen
         name="Mais"
         component={Menu}
-        options={{headerTitle: 'Menu'}}
+        options={{ headerTitle: 'Menu' }}
       />
     </Tab.Navigator>
   );

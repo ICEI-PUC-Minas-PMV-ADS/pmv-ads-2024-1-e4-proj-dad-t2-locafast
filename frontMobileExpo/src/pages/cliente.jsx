@@ -5,7 +5,7 @@ import Card from "../components/card";
 //import clientes from "../data/cliente"
 
 export default ({ navigation }) => {
-    const [data, setData] = useState(clientes);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         // Esta função é chamada toda vez que a tela é carregada ou quando a lista de clientes é atualizada

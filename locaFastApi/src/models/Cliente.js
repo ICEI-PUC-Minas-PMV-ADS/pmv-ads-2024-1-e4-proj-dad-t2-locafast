@@ -35,7 +35,7 @@ clienteSchema.statics.modelIsValid = function(cliente) {
         return new ClienteException(httpStatus.BAD_REQUEST, 'número da CNH inválido.');
     }
 
-    if (cliente.cpf.length !== 11) {
+    if (cliente.cpf.length !== 14) {
         return new ClienteException(httpStatus.BAD_REQUEST, 'CPF inválido.');
     }
 

@@ -25,6 +25,20 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/cpf', async (req, res) => {
+    const cpf = req.query.cpf;
+    try {
+        const cliente = await clienteService.GetClienteCpf(cpf);
+        if (!cliente) {
+            return res.status(httpStatus.NOT_FOUND).json({ message: "Cliente não encontrado." });
+        }
+        return res.status(cliente.status).json(cliente.data);
+    } catch (error) {
+        const status = error.status;
+        return res.status(status).json({ error: error.message });
+    }
+});
+
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     try {

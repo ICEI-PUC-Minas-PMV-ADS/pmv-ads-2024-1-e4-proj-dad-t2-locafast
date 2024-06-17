@@ -58,6 +58,10 @@
     width: 100%;
 }
 
+#middle div input, #middle div select {
+    margin-top: 10px;
+}
+
 #top input {
     width: 100%;
 }

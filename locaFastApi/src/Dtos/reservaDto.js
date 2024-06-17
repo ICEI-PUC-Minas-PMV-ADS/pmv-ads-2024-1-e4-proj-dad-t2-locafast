@@ -8,6 +8,8 @@ class ReservaDTO {
         this.agenciaDevolucao = reserva.agenciaDevolucao;
         this.categoriaVeiculo = reserva.categoriaVeiculo;
         this.valorDiaria = reserva.valorDiaria;
+        this.nomeRequisitante = reserva.nomeRequisitante;
+        this.telefoneRequisitante = reserva.telefoneRequisitante;
         this.colaboradorId = reserva.colaboradorId;
     }
 }
