@@ -28,14 +28,8 @@ export default ({ navigation }) => {
                         <Text>Abrir Contrato</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Novo Carro')}}>
-                    <View>
-                        <Ionicons name="car-outline" size={30} color={'#A9A9A9'} />
-                    </View>
-                    <View style={styles.optionTitle}>
-                        <Text>Novo Carro</Text>
-                    </View>
-                </TouchableOpacity>
+                                   
+                
                 <TouchableOpacity style={styles.option} onPress={() => {navigation.navigate('Cadastro de Cliente')}}>
                     <View>
                         <AntDesign name="adduser" size={30} color={'#A9A9A9'} />

@@ -1,51 +1,54 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Alert } from "react-native";
-import { addCarro } from '../data/carros'; // Importa a função atualizada
+import { updateCarro } from '../data/carros'; 
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { Picker } from '@react-native-picker/picker';
 
-const CadastroCarro = ({ navigation }) => {
-  const [placa, setPlaca] = useState('');
-  const [marca, setMarca] = useState('');
-  const [modelo, setModelo] = useState('');
-  const [ano, setAno] = useState('');
-  const [cor, setCor] = useState('');
-  const [status, setStatus] = useState('Disponível');
-  const [chassi, setChassi] = useState('');
-  const [anoFabricacao, setAnoFabricacao] = useState('');
-  const [categoria, setCategoria] = useState('');
+const EditarCarro = ({ route, navigation }) => {
+  const { carro } = route.params;
 
-  const handleCadastroCarro = async () => {
-    if (!placa || !marca || !modelo || !ano || !cor || !status || !chassi || !anoFabricacao || !categoria) {
-      Alert.alert('Erro', 'Todos os campos devem ser preenchidos.');
-      return;
-    }
+  const [placa, setPlaca] = useState(carro.placa);
+  const [marca, setMarca] = useState(carro.marca);
+  const [modelo, setModelo] = useState(carro.modelo);
+  const [ano, setAno] = useState(carro.ano.toString());
+  const [cor, setCor] = useState(carro.cor);
+  const [status, setStatus] = useState(carro.status);
+  const [chassi, setChassi] = useState(carro.chassi);
+  const [anoFabricacao, setAnoFabricacao] = useState(carro.anoFabricacao.toString());
+  const [categoria, setCategoria] = useState(carro.categoria);
 
-    const novoCarro = { placa, marca, modelo, ano: parseInt(ano), cor, status, chassi, anoFabricacao: parseInt(anoFabricacao), categoria };
-    await addCarro(novoCarro); // Utiliza a função atualizada com AsyncStorage
-    Alert.alert(
-      "Sucesso",
-      "Carro cadastrado com sucesso!",
-      [
+  const handleEditarCarro = async () => {
+    const carroEditado = {
+      placa,
+      marca,
+      modelo,
+      ano: parseInt(ano),
+      cor,
+      status,
+      chassi,
+      anoFabricacao: parseInt(anoFabricacao),
+      categoria
+    };
+
+    try {
+      // Atualiza o carro no AsyncStorage
+      const carrosString = await AsyncStorage.getItem('carros');
+      let carros = carrosString ? JSON.parse(carrosString) : [];
+      carros = carros.map(c => c.placa === carroEditado.placa ? carroEditado : c);
+      await AsyncStorage.setItem('carros', JSON.stringify(carros));
+
+      Alert.alert("Sucesso", "Edição Salva!", [
         {
-          text: "Cadastrar Novo Carro",
+          text: "OK",
           onPress: () => {
-            setPlaca('');
-            setMarca('');
-            setModelo('');
-            setAno('');
-            setCor('');
-            setStatus('Disponível');
-            setChassi('');
-            setAnoFabricacao('');
-            setCategoria('');
-          }
+            navigation.navigate('Carro', { atualizado: true });
+          },
         },
-        {
-          text: "Voltar",
-          onPress: () => navigation.navigate('Carro')
-        }
-      ]
-    );
+      ]);
+    } catch (error) {
+      console.error('Erro ao atualizar o carro:', error);
+      Alert.alert("Erro", "Ocorreu um erro ao salvar a edição. Por favor, tente novamente.");
+    }
   };
 
   return (
@@ -56,6 +59,7 @@ const CadastroCarro = ({ navigation }) => {
         value={placa}
         placeholder="Placa"
         placeholderTextColor="#8a2be2"
+        editable={false}
       />
       <TextInput
         style={styles.input}
@@ -116,8 +120,8 @@ const CadastroCarro = ({ navigation }) => {
         placeholder="Categoria"
         placeholderTextColor="#8a2be2"
       />
-      <TouchableOpacity style={styles.button} onPress={handleCadastroCarro}>
-        <Text style={styles.buttonText}>Cadastrar</Text>
+      <TouchableOpacity style={styles.button} onPress={handleEditarCarro}>
+        <Text style={styles.buttonText}>Salvar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -162,4 +166,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CadastroCarro;
+export default EditarCarro;

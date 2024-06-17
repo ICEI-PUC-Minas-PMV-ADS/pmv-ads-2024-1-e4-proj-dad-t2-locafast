@@ -18,12 +18,17 @@ import CadastroContrato from './cadastroContrato';
 import Carros from './carro';
 import CadastroCarro from './cadastroCarro';
 import Clientes from './cliente';
+import EditarCarro from './editarCarro';
+
+
+
 
 const AuthStack = createNativeStackNavigator();
 const ReservaStack = createNativeStackNavigator();
 const ContratoStack = createNativeStackNavigator();
 const CarroStack = createNativeStackNavigator();
 const ClienteStack = createNativeStackNavigator();
+const ColaboradorStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function AuthRoutes() {
@@ -80,8 +85,12 @@ function CarroRoutes() {
         component={Carros}
       />
       <CarroStack.Screen
-        name="Novo Carro"
+        name="CadastroCarro"
         component={CadastroCarro}
+      />
+      <CarroStack.Screen
+        name="EditarCarro"
+        component={EditarCarro}
       />
     </CarroStack.Navigator>
   );
@@ -105,7 +114,7 @@ function ClienteRoutes() {
 function ColaboradorRoutes() {
   return (
     <ColaboradorStack.Navigator initialRouteName="Cadastro de Colaborador">
-      <ClienteStack.Screen
+      <ColaboradorStack.Screen
         name="Cadastro de Colaborador"
         component={CadastroColaborador}
       />
@@ -159,7 +168,7 @@ function MainRoutes() {
       <Tab.Screen
         name="Mais"
         component={Menu}
-        options={{headerTitle: 'Menu'}}
+        options={{ headerTitle: 'Menu' }}
       />
     </Tab.Navigator>
   );
