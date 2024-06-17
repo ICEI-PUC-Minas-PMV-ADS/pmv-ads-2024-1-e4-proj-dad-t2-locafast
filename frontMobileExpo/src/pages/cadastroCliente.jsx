@@ -1,129 +1,121 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, ScrollView } from "react-native";
+import axios from '../config/axiosConfig';
 
+export default ({ route }) => {
+    const [formData, setFormData] = useState({
+        clienteId: '',
+        numeroCnh: '',
+        validadeCnh: '',
+        estadoEmissor: '',
+        nome: '',
+        cpf: '',
+        rg: '',
+        telefone: '',
+        email: '',
+        dataNascimento: '',
+        status: '',
+        genero: '',
+    });
 
-export default () => {
-    const [_id, setId] = useState();
-    const [idCliente, setIdCliente] = useState();
-    const [numeroCnh, setNumeroCnh] = useState();
-    const [validadeCnh, setValidadeCnh] = useState();
-    const [estadoEmissor, setEstadoEmissor] = useState();
-    const [nome, setNome] = useState();
-    const [cpf, setCpf] = useState();
-    const [rg, setRg] = useState();
-    const [telefone, setTelefone] = useState();
-    const [email, setEmail] = useState();
-    const [dataNascimento, setDataNascimento] = useState();
-    const [status, setStatus] = useState();
-    const [genero, setGenero] = useState();
+    const handleChange = (field, value) => {
+        setFormData(prevState => ({
+            ...prevState,
+            [field]: value
+        }));
+    };
 
-    function handleSubmit() {
-        const data = {
-            _id,
-            idCliente,
-            numeroCnh,
-            validadeCnh,
-            estadoEmissor,
-            nome,
-            cpf,
-            rg,
-            telefone,
-            email,
-            dataNascimento,
-            status,
-            genero,
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post('/cliente', formData);
+            alert('Cliente criado com sucesso!');
+            navigation.navigate('Cliente', { update: true });
+        } catch (error) {
+            console.error('Erro ao criar cliente:', error);
         }
-
-        reservas.push(data)
-    }
+    };
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.innerContainer}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setId}
-                    value={_id}
-                    placeholder="ID"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setIdCliente}
-                    value={idCliente}
-                    placeholder="ID Cliente"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setNumeroCnh}
-                    value={numeroCnh}
-                    placeholder="Número da CNH"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setValidadeCnh}
-                    value={validadeCnh}
-                    placeholder="Validade da CNH"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setEstadoEmissor}
-                    value={estadoEmissor}
-                    placeholder="Estado emissor"
-                /> 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setNome}
-                    value={nome}
-                    placeholder="Nome"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setCpf}
-                    value={cpf}
-                    placeholder="CPF"
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setRg}
-                    value={rg}
-                    placeholder="RG"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setTelefone}
-                    value={telefone}
-                    placeholder="Número do telefone"
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setEmail}
-                    value={email}
-                    placeholder="email"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setDataNascimento}
-                    value={dataNascimento}
-                    placeholder="Data de nascimento"
-                /> 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setStatus}
-                    value={status}
-                    placeholder="Status"
-                /> 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setGenero}
-                    value={genero}
-                    placeholder="Gênero"
-                />             
-                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>Cadastrar</Text>
-                </TouchableOpacity>
-            </View>
+        <View style={styles.innerContainer}>
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('clienteId', value)}
+                value={formData.clienteId}
+                placeholder="ID Cliente"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('numeroCnh', value)}
+                value={formData.numeroCnh}
+                placeholder="Número da CNH"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('validadeCnh', value)}
+                value={formData.validadeCnh}
+                placeholder="Validade da CNH"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('estadoEmissor', value)}
+                value={formData.estadoEmissor}
+                placeholder="Estado emissor"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('nome', value)}
+                value={formData.nome}
+                placeholder="Nome"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('cpf', value)}
+                value={formData.cpf}
+                placeholder="CPF"
+                keyboardType="numeric"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('rg', value)}
+                value={formData.rg}
+                placeholder="RG"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('telefone', value)}
+                value={formData.telefone}
+                placeholder="Número de telefone"
+                keyboardType="numeric"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('email', value)}
+                value={formData.email}
+                placeholder="Email"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('dataNascimento', value)}
+                value={formData.dataNascimento}
+                placeholder="Data de nascimento"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('status', value)}
+                value={formData.status}
+                placeholder="Status"
+            />
+            <TextInput
+                style={styles.input}
+                onChangeText={value => handleChange('genero', value)}
+                value={formData.genero}
+                placeholder="Gênero"
+            />
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
+        </View>
         </ScrollView>
     );
 };

@@ -2,32 +2,31 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, FlatList, Dimensions } from "react-native";
 
 import Card from "../components/card";
-//import clientes from "../data/cliente"
+import axios from "../config/axiosConfig";
 
-export default ({ navigation }) => {
-    const [data, setData] = useState([]);
+export default ({ navigation, route }) => {
+
+    const [data, setData] = useState([])
 
     useEffect(() => {
-        // Esta função é chamada toda vez que a tela é carregada ou quando a lista de clientes é atualizada
-        console.log("Data atualizada:", data);
-    }, [data]);
+        const token = localStorage.getItem('token');
 
-    const updateList = (updatedCliente) => {
-        if (updatedCliente) {
-            // Atualiza o cliente na lista
-            const newData = data.map(item => {
-                if (item._id === updatedCliente._id) {
-                    return updatedCliente;
+        if (token) {
+
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get('/cliente');
+                    setData(response.data);
+                } catch (error) {
+                    console.error('Erro na requisição:', error);
                 }
-                return item;
-            });
-            setData(newData);
+            };
+
+            fetchData();
         } else {
-            // Remove o cliente da lista
-            const newData = data.filter(item => item._id !== updatedCliente?._id);
-            setData(newData);
+            console.log('Não há token')
         }
-    };
+    }, [route.params?.update]);
 
     return (
         <View style={styles.body}>
@@ -38,19 +37,17 @@ export default ({ navigation }) => {
                     <Card
                         keyTitle={"_id"}
                         data={{ ...item }}
-                        onPress={() => navigation.navigate('DetalhesCliente', { cliente: item, updateList })}
+                        onPress={() => navigation.navigate('DetalhesCliente', { cliente: item })}
                         keysToRender={[
                             "clienteId",
                             "nome",
                             "cpf",
                             "rg"
-                        ]}
-                    />
-                }
+                        ]} />}
             />
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     body: {
@@ -58,6 +55,7 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: Dimensions.get('window').width
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
     }
-});
+})

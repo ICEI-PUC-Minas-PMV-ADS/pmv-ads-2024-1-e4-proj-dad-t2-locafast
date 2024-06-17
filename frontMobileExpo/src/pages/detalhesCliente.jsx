@@ -1,15 +1,28 @@
 import React from "react";
-import { View, TextInput, StyleSheet, ScrollView } from "react-native";
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, Alert, ScrollView } from "react-native";
+
+import axios from '../config/axiosConfig'
 
 export default ({ route }) => {
     const { cliente } = route.params;
 
+    const deleteCliente = async (id) => {
+        try {
+            await axios.delete(`/cliente/${id}`);
+            Alert.alert('Cliente deletado com sucesso');
+            navigation.navigate('Cliente', { update: true });
+        } catch (error) {
+            console.error('Erro ao deletar cliente:', error);
+            Alert.alert('Erro ao deletar cliente');
+        }
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-            <View style={styles.container}>
-                <TextInput
+        <View style={styles.container}>
+             <TextInput
                     style={styles.input}
-                    value={cliente.idCliente}
+                    value={cliente.clienteId}
                     placeholder="ID Cliente"
                     editable={false}
                 />
@@ -80,15 +93,15 @@ export default ({ route }) => {
                     placeholder="Gênero"
                     editable={false}
                 />
-            </View>
+            <TouchableOpacity style={styles.button} onPress={() => deleteCliente(cliente._id)}>
+                <Text style={styles.buttonText}>Excluir</Text>
+            </TouchableOpacity>
+        </View>
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
-    scrollViewContainer: {
-        flexGrow: 1,
-    },
     container: {
         flex: 1,
         padding: 16,
@@ -103,5 +116,20 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         paddingHorizontal: 8,
         backgroundColor: '#f0f0f0'
+    },
+    button: {
+        borderRadius: 5,
+        height: 50,
+        backgroundColor: "#b30021",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+    },
+    scrollViewContainer: {
+        flexGrow: 1,
     },
 });
