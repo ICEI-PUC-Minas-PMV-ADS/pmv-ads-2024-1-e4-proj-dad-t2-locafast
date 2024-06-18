@@ -16,6 +16,10 @@ import ReservaStep2 from './components/reservaStep2.jsx';
 import ReservaStep3 from './components/reservaStep3.jsx';
 
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store.js';
+import ReduxToastr from 'react-redux-toastr';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
 const router = createBrowserRouter([
   {
@@ -90,6 +94,17 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates
+        position="top-right"
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+        progressBar
+        closeOnToastrClick />
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

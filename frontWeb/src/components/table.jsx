@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 import './style/table.css';
@@ -12,9 +11,21 @@ export default props => {
         navigate(props.goto);
     };
 
-    const mapTableHeader = props.trs.map((item) => (
-        <th>{item}</th>
-    ))
+    const formatTime = (data) => {
+        try {
+            let newDate = new Date(data);
+
+            let day = String(newDate.getDate()).padStart(2, '0');
+            let month = String(newDate.getMonth() + 1).padStart(2, '0');
+            let year = newDate.getFullYear();
+            let hour = String(newDate.getHours()).padStart(2, '0');
+            let minutes = String(newDate.getMinutes()).padStart(2, '0');
+
+            return `${day}/${month}/${year} ${hour}:${minutes}`;
+        } catch (error) {
+            return false;
+        }
+    }
 
     return (
         <div id="table-container-id" className='table-container'>
@@ -32,7 +43,11 @@ export default props => {
                 <table>
                     <thead>
                         <tr>
-                            {mapTableHeader}
+                            {
+                                props.trs.map((item, index) => (
+                                    <th key={index}>{item}</th>
+                                ))
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -42,15 +57,21 @@ export default props => {
                                 return (
                                     <tr key={item._id}>
                                         {
-                                            keys.map(key => {
+                                            keys.map((key, index) => {
                                                 return (
-                                                    <td>{item[key]}</td>
+                                                    key === "dateRetirada" || key === "dateDevolucao" ?
+                                                        <td key={index}>{formatTime(item[key])}</td> :
+                                                        <td key={index}>{item[key]}</td>
                                                 )
                                             })
                                         }
                                         <td>
                                             <div className="buttons-container">
-                                                <button className='button' id="edit">Editar</button>
+                                                {
+                                                    props.edit ?
+                                                        "" :
+                                                        <button className='button' id="edit">Editar</button>
+                                                }
                                                 <button className='button' id="delete" onClick={() => props.onDelete(item._id)}>Apagar</button>
                                             </div>
                                         </td>

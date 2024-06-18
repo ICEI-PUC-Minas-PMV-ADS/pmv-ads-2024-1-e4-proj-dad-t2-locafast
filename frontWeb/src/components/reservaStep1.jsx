@@ -3,6 +3,7 @@ import AsyncSelect from 'react-select/async';
 import { useOutletContext } from "react-router-dom";
 import ReactInputMask from "react-input-mask";
 import axios from '../config/axiosConfig';
+import { toastr } from 'react-redux-toastr';
 import './style/reservaStep1.css';
 
 const agencias = [
@@ -51,8 +52,9 @@ const fetchClienteById = async (id, setNome, setCpf, setValidations, validations
                 }
             });
         } else {
-
-            //melhorar aqui
+            toastr.error('Erro', 'Cliente não existe')
+            setNome('');
+            setCpf('');
             setValidations({
                 ...validations,
                 clienteId: {
@@ -62,7 +64,13 @@ const fetchClienteById = async (id, setNome, setCpf, setValidations, validations
             });
         }
     } catch (error) {
-        //melhorar aqui
+        if(error.response.status == 404){
+            toastr.error("Erro", "Cliente não existe")
+        } else {
+            toastr.error('Erro', 'Ocorreu um erro ao buscar cliente pelo id')
+        }
+        setNome('');
+        setCpf('');
         setValidations({
             ...validations,
             clienteId: {
@@ -73,7 +81,7 @@ const fetchClienteById = async (id, setNome, setCpf, setValidations, validations
     }
 };
 
-const fetchClienteByCpf = async (cpf, setValidations, validations) => {
+const fetchClienteByCpf = async (cpf, setValidations, validations, setNome, setCpf) => {
     try {
         const response = await axios.get(`/cliente/cpf`, { params: { cpf } });
         if (response.data) {
@@ -85,6 +93,9 @@ const fetchClienteByCpf = async (cpf, setValidations, validations) => {
                 }
             });
         } else {
+            toastr.error('Erro', 'Cliente não existe')
+            setNome('');
+            setCpf('');
             setValidations({
                 ...validations,
                 clienteId: {
@@ -94,7 +105,13 @@ const fetchClienteByCpf = async (cpf, setValidations, validations) => {
             });
         }
     } catch (error) {
-        console.error("Erro ao buscar cliente por CPF:", error);
+        if(error.response.status == 404){
+            toastr.error("Erro", "Cliente não existe")
+        } else {
+            toastr.error('Erro', 'Ocorreu um erro ao buscar cliente pelo cpf')
+        }
+        setNome('');
+        setCpf('');
         setValidations({
             ...validations,
             clienteId: {
@@ -114,18 +131,22 @@ function formatDate(dateString) {
 }
 
 export default function ReservaStep1() {
-    const [formData, setFormData, validations, setValidations, validateTime] = useOutletContext();
+    const [
+        formData,
+        setFormData,
+        validations,
+        setValidations,
+        validateTime,
+    ] = useOutletContext();
 
     const [cpf, setCpf] = useState('');
     const [nome, setNome] = useState('');
 
     useEffect(() => {
         if (validations.clienteId.value) {
-            fetchClienteById(validations.clienteId.value, setNome, setCpf);
+            fetchClienteById(validations.clienteId.value, setNome, setCpf, setValidations, validations);
         }
-    }, [validations.clienteId]);
-
-    console.log(validations)
+    }, [validations.clienteId.value]);
 
     const customNoOptionsMessage = () => "Resultados da pesquisa";
 
@@ -161,6 +182,8 @@ export default function ReservaStep1() {
         }));
     };
 
+    console.log(validations)
+
     return (
         <div>
             <form method='POST'>
@@ -181,20 +204,22 @@ export default function ReservaStep1() {
                                     valid: false
                                 }
                             })}
-                            onBlur={() => fetchClienteById(validations.clienteId.value, setNome, setCpf, setValidations, validations)}
+                            onBlur={() => fetchClienteById(id, setNome, setCpf, setValidations, validations)}
                         />
                         <input
+                            id="input-name"
                             type="text"
                             placeholder="Nome"
                             value={nome}
                             onChange={(e) => setNome(e.target.value)}
+                            disabled
                         />
                         <ReactInputMask
                             placeholder="CPF"
                             mask={"999.999.999-99"}
                             value={cpf}
                             onChange={(e) => setCpf(e.target.value)}
-                            onBlur={() => fetchClienteByCpf(cpf, setValidations, validations)}
+                            onBlur={() => fetchClienteByCpf(cpf, setValidations, validations, setNome, setCpf)}
                         />
                     </div>
                     <div id="sub-title-icon">

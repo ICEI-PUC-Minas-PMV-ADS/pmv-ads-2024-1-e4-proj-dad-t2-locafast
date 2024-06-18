@@ -30,6 +30,9 @@ const Contrato = () => {
         setEditFormData({ ...contrato });
     };
 
+    console.log(editingId)
+    console.log(editFormData)
+
     const handleCancelClick = () => {
         setEditingId(null);
     };

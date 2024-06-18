@@ -2,6 +2,7 @@ import React from 'react';
 import { useOutletContext } from "react-router-dom";
 import ButtonCadastro from '../components/buttonCadastro';
 import axios from '../config/axiosConfig';
+import { toastr } from 'react-redux-toastr';
 
 import './style/reservaStep3.css'
 
@@ -30,14 +31,16 @@ export default () => {
 
     const days = calcDays(formData.dateRetirada, formData.dateDevolucao);
 
-    const handleSubmit =    async () => {
+    const handleSubmit = async () => {
         try {
             const response = await axios.post('/reserva', formData);
-            alert('Reserva criada com sucesso')
+            toastr.success('Sucesso', 'Reserva criada com sucesso');
         } catch (error) {
-            console.error('Erro ao criar a reserva:', error);
+            toastr.error('Erro', 'Erro ao criar a reserva');
         }
     }
+
+    console.log(formData)
 
     return (
         <div id='reserva-step-3'>

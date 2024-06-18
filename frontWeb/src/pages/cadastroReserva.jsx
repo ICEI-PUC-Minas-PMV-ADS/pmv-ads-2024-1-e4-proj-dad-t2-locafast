@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import ReactInputMask from 'react-input-mask';
 import Calendar from '../components/calendar';
+import { toastr } from 'react-redux-toastr';
 import "../pages/style/cadastroReserva.css";
 
 function CadastroReserva() {
@@ -47,8 +48,8 @@ function CadastroReserva() {
                 nomeRequisitante: validations.nomeRequisitante.value,
                 telefoneRequisitante: validations.telefoneRequisitante.value,
                 valorDiaria: validations.valorDiaria.value,
-                dateRetirada: validations.dateRetirada.value,
-                dateDevolucao: validations.dateDevolucao.value,
+                dateRetirada: setTimeFromString(validations.dateRetirada.value, validations.retiradaHora.value),
+                dateDevolucao: setTimeFromString(validations.dateDevolucao.value, validations.devolucaoHora.value),
             })
         }
     }, [validations]);
@@ -61,6 +62,7 @@ function CadastroReserva() {
             const devolucaoDate = new Date(dateDevolucao);
 
             if (retiradaDate > devolucaoDate) {
+                toastr.error("Data inválida", "A data de devolução não pode ser anterior a data de retirada")
                 return false;
             }
             return true;
@@ -68,6 +70,16 @@ function CadastroReserva() {
             return true;
         }
     };
+
+    function setTimeFromString(date, timeString) {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        const newDate = new Date(date)
+        newDate.setHours(hours);
+        newDate.setMinutes(minutes);
+        newDate.setSeconds(0);
+        newDate.setMilliseconds(0);
+        return newDate.toString();
+    }
 
     const handleDateChange = (field) => (date) => {
         const newValidations = {

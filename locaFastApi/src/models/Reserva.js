@@ -20,7 +20,15 @@ const reservaSchema = new mongoose.Schema({
             'B',
             'C',
             'D',
-            'E'
+            'E',
+            'F',
+            'G',
+            'I',
+            'J',
+            'K',
+            'L',
+            'P',
+            'SP'
         ]
     },
     valorDiaria: String,
@@ -34,14 +42,6 @@ reservaSchema.statics.modelIsValid = function(reserva) {
 
     if (Object.values(reserva).some(value => value === null || value === undefined || value === "")) {
         return new Error('Todos os campos devem ser preenchidos.');
-    }
-
-    if (reserva.dateRetirada <=  Date.now()) {
-        return new Error('Data inválida.');
-    }
-
-    if (reserva.dateDevolucao < reserva.dateRetirada  ) {
-        return new Error('A locação do automóvel deve ser de pelo menos 1 dia.');
     }
 
     if (reserva.valorDiaria < 0) {
