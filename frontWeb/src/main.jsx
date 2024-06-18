@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import Login from "./pages/login.jsx";
@@ -86,6 +86,43 @@ const router = createBrowserRouter([
       }
     ],
   }
+]);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
+
+*/
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import Carro from './pages/carro.jsx'; // Verifique o caminho aqui
+import CadastroCarro from './pages/cadastroCarro.jsx'; // Importar a página de cadastro de carro
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Carro />, // Página inicial pode ser a listagem de carros
+  },
+  {
+    path: 'app',
+    element: <App />,
+    children: [
+      {
+        path: 'carro',
+        element: <Carro />,
+      },
+      {
+        path: 'cadastrocarro',
+        element: <CadastroCarro />,
+      },
+      // Adicione outras rotas conforme necessário
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
