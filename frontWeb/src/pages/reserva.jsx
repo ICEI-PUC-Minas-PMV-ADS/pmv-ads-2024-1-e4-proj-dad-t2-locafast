@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toastr } from 'react-redux-toastr';
 
 import axios from '../config/axiosConfig'
 import Table from '../components/table';
@@ -31,12 +32,17 @@ const Reserva = () => {
     }, [navigate]);
 
     const deleteReserva = async (id) => {
-        try {
-            await axios.delete(`/reserva/${id}`);
-            setData(data.filter(reserva => reserva._id !== id));
-        } catch (error) {
-            console.error('Erro ao deletar reserva:', error);
-        }
+        toastr.confirm("Deseja excluir a reserva?", {
+            onOk: async () => {
+                try {
+                    await axios.delete(`/reserva/${id}`);
+                    setData(data.filter(reserva => reserva._id !== id));
+                } catch (error) {
+                    toastr.error("Erro", "Erro ao excluir reserva.")
+                }
+            },
+            onCancel: () => {}
+        })
     };
 
     return (
@@ -55,11 +61,14 @@ const Reserva = () => {
                         'Agência de Devolução',
                         'Categoria do Veículo',
                         'Diária (R$)',
-                        'Colaborador',
-                        'Ações'
+                        'Solicitante',
+                        'Tel. Solicitante',
+                        'ColaboradorId',
+                        'Ação'
                     ]}
                     data={data}
                     onDelete={deleteReserva}
+                    edit="noEdit"
                 />
             </div>
         </div>

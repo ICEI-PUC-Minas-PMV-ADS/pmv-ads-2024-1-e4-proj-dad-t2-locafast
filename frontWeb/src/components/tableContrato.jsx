@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import './style/tableContrato.css';
 
 export default props => {
     const navigate = useNavigate();

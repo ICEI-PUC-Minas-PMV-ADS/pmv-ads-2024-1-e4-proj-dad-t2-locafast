@@ -26,18 +26,19 @@
     overflow: auto;
 }
 
-.table-body::-webkit-scrollbar-thumb{
+.table-body::-webkit-scrollbar-thumb {
     border-radius: .5rem;
     background-color: #0004;
     visibility: hidden;
 }
 
-.table-body:hover::-webkit-scrollbar-thumb{
+.table-body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
 
 table {
     width: 100%;
+    table-layout: auto;
 }
 
 thead, th, td {
@@ -88,7 +89,7 @@ tbody tr:hover {
 
 #edit {
     background-color: #86e49d;
-    color: #006b21
+    color: #006b21;
 }
 
 #edit:hover {
@@ -129,6 +130,6 @@ tbody tr:hover {
 }
 
 .button-container button:hover {
-        color: #F8F8FF;
-        transform: scale(1.05);
+    color: #F8F8FF;
+    transform: scale(1.05);
 }

@@ -92,3 +92,7 @@
     border-color: hsl(0, 0%, 80%);
     outline: none;
 }
+
+#input-name {
+    cursor: not-allowed;
+}
