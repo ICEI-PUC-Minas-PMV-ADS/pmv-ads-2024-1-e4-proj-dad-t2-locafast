@@ -13,8 +13,12 @@ require('dotenv').config();
 
 const app = express();
 
-// Permitir todas as origens
-app.use(cors());
+// Permitir requisições do domínio específico
+app.use(cors({
+    origin: 'https://amandapuceixo4-f7km04ulw-amanda-britos-projects-5d771073.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
 
 app.use(
     express.urlencoded({
@@ -32,7 +36,6 @@ const carroRoutes = require('./routes/carroRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
-
 const contratoRoutes = require('./routes/contratoRoutes');
 
 app.use('/login', loginRoutes);
