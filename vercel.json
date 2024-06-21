@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "name": "amandapuceixo4",
   "builds": [
     {
@@ -10,14 +9,14 @@
       }
     },
     {
-      "src": "locaFastApi/src/index.js",
+      "src": "locaFastApi/package.json",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/locaFastApi/src/index.js"
+      "dest": "/locaFastApi/src/$1"
     },
     {
       "src": "/(.*)",
