@@ -1,13 +1,26 @@
 {
   "name": "amandapuceixo4",
+  "builds": [
+    {
+      "src": "locaFastApi/package.json",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontWeb/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontWeb/dist"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/locaFastApi/src/$1"
+      "dest": "locaFastApi/src/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontWeb/dist/$1"
+      "dest": "frontWeb/dist/$1"
     }
   ]
 }
