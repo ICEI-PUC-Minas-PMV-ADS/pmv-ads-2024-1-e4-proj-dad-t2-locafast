@@ -20,7 +20,7 @@ import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: <Navigate to="/app/contrato" />,
   },
   {
     path: "app",
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Navigate to="reserva" />
+        element: <Navigate to="contrato" />
       },
       {
         path: "reserva",
