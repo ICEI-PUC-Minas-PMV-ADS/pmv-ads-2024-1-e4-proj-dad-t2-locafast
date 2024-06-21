@@ -1,11 +1,12 @@
 {
   "version": 2,
+  "name": "amandapuceixo4",
   "builds": [
     {
       "src": "frontWeb/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "frontWeb/dist"
       }
     },
     {
@@ -16,11 +17,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "locaFastApi/src/index.js"
+      "dest": "/locaFastApi/src/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "frontWeb/dist/$1"
+      "dest": "/frontWeb/dist/$1"
     }
   ]
 }
