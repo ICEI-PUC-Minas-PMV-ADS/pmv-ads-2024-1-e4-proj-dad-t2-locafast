@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "amandapuceixo4",
   "builds": [
     {
       "src": "frontWeb/package.json",
@@ -17,11 +16,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/locaFastApi/src/index.js"
+      "dest": "locaFastApi/src/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontWeb/$1"
+      "dest": "frontWeb/dist/$1"
     }
   ]
 }
