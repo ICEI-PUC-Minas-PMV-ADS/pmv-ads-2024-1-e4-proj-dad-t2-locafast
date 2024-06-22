@@ -11,13 +11,22 @@ require('dotenv').config();
 const app = express();
 
 // Configuração do CORS para permitir todas as origens
-app.use(cors({
-  origin: '*',
+const corsOptions = {
+  origin: '*', // Permitir todas as origens
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 200
-}));
+};
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
+app.use(cors(corsOptions));
 
 app.use(
   express.urlencoded({
