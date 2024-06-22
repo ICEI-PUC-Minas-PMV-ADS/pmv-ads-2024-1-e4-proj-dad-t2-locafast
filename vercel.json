@@ -2,12 +2,8 @@
   "name": "amandapuceixo4",
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/locaFastApi/src/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/frontWeb/dist/$1"
+      "dest": "/frontWeb/dist/index.html"
     }
   ]
 }

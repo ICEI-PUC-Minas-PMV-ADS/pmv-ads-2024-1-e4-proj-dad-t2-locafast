@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../config/axiosConfig';
 import "../pages/style/criarContrato.css";
 
 const CriarContrato = () => {
@@ -26,23 +25,22 @@ const CriarContrato = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const dataToSend = {
             ...formData,
+            id: Date.now(),
             dataRetirada: new Date(formData.dataRetirada).toISOString(),
             dataDevolucao: new Date(formData.dataDevolucao).toISOString()
         };
 
-        try {
-            await axios.post('/contrato', dataToSend);
-            alert('Contrato criado com sucesso!');
-            navigate('/app/contrato');
-        } catch (error) {
-            console.error('Erro ao criar contrato:', error);
-            alert('Erro ao criar contrato. Veja o console para mais detalhes.');
-        }
+        const existingContracts = JSON.parse(localStorage.getItem('contracts')) || [];
+        existingContracts.push(dataToSend);
+        localStorage.setItem('contracts', JSON.stringify(existingContracts));
+
+        alert('Contrato criado com sucesso!');
+        navigate('/app/contrato');
     };
 
     return (

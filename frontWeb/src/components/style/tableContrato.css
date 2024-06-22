@@ -2,19 +2,22 @@
 
 .table-container {
     width: 70vw;
-    height: 70vh;
+    height: auto;
     background-color: #fff5;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
     overflow: hidden;
+    margin: auto; /* Centraliza a tabela */
 }
 
 .table-header {
     width: 100%;
-    height: 15%;
+    height: auto; /* Ajuste a altura */
     background-color: var(--header-table-color);
     display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    padding: 10px 0; /* Espaçamento interno */
 }
 
 .table-body {
@@ -26,13 +29,13 @@
     overflow: auto;
 }
 
-.table-body::-webkit-scrollbar-thumb {
+.table-body::-webkit-scrollbar-thumb{
     border-radius: .5rem;
     background-color: #0004;
     visibility: hidden;
 }
 
-.table-body:hover::-webkit-scrollbar-thumb {
+.table-body:hover::-webkit-scrollbar-thumb{
     visibility: visible;
 }
 
@@ -88,7 +91,7 @@ tbody tr:hover {
 
 #edit {
     background-color: #86e49d;
-    color: #006b21;
+    color: #006b21
 }
 
 #edit:hover {
@@ -99,7 +102,6 @@ tbody tr:hover {
 
 .table-title {
     width: 80%;
-    height: 100%;
     display: flex;
     align-items: center;
 }
@@ -110,7 +112,6 @@ tbody tr:hover {
 
 .button-container {
     width: 20%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -131,17 +132,4 @@ tbody tr:hover {
 .button-container button:hover {
     color: #F8F8FF;
     transform: scale(1.05);
-}
-
-.editable-input {
-    width: 100%;
-    padding: 6px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color .2s;
-}
-
-.editable-input:focus {
-    border-color: var(--header-color);
 }

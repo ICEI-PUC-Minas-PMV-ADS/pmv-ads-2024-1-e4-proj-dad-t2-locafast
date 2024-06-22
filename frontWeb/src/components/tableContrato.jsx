@@ -1,166 +1,89 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
-import './style/tableContrato.css';
+import React from 'react';
+import './style/tableContrato.css'; // Atualize o caminho para o CSS corretamente
 
-export default props => {
-    const navigate = useNavigate();
-
-    const navigateTo = () => {
-        navigate(props.goto);
-    };
-
-    const mapTableHeader = props.trs.map((item) => (
-        <th key={item}>{item}</th>
-    ));
-
+const TableContrato = ({
+    title,
+    btnTxt,
+    goto,
+    trs,
+    data,
+    editingId,
+    editFormData,
+    handleEditFormChange,
+    handleEditClick,
+    handleCancelClick,
+    handleSaveClick,
+    onDelete
+}) => {
     return (
-        <div id="table-container-id" className='table-container'>
+        <div className="table-container">
             <section className="table-header">
                 <div className="table-title">
-                    <h1>{props.title}</h1>
+                    <h1>{title}</h1>
                 </div>
                 <div className="button-container">
-                    {props.btnTxt ? <button onClick={navigateTo} id="create">{props.btnTxt}</button> : ""}
+                    <button onClick={() => window.location.href = goto}>{btnTxt}</button>
                 </div>
             </section>
             <section className="table-body">
-                <table className="contrato-table">
+                <table className="styled-table">
                     <thead>
                         <tr>
-                            {mapTableHeader}
+                            {trs.map((tr, index) => (
+                                <th key={index}>{tr}</th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
-                        {props.data ?
-                            props.data.map(item => (
-                                <tr key={item._id}>
-                                    {props.editingId === item._id ? (
-                                        <>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="_id"
-                                                    value={props.editFormData._id}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                    disabled
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="clienteId"
-                                                    value={props.editFormData.clienteId}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="reservaId"
-                                                    value={props.editFormData.reservaId}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="carroId"
-                                                    value={props.editFormData.carroId}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="colaboradorId"
-                                                    value={props.editFormData.colaboradorId}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="status"
-                                                    value={props.editFormData.status}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="date"
-                                                    name="dataRetirada"
-                                                    value={new Date(props.editFormData.dataRetirada).toISOString().substring(0, 10)}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="date"
-                                                    name="dataDevolucao"
-                                                    value={new Date(props.editFormData.dataDevolucao).toISOString().substring(0, 10)}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="agenciaRetirada"
-                                                    value={props.editFormData.agenciaRetirada}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    name="agenciaDevolucao"
-                                                    value={props.editFormData.agenciaDevolucao}
-                                                    onChange={props.handleEditFormChange}
-                                                    className="editable-input"
-                                                />
-                                            </td>
-                                            <td>
-                                                <div className="buttons-container">
-                                                    <button className='button save-btn' onClick={props.handleSaveClick}>Salvar</button>
-                                                    <button className='button cancel-btn' onClick={props.handleCancelClick}>Cancelar</button>
-                                                </div>
-                                            </td>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <td>{item._id}</td>
-                                            <td>{item.clienteId}</td>
-                                            <td>{item.reservaId}</td>
-                                            <td>{item.carroId}</td>
-                                            <td>{item.colaboradorId}</td>
-                                            <td>{item.status}</td>
-                                            <td>{new Date(item.dataRetirada).toLocaleDateString()}</td>
-                                            <td>{new Date(item.dataDevolucao).toLocaleDateString()}</td>
-                                            <td>{item.agenciaRetirada}</td>
-                                            <td>{item.agenciaDevolucao}</td>
-                                            <td>
-                                                <div className="buttons-container">
-                                                    <button className='button edit-btn' onClick={() => props.handleEditClick(item)}>Editar</button>
-                                                    <button className='button delete-btn' onClick={() => props.onDelete(item._id)}>Apagar</button>
-                                                </div>
-                                            </td>
-                                        </>
-                                    )}
+                        {data.map((contrato) => (
+                            editingId === contrato.id ? (
+                                <tr key={contrato.id}>
+                                    {/* Renderização dos campos de edição */}
+                                    <td>{contrato.id}</td>
+                                    <td><input type="text" name="clienteId" value={editFormData.clienteId} onChange={handleEditFormChange} /></td>
+                                    <td><input type="text" name="reservaId" value={editFormData.reservaId} onChange={handleEditFormChange} /></td>
+                                    <td><input type="text" name="carroId" value={editFormData.carroId} onChange={handleEditFormChange} /></td>
+                                    <td><input type="text" name="colaboradorId" value={editFormData.colaboradorId} onChange={handleEditFormChange} /></td>
+                                    <td>
+                                        <select name="status" value={editFormData.status} onChange={handleEditFormChange}>
+                                            <option value="ativo">Ativo</option>
+                                            <option value="inativo">Inativo</option>
+                                            <option value="cancelado">Cancelado</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="date" name="dataRetirada" value={editFormData.dataRetirada} onChange={handleEditFormChange} /></td>
+                                    <td><input type="date" name="dataDevolucao" value={editFormData.dataDevolucao} onChange={handleEditFormChange} /></td>
+                                    <td><input type="text" name="agenciaRetirada" value={editFormData.agenciaRetirada} onChange={handleEditFormChange} /></td>
+                                    <td><input type="text" name="agenciaDevolucao" value={editFormData.agenciaDevolucao} onChange={handleEditFormChange} /></td>
+                                    <td>
+                                        <button onClick={handleSaveClick}>Salvar</button>
+                                        <button onClick={handleCancelClick}>Cancelar</button>
+                                    </td>
                                 </tr>
-                            )) :
-                            <tr></tr>
-                        }
+                            ) : (
+                                <tr key={contrato.id}>
+                                    <td>{contrato.id}</td>
+                                    <td>{contrato.clienteId}</td>
+                                    <td>{contrato.reservaId}</td>
+                                    <td>{contrato.carroId}</td>
+                                    <td>{contrato.colaboradorId}</td>
+                                    <td>{contrato.status}</td>
+                                    <td>{contrato.dataRetirada}</td>
+                                    <td>{contrato.dataDevolucao}</td>
+                                    <td>{contrato.agenciaRetirada}</td>
+                                    <td>{contrato.agenciaDevolucao}</td>
+                                    <td>
+                                        <button onClick={() => handleEditClick(contrato)}>Editar</button>
+                                        <button onClick={() => onDelete(contrato.id)}>Deletar</button>
+                                    </td>
+                                </tr>
+                            )
+                        ))}
                     </tbody>
                 </table>
             </section>
         </div>
-    )
-}
+    );
+};
+
+export default TableContrato;
