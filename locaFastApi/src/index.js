@@ -1,11 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger-config');
-
-const checkToken = require('./config/auth/checkToken');
 const createInitialData = require('./config/db/initialData');
 
 // Variáveis de ambiente
@@ -18,7 +15,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:8081',
   'http://localhost:3000',
-  'https://amandapuceixo4.vercel.app'
+  'https://amandapuceixo4-3gagyvgzh-amanda-britos-projects-5d771073.vercel.app'
 ];
 
 app.use(cors({
@@ -34,9 +31,9 @@ app.use(cors({
 }));
 
 app.use(
-    express.urlencoded({
-        extended: true
-    })
+  express.urlencoded({
+    extended: true
+  })
 );
 
 createInitialData();
@@ -54,8 +51,8 @@ const contratoRoutes = require('./routes/contratoRoutes');
 app.use('/login', loginRoutes);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// Rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
-app.use(checkToken);
+// Removido temporariamente o middleware de autenticação
+// app.use(checkToken);
 
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
@@ -65,11 +62,11 @@ app.use('/contrato', contratoRoutes);
 
 // Conexão com o banco
 mongoose.connect(
-    process.env.STRING_CONEXAO
+  process.env.STRING_CONEXAO
 ).then(() => {
-    console.log("MongoDB conectado!");
-    app.listen(3001);
-})
-.catch((err) => console.log(err));
-
-app.listen(3000);
+  console.log("MongoDB conectado!");
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+  });
+}).catch((err) => console.log(err));
