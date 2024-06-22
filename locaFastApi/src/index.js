@@ -10,24 +10,13 @@ require('dotenv').config();
 
 const app = express();
 
-// Configuração do CORS para permitir todas as origens e métodos necessários
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:8081',
-  'http://localhost:3000',
-  'https://amandapuceixo4-3gagyvgzh-amanda-britos-projects-5d771073.vercel.app'
-];
-
+// Configuração do CORS para permitir todas as origens
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 app.use(
@@ -65,7 +54,7 @@ mongoose.connect(
   process.env.STRING_CONEXAO
 ).then(() => {
   console.log("MongoDB conectado!");
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3000; // Certifique-se de que a porta é 3000
   app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
   });
