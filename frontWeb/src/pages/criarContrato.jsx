@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../config/axiosConfig';
+import { toast } from 'react-toastify';
 import "../pages/style/criarContrato.css";
 
 const CriarContrato = () => {
@@ -37,11 +38,11 @@ const CriarContrato = () => {
 
         try {
             await axios.post('/contrato', dataToSend);
-            alert('Contrato criado com sucesso!');
+            toast.success('Contrato criado com sucesso!');
             navigate('/app/contrato');
         } catch (error) {
             console.error('Erro ao criar contrato:', error);
-            alert('Erro ao criar contrato. Veja o console para mais detalhes.');
+            toast.error('Erro ao criar contrato. Veja o console para mais detalhes.');
         }
     };
 

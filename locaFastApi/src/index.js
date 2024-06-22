@@ -13,9 +13,22 @@ require('dotenv').config();
 
 const app = express();
 
-// Permitir todas as origens e métodos
+// Configuração do CORS para permitir todas as origens e métodos necessários
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:8081',
+  'http://localhost:3000',
+  'https://amandapuceixo4.vercel.app'
+];
+
 app.use(cors({
-  origin: '*',
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -36,7 +49,6 @@ const carroRoutes = require('./routes/carroRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
-
 const contratoRoutes = require('./routes/contratoRoutes');
 
 app.use('/login', loginRoutes);

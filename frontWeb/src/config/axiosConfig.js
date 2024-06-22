@@ -1,7 +1,8 @@
+/* eslint-env node */
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://amandapuceixo4.vercel.app', // Atualize com o domínio correto do back-end
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3000',
     headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json'
