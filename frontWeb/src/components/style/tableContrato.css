@@ -1,0 +1,135 @@
+@import url('../../consts/colors.css');
+
+.table-container {
+    width: 70vw;
+    height: auto;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    overflow: hidden;
+    margin: auto; /* Centraliza a tabela */
+}
+
+.table-header {
+    width: 100%;
+    height: auto; /* Ajuste a altura */
+    background-color: var(--header-table-color);
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    padding: 10px 0; /* Espaçamento interno */
+}
+
+.table-body {
+    width: 95%;
+    max-height: calc(86% - 1.6rem);
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: auto;
+}
+
+.table-body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table-body:hover::-webkit-scrollbar-thumb{
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+thead, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr:hover {
+    background-color: var(--background-color-light-mode);
+    transition: var(--tran-02);
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    height: 40px;
+    width: 60px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#delete {
+    background-color: #d893a3;
+    color: #b30021;
+    transition: var(--tran-02);
+}
+
+#delete:hover {
+    background-color: #b30021;
+    color: var(--primary-color-light);
+}
+
+#edit {
+    background-color: #86e49d;
+    color: #006b21
+}
+
+#edit:hover {
+    background-color: #006b21;
+    color: var(--primary-color-light);
+    transition: var(--tran-02);
+}
+
+.table-title {
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.table-title h1 {
+    padding-left: 30px;
+}
+
+.button-container {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+}
+
+.button-container button {
+    background-color: var(--header-color);
+    font-size: 18px;
+    height: 40px;
+    min-width: 100px;
+    width: 150px;
+    border-radius: 10px;
+    transition: var(--tran-03);
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    color: #F8F8FF;
+    transform: scale(1.05);
+}

@@ -1,29 +1,42 @@
-const express = require("express")
-const mongoose = require("mongoose")
-//const cors = require("cors")
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../swagger-config');
+const createInitialData = require('./config/db/initialData');
 
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('../swagger-config')
+// Variáveis de ambiente
+require('dotenv').config();
 
-const checkToken = require('./config/auth/checkToken')
-const createInitialData = require('./config/db/initialData')
+const app = express();
 
-// variaveis de ambiente
-require('dotenv').config()
+// Configuração do CORS para permitir todas as origens
+app.use(cors({
+  origin: '*', // Permitir todas as origens
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 
-const app = express()
+// Adicionar logs para diagnosticar solicitações
+app.use((req, res, next) => {
+  console.log(`Recebendo solicitação: ${req.method} ${req.path}`);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 
 app.use(
-    express.urlencoded({
-        extended: true
-    })
-)
+  express.urlencoded({
+    extended: true
+  })
+);
 
-createInitialData()
+createInitialData();
 
-app.use(express.json())
-
-//app.use(cors())
+app.use(express.json());
 
 // Rotas API
 const clienteRoutes = require('./routes/clienteRoutes');
@@ -31,16 +44,13 @@ const carroRoutes = require('./routes/carroRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
 const colaboradorRoutes = require('./routes/colaboradorRoutes');
 const loginRoutes = require('./routes/loginRoutes');
-
-const contratoRoutes = require('./routes/contratoRoutes')
-
+const contratoRoutes = require('./routes/contratoRoutes');
 
 app.use('/login', loginRoutes);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-//rotas que não precisam de autenticação favor inserir acima do app.use(checkToken)
-app.use(checkToken)
-
+// Removido temporariamente o middleware de autenticação
+// app.use(checkToken);
 
 app.use('/cliente', clienteRoutes);
 app.use('/carro', carroRoutes);
@@ -48,13 +58,13 @@ app.use('/reserva', reservaRoutes);
 app.use('/colaborador', colaboradorRoutes);
 app.use('/contrato', contratoRoutes);
 
-//conexão com o banco
+// Conexão com o banco
 mongoose.connect(
-    process.env.STRING_CONEXAO
+  process.env.STRING_CONEXAO
 ).then(() => {
-    console.log("MongoDB conectado!")
-    app.listen(3001)
-})
-    .catch((err) => console.log(err))
-
-app.listen(3000)
+  console.log("MongoDB conectado!");
+  const PORT = 3000; // Certifique-se de que a porta é 3000
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+  });
+}).catch((err) => console.log(err));

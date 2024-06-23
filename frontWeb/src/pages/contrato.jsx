@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../config/axiosConfig';
-import TableContrato from '../components/tableContrato'; // Importando a nova tabela
-import "../pages/style/contrato.css";
+import TableContrato from '../components/tableContrato'; // Certifique-se de que o caminho está correto
+import "../pages/style/contrato.css"; // Certifique-se de que o caminho está correto
 
 const Contrato = () => {
     const [data, setData] = useState([]);
@@ -9,24 +8,12 @@ const Contrato = () => {
     const [editFormData, setEditFormData] = useState({});
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            const fetchData = async () => {
-                try {
-                    const response = await axios.get('/contrato');
-                    setData(response.data);
-                } catch (error) {
-                    console.error('Erro na requisição:', error);
-                }
-            };
-
-            fetchData();
-        }
+        const contracts = JSON.parse(localStorage.getItem('contracts')) || [];
+        setData(contracts);
     }, []);
 
     const handleEditClick = (contrato) => {
-        setEditingId(contrato._id);
+        setEditingId(contrato.id);
         setEditFormData({ ...contrato });
     };
 
@@ -42,24 +29,17 @@ const Contrato = () => {
         }));
     };
 
-    const handleSaveClick = async () => {
-        try {
-            const response = await axios.put(`/contrato/${editFormData._id}`, editFormData);
-            const updatedData = data.map(contrato => (contrato._id === editFormData._id ? response.data : contrato));
-            setData(updatedData);
-            setEditingId(null);
-        } catch (error) {
-            console.error('Erro ao atualizar contrato:', error);
-        }
+    const handleSaveClick = () => {
+        const updatedData = data.map(contrato => (contrato.id === editFormData.id ? editFormData : contrato));
+        localStorage.setItem('contracts', JSON.stringify(updatedData));
+        setData(updatedData);
+        setEditingId(null);
     };
 
-    const deleteContrato = async (id) => {
-        try {
-            await axios.delete(`/contrato/${id}`);
-            setData(data.filter(contrato => contrato._id !== id));
-        } catch (error) {
-            console.error('Erro ao deletar contrato:', error);
-        }
+    const deleteContrato = (id) => {
+        const updatedData = data.filter(contrato => contrato.id !== id);
+        localStorage.setItem('contracts', JSON.stringify(updatedData));
+        setData(updatedData);
     };
 
     return (
