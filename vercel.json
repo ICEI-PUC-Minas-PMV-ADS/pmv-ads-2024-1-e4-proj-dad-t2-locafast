@@ -1,5 +1,4 @@
 {
-  "name": "amandapuceixo4",
   "routes": [
     {
       "src": "/(.*)",
