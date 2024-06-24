@@ -66,7 +66,7 @@ class ClienteService {
             console.error("Erro ao atualizar usuario: ", error); // Log para debug
             throw error;
         }
-}
+} 
 
     async deleteCliente(id) {
         try {

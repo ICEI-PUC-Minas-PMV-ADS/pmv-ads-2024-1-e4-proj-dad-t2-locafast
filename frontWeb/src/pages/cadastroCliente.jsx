@@ -100,4 +100,4 @@ return (
 );
 };
 
-export default CadastroCliente;
+export default CadastroCliente; 
