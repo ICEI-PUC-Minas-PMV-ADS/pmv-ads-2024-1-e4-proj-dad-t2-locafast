@@ -1,57 +1,54 @@
 const mongoose = require("mongoose")
-const validator = require('validator');
-
-const estadosEnum = require('../Enums/estado')
-const ClienteException = require('../exceptions/clienteExcepton')
-const httpStatus = require('../config/constants/httpstatus')
 
 const clienteSchema = new mongoose.Schema({
-    numeroCnh: String,
-    validadeCnh: Date,
+    numeroCnh: {
+        type: String,
+        required: true
+    },
+    validadeCnh: { 
+        type: Date,
+        required: true
+    },
     estadoEmissor: {
         type: String,
-        enum: estadosEnum,
+        required: true
     },
-    nome: String,
-    cpf: String,
-    rg: String,
-    telefone: String,
-    email: String,
-    dataNascimento: Date,
-    status: String,
+    nome: {
+        type: String,
+        required: true
+    },
+    cpf: {
+        type: String,
+        required: true
+    },
+    rg: {
+        type: String,
+        required: true
+    },
+    telefone: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    dataNascimento: {
+        type: Date,
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ['ativo', 'inativo'],
+        required: true
+    },
     genero: {
         type: String,
-        enum: ['Masculino', 'Feminino']
+        enum: ['masculino', 'feminino'],
+        required: true
     },
-})
+});
 
-clienteSchema.statics.modelIsValid = function(cliente) {
-
-    if (Object.values(cliente).some(value => value === null || value === undefined || value === "")) {
-        return new ClienteException(httpStatus.BAD_REQUEST, 'Todos os campos devem ser preenchidos.');
-    }
-
-    if (cliente.numeroCnh.length !== 9) {
-        return new ClienteException(httpStatus.BAD_REQUEST, 'número da CNH inválido.');
-    }
-
-    if (cliente.cpf.length !== 14) {
-        return new ClienteException(httpStatus.BAD_REQUEST, 'CPF inválido.');
-    }
-
-    if (cliente.rg.length !== 8) {
-        return new ClienteException(httpStatus.BAD_REQUEST, 'RG inválido.');
-    }
-
-    if (!validator.isMobilePhone(cliente.telefone, 'pt-BR')) {
-        return new ClienteException(httpStatus.BAD_REQUEST, 'O telefone inserido é inválido.');
-    }
-
-    if (!validator.isEmail(cliente.email)) {
-        return new ClienteException(httpStatus.BAD_REQUEST, 'O email inserido é inválido.');
-    }
-}
-
-const Cliente = mongoose.model('Clientes', clienteSchema);
+const Cliente = mongoose.model('Cliente', clienteSchema);
 
 module.exports = Cliente

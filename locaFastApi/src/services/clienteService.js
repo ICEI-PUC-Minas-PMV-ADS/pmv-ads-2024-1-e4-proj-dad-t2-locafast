@@ -1,137 +1,83 @@
 const Cliente = require('../models/Cliente');
-const ClienteException = require('../exceptions/clienteExcepton');
-const httpStatus = require('../config/constants/httpstatus');
 
 class ClienteService {
 
-    async validadeClientExists(cnh, cpf, rg, id = null, message) {
-        const conditions = {
-            $or: [
-                { numeroCnh: cnh },
-                { cpf: cpf },
-                { rg: rg },
-            ]
-        };
-    
-        const clienteExists = await Cliente.findOne(conditions);
-    
-        if (id && clienteExists && clienteExists._id.toString() !== id) {
-            throw new ClienteException(httpStatus.BAD_REQUEST, message);
-        }
-    
-        if (!id && clienteExists) {
-            throw new ClienteException(httpStatus.BAD_REQUEST, message);
+    async postCliente(cliente) {
+        try {
+            console.log("Recebido para cadastrar cliente: ", cliente); // Log para debug
+
+            const camposObrigatorios = ['numeroCnh', 'validadeCnh', 'estadoEmissor', 'nome', 'cpf', 'rg', 'telefone', 'email', 'dataNascimento', 'status', 'genero'];
+            for (const campo of camposObrigatorios) {
+                if (!cliente[campo]) {
+                    throw new Error(`O campo ${campo} é obrigatório.`);
+                }
+            }
+
+            const statusValidos = ['ativo', 'inativo'];
+            if (!statusValidos.includes(cliente.status)) {
+                throw new Error('O status do cliente deve ser ativo ou inativo.');
+            }
+
+            const generoValido = ['masculino', 'feminino']; // Corrigido o array de gêneros válidos
+            if (!generoValido.includes(cliente.genero)) {
+                throw new Error('O gênero do cliente deve ser masculino ou feminino.');
+            }
+
+            const novoCliente = await Cliente.create(cliente);
+            console.log("Cliente cadastrado com sucesso: ", novoCliente);
+            return novoCliente; 
+        } catch (error) {
+            console.error("Erro ao cadastrar cliente: ", error); // Log para debug
+            throw error;
         }
     }
 
     async GetClienteAll() {
         try {
             const clientes = await Cliente.find();
-            return {
-                status: httpStatus.SUCCESS,
-                data: clientes
-            };
+            console.log("Clientes recuperados: ", clientes); // Log para debug
+            return clientes;
         } catch (error) {
-            throw new ClienteException(httpStatus.INTERNAL_SERVER_ERROR, error.message);
+            console.error("Erro ao buscar clientes: ", error); // Log para debug
+            throw error;
         }
     }
 
-    async postCliente(cliente) {
+    async GetClienteById(id) {
         try {
-            this.validadeClientExists(cliente.cnh, cliente.cpf, cliente.rg, "Cliente já existe")
-            Cliente.modelIsValid(cliente);
-
-            const newCliente = await Cliente.create(cliente);
-            return {
-                status: httpStatus.CREATED,
-                data: newCliente
-            };
-
+            const cliente = await Cliente.findById(id);
+            console.log("Cliente recuperado por ID: ", cliente); // Log para debug
+            return cliente;
         } catch (error) {
-            throw new ClienteException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message);
+            console.error("Erro ao buscar cliente por ID: ", error); // Log para debug
+            throw error;
         }
     }
 
-    async GetClienteId(id) {
+    async PutCliente(clienteData, id) {
         try {
-            const cliente = await Cliente.findOne({ _id: id });
-            if (cliente) {
-                return {
-                    status: httpStatus.SUCCESS,
-                    data: cliente
-                };
-            } else {
-                return {
-                    status: httpStatus.NOT_FOUND,
-                    message: "Cliente não encontrado."
-                };
+            const usuarioAtualizado = await Cliente.findByIdAndUpdate(id, clienteData, { new: true });
+            if (!usuarioAtualizado) {
+                throw new Error("Cliente não existe.");
             }
-
+            console.log("Usuario atualizado: ", usuarioAtualizado); // Log para debug
+            return usuarioAtualizado;
         } catch (error) {
-            throw new ClienteException(httpStatus.INTERNAL_SERVER_ERROR, error.message);
+            console.error("Erro ao atualizar usuario: ", error); // Log para debug
+            throw error;
         }
-    }
-
-    async GetClienteCpf(cpf) {
-        try {
-            const cliente = await Cliente.findOne({ cpf: cpf });
-            if (cliente) {
-                return {
-                    status: httpStatus.SUCCESS,
-                    data: cliente
-                };
-            } else {
-                return {
-                    status: httpStatus.NOT_FOUND,
-                    message: "Cliente não encontrado."
-                };
-            }
-
-        } catch (error) {
-            throw new ClienteException(httpStatus.INTERNAL_SERVER_ERROR, error.message);
-        }
-    }
-
-    async PutCliente(cliente, id) {
-        try {
-            const usuario = await Cliente.findById(id);
-
-            if (!usuario) {
-                throw new ClienteException(httpStatus.NOT_FOUND, "Cliente não existe.");
-            }
-
-            this.validadeClientExists(cliente.cnh, cliente.cpf, cliente.rg, cliente.id, "Um dos dados informados (cpf ou rg ou cnh) já está em outro cadastro")
-            Cliente.modelIsValid(cliente);
-
-            Object.assign(usuario, cliente);
-            const clienteAtualizado = await usuario.save();
-            return {
-                status: httpStatus.SUCCESS,
-                message: "Cliente atualizado",
-                data: clienteAtualizado
-            };
-
-        } catch (error) {
-            throw new ClienteException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message);
-        }
-    }
+} 
 
     async deleteCliente(id) {
         try {
-            const usuario = await Cliente.findById(id);
-
-            if (!usuario) {
-                throw new ClienteException(httpStatus.NOT_FOUND, "Cliente não existe.");
+            const usuarioExcluido = await Cliente.findByIdAndDelete(id);
+            if (!usuarioExcluido) {
+                throw new Error("Cliente não existe.");
             }
-
-            await Cliente.deleteOne({ _id: id });
-            return {
-                status: httpStatus.SUCCESS,
-                message: "Cliente deletado."
-            };
-
+            console.log("Cliente deletado: ", usuarioExcluido); // Log para debug
         } catch (error) {
-            throw new ClienteException(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR, error.message);
+            console.error("Erro ao deletar cliente: ", error); // Log para debug
+            throw error;
         }
     }
 }
