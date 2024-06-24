@@ -1,77 +1,55 @@
-const router = require('express').Router();
-
+const express = require('express');
+const router = express.Router();
 const ClienteService = require('../services/clienteService');
-const httpStatus = require('../config/constants/httpstatus');
-
 const clienteService = new ClienteService();
 
 router.post('/', async (req, res) => {
     try {
-        await clienteService.postCliente(req.body);
-        return res.status(httpStatus.CREATED).json({ message: "Cliente cadastrado com sucesso!" });
+        const novoCliente = await clienteService.postCliente(req.body); 
+        res.status(201).json(novoCliente);
     } catch (error) {
-        const status = error.status
-        return res.status(status).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 
 router.get('/', async (req, res) => {
     try {
         const clientes = await clienteService.GetClienteAll();
-        return res.status(clientes.status).json(clientes.data);
+        res.status(200).json(clientes);
     } catch (error) {
-        const status = error.status
-        return res.status(status).json({ error: error.message });
-    }
-});
-
-router.get('/cpf', async (req, res) => {
-    const cpf = req.query.cpf;
-    try {
-        const cliente = await clienteService.GetClienteCpf(cpf);
-        if (!cliente) {
-            return res.status(httpStatus.NOT_FOUND).json({ message: "Cliente não encontrado." });
-        }
-        return res.status(cliente.status).json(cliente.data);
-    } catch (error) {
-        const status = error.status;
-        return res.status(status).json({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
 });
 
 router.get('/:id', async (req, res) => {
-    const id = req.params.id;
     try {
-        const cliente = await clienteService.GetClienteId(id);
+        const cliente = await clienteService.GetClienteById(req.params.id);
         if (!cliente) {
-            return res.status(httpStatus.NOT_FOUND).json({ message: "Cliente não encontrado." });
+            res.status(404).json({ error: 'Cliente não encontrado.' });
+        } else {
+            res.status(200).json(cliente);
         }
         return res.status(cliente.status).json(cliente.data);
     } catch (error) {
-        const status = error.status
-        return res.status(status).json({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
 });
 
 router.put('/:id', async (req, res) => {
-    const id = req.params.id;
     try {
-        await clienteService.PutCliente(req.body, id);
-        return res.status(httpStatus.SUCCESS).json({ message: "Cliente atualizado com sucesso!" });
+        const clienteAtualizado = await clienteService.putCliente(req.body, req.params.id);
+        res.status(200).json(clienteAtualizado);
     } catch (error) {
-        const status = error.status
-        return res.status(status).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 
 router.delete('/:id', async (req, res) => {
-    const id = req.params.id;
     try {
-        await clienteService.deleteCliente(id);
-        return res.status(httpStatus.SUCCESS).json({ message: "Cliente removido com sucesso!" });
+        await clienteService.deleteCliente(req.params.id) 
+        res.status(204).end();
     } catch (error) {
-        const status = error.status
-        return res.status(status).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 

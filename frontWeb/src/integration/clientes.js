@@ -1,14 +1,15 @@
 import axios from "axios";
 
+const API_URL = 'http://localhost:3000/clientes';
+
 export default class Clientes {
 
-    async postContrato(event) {
+    async postCliente(event) {
         event.preventDefault();
 
         const formData = new FormData(event.target);
 
         let dataObj = {
-            clienteId: formData.get('clienteId'),
             numeroCnh: formData.get('numeroCnh'),
             validadeCnh: formData.get('validadeCnh'),
             estadoEmissor: formData.get('estadoEmissor'),
@@ -23,7 +24,7 @@ export default class Clientes {
         }
 
         try {
-            await axios.post('http://localhost:3000/contrato', dataObj);
+            await axios.post(API_URL, dataObj);
             alert("Cliente cadastrado com sucesso!");
         } catch (error) {
             console.log(error.message);
@@ -32,7 +33,7 @@ export default class Clientes {
 
     async getAllClientes() {
         try {
-            const response = await axios.get('http://localhost:3000/contrato');
+            const response = await axios.get(API_URL);
             return response.data;
         } catch (error) {
             console.log(error.message);
@@ -41,20 +42,19 @@ export default class Clientes {
 
     async getClienteById(clienteId) {
         try {
-            const response = await axios.get(`http://localhost:3000/cliente/${clienteId}`);
+            const response = await axios.get(`${API_URL}/${clienteId}`);
             return response.data;
         } catch (error) {
             console.log(error.message);
         }
     }
 
-    async updateClienteById(event, contratoId) {
+    async updateClienteById(event, clienteId) {
         event.preventDefault();
 
         const formData = new FormData(event.target);
 
         let dataObj = {
-            clienteId: formData.get('clienteId'),
             numeroCnh: formData.get('numeroCnh'),
             validadeCnh: formData.get('validadeCnh'),
             estadoEmissor: formData.get('estadoEmissor'),
@@ -69,7 +69,7 @@ export default class Clientes {
         }
 
         try {
-            await axios.put(`http://localhost:3000/cliente/${clienteId}`, dataObj);
+            await axios.put(`${API_URL}/${clienteId}`, dataObj);
             alert("Cliente atualizado com sucesso!");
         } catch (error) {
             console.log(error.message);
@@ -78,7 +78,7 @@ export default class Clientes {
 
     async deleteClienteById(clienteId) {
         try {
-            await axios.delete(`http://localhost:3000/cliente/${clienteId}`);
+            await axios.delete(`${API_URL}/${clienteId}`);
             alert("Cliente deletado com sucesso!");
         } catch (error) {
             console.log(error.message);

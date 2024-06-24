@@ -49,14 +49,17 @@ const Cliente = () => {
                     title={'Clientes'}
                     trs={[
                         'Id',
+                        'Numero da CNH',
+                        'Validade da CNH',
+                        'Estado',
                         'Nome',
                         'CPF',
+                        'RG',
                         'Telefone',
                         'Email',
-                        'Data Nascimento',
+                        'Data de Nascimento',
                         'Status',
                         'Gênero',
-                        'Ações'
                     ]}
                     data={data}
                     onDelete={deleteCliente}
